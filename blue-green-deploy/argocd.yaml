@@ -1,0 +1,3 @@
+workflows:
+- name: blue-green
+  path: workflows/bluegreen.yaml
