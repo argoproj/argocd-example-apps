@@ -1,3 +1,4 @@
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -17,13 +18,20 @@ spec:
       containers:
       - name: carts
         image: weaveworksdemos/carts:0.4.8
-        ports:
-         - containerPort: 80
         env:
          - name: ZIPKIN
            value: zipkin.jaeger.svc.cluster.local
          - name: JAVA_OPTS
            value: -Xms64m -Xmx128m -XX:PermSize=32m -XX:MaxPermSize=64m -XX:+UseG1GC -Djava.security.egd=file:/dev/urandom
+        resources:
+          limits:
+            cpu: 300m
+            memory: 500Mi
+          requests:
+            cpu: 300m
+            memory: 500Mi
+        ports:
+        - containerPort: 80
         securityContext:
           runAsNonRoot: true
           runAsUser: 10001
@@ -36,6 +44,18 @@ spec:
         volumeMounts:
         - mountPath: /tmp
           name: tmp-volume
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 80
+          initialDelaySeconds: 300
+          periodSeconds: 3
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: 80
+          initialDelaySeconds: 180
+          periodSeconds: 3
       volumes:
         - name: tmp-volume
           emptyDir:
