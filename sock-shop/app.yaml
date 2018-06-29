@@ -1,0 +1,11 @@
+apiVersion: 0.1.0
+environments:
+  default:
+    destination:
+      namespace: default
+      server: https://kubernetes.default.svc
+    k8sVersion: v1.10.0
+    path: default
+kind: ksonnet.io/app
+name: sock-shop
+version: 0.0.1

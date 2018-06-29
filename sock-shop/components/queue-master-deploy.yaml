@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: queue-master
+  labels:
+    name: queue-master
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: queue-master
+  template:
+    metadata:
+      labels:
+        name: queue-master
+    spec:
+      containers:
+      - name: queue-master
+        image: weaveworksdemos/queue-master:0.3.1
+        ports:
+        - containerPort: 80
+      nodeSelector:
+        beta.kubernetes.io/os: linux
