@@ -12,7 +12,7 @@
       name: "pre-post-sync",
       replicas: 1,
       servicePort: 80,
-      type: "LoadBalancer",
+      type: "ClusterIP",
     },
     "pre-sync-job": {},
     "post-sync-job": {},

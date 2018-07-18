@@ -54,8 +54,8 @@ local params = std.extVar("__ksonnet/params").components["guestbook-ui"];
                         "exec": {
                             "command": [ "sh", "-c", "exit 0" ],
                         },
-                        "initialDelaySeconds": 30,
-                        "periodSeconds": 120,
+                        "initialDelaySeconds": 10,
+                        "periodSeconds": 30,
                     }
                   }
                ]
