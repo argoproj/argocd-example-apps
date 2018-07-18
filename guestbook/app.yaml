@@ -6,6 +6,18 @@ environments:
       server: https://kubernetes.default.svc
     k8sVersion: v1.10.0
     path: default
+  dev:
+    destination:
+      namespace: dev
+      server: https://kubernetes.default.svc
+    k8sVersion: v1.10.0
+    path: dev
+  prod:
+    destination:
+      namespace: prod
+      server: https://kubernetes.default.svc
+    k8sVersion: v1.10.0
+    path: prod
 kind: ksonnet.io/app
 name: guestbook
 version: 0.0.1

@@ -4,12 +4,13 @@ metadata:
   generateName: after-
   annotations:
     argocd.argoproj.io/hook: PostSync
+    argocd.argoproj.io/hook-delete-policy: OnSuccess
 spec:
   template:
     spec:
       containers:
       - name: sleep
         image: alpine:latest
-        command: ["sleep", "30"]
+        command: ["sleep", "20"]
       restartPolicy: Never
-  backoffLimit: 4
+  backoffLimit: 0
