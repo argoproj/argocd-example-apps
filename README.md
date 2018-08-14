@@ -6,9 +6,11 @@ to explore ArgoCD and GitOps!
 
 | Application | Description |
 |-------------|-------------|
-| [guestbook](guestbook/) | The ksonnet hello word application |
+| [guestbook](guestbook/) | A hello word application |
+| [ksonnet-guestbook](ksonnet-guestbook/) | The guestbook application as a ksonnet app |
 | [helm-guestbook](helm-guestbook/) | The guestbook application as a Helm chart |
 | [jsonnet-guestbook](jsonnet-guestbook/) | The guestbook application as a raw jsonnet |
+| [kustomize-guestbook](kustomize-guestbook/) | The guestbook application as a kustomize app |
 | [pre-post-sync](pre-post-sync/) | Demonstrates ArgoCD PreSync and PostSync hooks |
 | [blue-green-deploy](blue-green-deploy/) | Demonstrates an ArgoCD Sync hook which performs a blue/green deployment |
 | [sock-shop](sock-shop/) | A microservices demo application (https://microservices-demo.github.io) |

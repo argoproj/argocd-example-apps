@@ -1,0 +1,11 @@
+namePrefix: prod-
+
+bases:
+- ../base
+
+commonLabels:
+  environment: prod
+
+imageTags:
+  - name: gcr.io/heptio-images/ks-guestbook-demo
+    newTag: "0.1"
