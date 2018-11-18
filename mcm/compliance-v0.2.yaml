@@ -1,0 +1,88 @@
+apiVersion: compliance.mcm.ibm.com/v1alpha1
+kind: Compliance
+metadata:
+  name: compliance1
+  namespace: mcm
+spec:
+  clusterSelector: 
+    matchNames:
+    - "icp1"
+    - "icp2"
+#    matchLabels:
+#      cloud: "IBM"
+#      hippa: "true"
+#    matchExpressions:
+#    - key: key1
+#      operator: "NotIn"
+#      values:
+#      - "cl3"
+#      - "cl4"
+#    matchConditions:
+#    - type: "OK"
+#      status: "True"
+  runtime-rules:
+    - apiVersion: policy.mcm.ibm.com/v1alpha1
+      kind: Policy
+      metadata:
+        name: policy01
+        description: Instance descriptor for policy resource
+      spec:
+        remediationAction: "inform" # or inform 
+        namespaces:
+          include: ["default"]
+          exclude: ["kube*"]
+        role-templates:
+          - kind: RoleTemplate
+            apiVersion: roletemplate.mcm.ibm.com/v1alpha1
+            complianceType: "musthave" # at this level, it means the role must exist with the rules that it musthave below
+            metadata:
+              namespace: "" # will be inferred
+              name: dev
+            selector:
+              # matchLabels:
+              # hipaa: "true"
+            rules:
+              - complianceType: "musthave" # at this level, it means if the role exists the rule is a musthave
+                policyRule:
+                  apiGroups: ["extensions", "apps"]
+                  resources: ["deployments"]
+                  verbs: ["get", "list", "watch", "create", "delete","patch"] 
+    - apiVersion: policy.mcm.ibm.com/v1alpha1
+      kind: Policy
+      metadata:
+        name: policy02
+        description: Instance descriptor for policy resource
+      spec:
+        remediationAction: "enforce" # or inform 
+        namespaces:
+          include: ["default"]
+          exclude: ["kube*"]
+        role-templates:
+          - kind: RoleTemplate
+            apiVersion: roletemplate.mcm.ibm.com/v1alpha1
+            complianceType: "musthave" # at this level, it means the role must exist with the rules that it musthave below
+            metadata:
+              namespace: "" # will be inferred
+              name: operator
+            selector:
+              matchLabels:
+                hipaa: "true"
+            rules:
+              - complianceType: "musthave" # at this level, it means if the role exists the rule is a musthave
+                policyRule:
+                  apiGroups: ["extensions", "apps"]
+                  resources: ["deployments"]
+                  verbs: ["get", "list", "watch", "delete"]
+              - complianceType: "mustnothave" # at this level, it means if the role exists the rule is a mustnothave  
+                policyRule:
+                  apiGroups: ["core"]
+                  resources: ["pods"]
+                  verbs: ["create", "update", "patch"] 
+              - policyRule:
+                  apiGroups: ["core"]
+                  resources: ["secrets"]
+                  verbs: ["get", "watch", "list", "create", "delete", "update", "patch"]  
+
+
+
+              
