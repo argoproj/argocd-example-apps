@@ -8,7 +8,7 @@ spec:
     matchNames:
     - "icp1"
     - "icp2"
-    - "icp3"
+#   - "icp3"
 #    matchLabels:
 #      cloud: "IBM"
 #      hippa: "true"
