@@ -1,0 +1,12 @@
+apiVersion: mcm.ibm.com/v1alpha1
+kind: PlacementBinding
+metadata:
+  name: binding1
+  namespace: mcm
+placementRef:
+  name: placement1
+subjects:
+- name: compliance1
+  kind: Compliance
+- name: deployable-simple
+  kind: DestinationPolicy
