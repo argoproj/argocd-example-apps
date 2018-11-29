@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: dummy
+  namespace: mcm
+data:
+  key1: value1
