@@ -1,11 +1,14 @@
 local env = std.extVar("__ksonnet/environments");
-local params = std.extVar("__ksonnet/params").components["guestbook-ui"];
+local params = std.extVar("__ksonnet/params").components["bg-guestbook"];
 [
    {
       "apiVersion": "v1",
       "kind": "Service",
       "metadata": {
-         "name": params.name
+         "name": params.name,
+         "annotations": {
+             "argocd.argoproj.io/hook": "Skip",
+         },
       },
       "spec": {
          "ports": [
@@ -24,7 +27,10 @@ local params = std.extVar("__ksonnet/params").components["guestbook-ui"];
       "apiVersion": "apps/v1beta2",
       "kind": "Deployment",
       "metadata": {
-         "name": params.name
+         "name": params.name,
+         "annotations": {
+             "argocd.argoproj.io/hook": "Skip",
+         },
       },
       "spec": {
          "replicas": params.replicas,
@@ -42,21 +48,13 @@ local params = std.extVar("__ksonnet/params").components["guestbook-ui"];
             "spec": {
                "containers": [
                   {
-                    "image": params.image,
-                    "name": params.name,
-                    "ports": [
+                     "image": params.image,
+                     "name": params.name,
+                     "ports": [
                         {
                             "containerPort": params.containerPort
                         }
-                    ],
-                    // dummy readiness probe to slow down the rollout for demo/testing
-                    "readinessProbe": {
-                        "exec": {
-                            "command": [ "sh", "-c", "exit 0" ],
-                        },
-                        "initialDelaySeconds": 10,
-                        "periodSeconds": 30,
-                    }
+                     ]
                   }
                ]
             }

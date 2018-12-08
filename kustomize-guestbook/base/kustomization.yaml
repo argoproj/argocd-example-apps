@@ -1,5 +1,0 @@
-namePrefix: kustomize-
-
-resources:
-- ../../guestbook/guestbook-ui-deployment.yaml
-- ../../guestbook/guestbook-ui-svc.yaml

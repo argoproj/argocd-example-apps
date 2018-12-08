@@ -1,0 +1,7 @@
+namePrefix: pre-post-sync-
+
+resources:
+- ../guestbook/guestbook-ui-deployment.yaml
+- ../guestbook/guestbook-ui-svc.yaml
+- pre-sync-job.yaml
+- post-sync-job.yaml

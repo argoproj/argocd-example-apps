@@ -81,8 +81,8 @@ spec:
       args:
       - kubectl get --export -o json deployment.apps/{{workflow.parameters.deployment-name}} > /original-deploy &&
         jq -r '.metadata.name+="-blue" |
-               .spec.template.metadata.labels += (.spec.template.metadata.labels | to_entries | map(select(.key != "applications.argoproj.io/app-name")) | map(.value+="-blue") | from_entries) |
-               .spec.selector.matchLabels += (.spec.selector.matchLabels | to_entries | map(select(.key != "applications.argoproj.io/app-name")) | map(.value+="-blue") | from_entries)'
+               .spec.template.metadata.labels += (.spec.template.metadata.labels | to_entries | map(select(.key != "app.kubernetes.io/instance")) | map(.value+="-blue") | from_entries) |
+               .spec.selector.matchLabels += (.spec.selector.matchLabels | to_entries | map(select(.key != "app.kubernetes.io/instance")) | map(.value+="-blue") | from_entries)'
             /original-deploy > /cloned-deploy &&
         cat  /cloned-deploy &&
         kubectl apply -o yaml -f /cloned-deploy
@@ -103,12 +103,12 @@ spec:
       command: [sh, -c, -x]
       args:
       - cp /manifest /manifest-new &&
-        APP_NAME=$(kubectl get -n default -f /manifest-new -o json | jq -r '.metadata.labels."applications.argoproj.io/app-name"') &&
+        APP_NAME=$(kubectl get -f /manifest-new -o json | jq -r '.metadata.labels."app.kubernetes.io/instance"') &&
         if [ "$APP_NAME" != "null" ]; then
-          jq -r --arg APP_NAME "$APP_NAME" '.metadata.labels."applications.argoproj.io/app-name" = $APP_NAME' /manifest-new > /manifest-new.tmp &&
+          jq -r --arg APP_NAME "$APP_NAME" '.metadata.labels."app.kubernetes.io/instance" = $APP_NAME' /manifest-new > /manifest-new.tmp &&
           mv /manifest-new.tmp /manifest-new &&
           if [ "$(jq -r .spec.template.metadata.labels /manifest-new)" != "null" ]; then
-            jq -r --arg APP_NAME "$APP_NAME" '.spec.template.metadata.labels."applications.argoproj.io/app-name" = $APP_NAME' /manifest-new > /manifest-new.tmp &&
+            jq -r --arg APP_NAME "$APP_NAME" '.spec.template.metadata.labels."app.kubernetes.io/instance" = $APP_NAME' /manifest-new > /manifest-new.tmp &&
             mv /manifest-new.tmp /manifest-new ;
           fi ;
         fi &&
@@ -131,7 +131,7 @@ spec:
       image: argoproj/argoexec:v2.1.1
       command: [sh, -c, -x]
       args:
-      - kubectl get -n default service {{workflow.parameters.service-name}} --export -o json > /original-svc &&
+      - kubectl get service {{workflow.parameters.service-name}} --export -o json > /original-svc &&
         jq '.spec.selector = (.spec.selector | with_entries(.value+="-blue"))' /original-svc > /blue-svc &&
         kubectl apply -o yaml -f /blue-svc
 

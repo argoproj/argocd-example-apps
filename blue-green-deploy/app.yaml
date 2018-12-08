@@ -1,11 +1,15 @@
-apiVersion: 0.1.0
+apiVersion: 0.3.0
 environments:
   default:
     destination:
-      namespace: default
+      namespace: blue-green-deploy
       server: https://kubernetes.default.svc
     k8sVersion: v1.10.0
     path: default
 kind: ksonnet.io/app
 name: blue-green-deploy
+registries:
+  incubator:
+    protocol: github
+    uri: github.com/ksonnet/parts/tree/master/incubator
 version: 0.0.1

@@ -51,9 +51,9 @@ local params = std.extVar("__ksonnet/params").components["bg-guestbook"];
                      "image": params.image,
                      "name": params.name,
                      "ports": [
-                     {
-                        "containerPort": params.containerPort
-                     }
+                        {
+                            "containerPort": params.containerPort
+                        }
                      ]
                   }
                ]

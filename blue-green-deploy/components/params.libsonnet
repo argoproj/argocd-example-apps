@@ -9,11 +9,11 @@
     "bg-guestbook": {
       containerPort: 80,
       image: "gcr.io/heptio-images/ks-guestbook-demo:0.2",
-      name: "bg-guestbook",
+      name: "blue-green-guestbook",
       replicas: 3,
       servicePort: 80,
       type: "LoadBalancer",
     },
-    "bg-workflow": {},
+    "bg-pod": {},
   },
 }

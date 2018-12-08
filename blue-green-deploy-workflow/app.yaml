@@ -7,5 +7,5 @@ environments:
     k8sVersion: v1.10.0
     path: default
 kind: ksonnet.io/app
-name: pre-post-sync
+name: blue-green-deploy-workflow
 version: 0.0.1
