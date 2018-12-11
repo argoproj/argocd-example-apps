@@ -28,6 +28,7 @@ local params = std.extVar("__ksonnet/params").components["guestbook-ui"];
       },
       "spec": {
          "replicas": params.replicas,
+         "revisionHistoryLimit": 3,
          "selector": {
             "matchLabels": {
                "app": params.name

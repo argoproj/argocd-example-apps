@@ -13,5 +13,4 @@ to explore ArgoCD and GitOps!
 | [kustomize-guestbook](kustomize-guestbook/) | The guestbook application as a kustomize app |
 | [pre-post-sync](pre-post-sync/) | Demonstrates Argo CD PreSync and PostSync hooks |
 | [blue-green-deploy](blue-green-deploy/) | Demonstrates an Argo CD Sync hook which performs a blue/green deployment |
-| [blue-green-deploy-workflow](blue-green-deploy-workflow/) | Demonstrates an ArgoCD Sync hook which performs a blue/green deployment as an Argo Workflow |
 | [sock-shop](sock-shop/) | A microservices demo application (https://microservices-demo.github.io) |

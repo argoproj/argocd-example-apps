@@ -28,6 +28,7 @@ local params = import 'params.libsonnet';
       },
       "spec": {
          "replicas": params.replicas,
+         "revisionHistoryLimit": 3,
          "selector": {
             "matchLabels": {
                "app": params.name

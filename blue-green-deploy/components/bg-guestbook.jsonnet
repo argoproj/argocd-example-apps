@@ -34,6 +34,7 @@ local params = std.extVar("__ksonnet/params").components["bg-guestbook"];
       },
       "spec": {
          "replicas": params.replicas,
+         "revisionHistoryLimit": 3,
          "selector": {
             "matchLabels": {
                "app": params.name

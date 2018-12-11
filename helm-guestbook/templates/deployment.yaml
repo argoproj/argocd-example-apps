@@ -9,6 +9,7 @@ metadata:
     heritage: {{ .Release.Service }}
 spec:
   replicas: {{ .Values.replicaCount }}
+  revisionHistoryLimit: 3
   selector:
     matchLabels:
       app: {{ template "helm-guestbook.name" . }}
