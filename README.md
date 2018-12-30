@@ -12,5 +12,6 @@ to explore ArgoCD and GitOps!
 | [jsonnet-guestbook](jsonnet-guestbook/) | The guestbook application as a raw jsonnet |
 | [kustomize-guestbook](kustomize-guestbook/) | The guestbook application as a kustomize app |
 | [pre-post-sync](pre-post-sync/) | Demonstrates Argo CD PreSync and PostSync hooks |
+| [helm-dependency](helm-dependency/) | Demonstrates how to customize an OTS (off-the-shelf) helm chart from an upstream repo |
 | [blue-green-deploy](blue-green-deploy/) | Demonstrates an Argo CD Sync hook which performs a blue/green deployment |
 | [sock-shop](sock-shop/) | A microservices demo application (https://microservices-demo.github.io) |
