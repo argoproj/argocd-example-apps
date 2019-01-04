@@ -24,3 +24,32 @@ wordpress:
     rootUser:
       password: baz
 ```
+
+### Subchart Note
+
+The wordpress chart referenced in this example contains a subchart for mariadb as specified in the requirements.yaml file of the wordpress chart:
+```yaml
+- name: mariadb
+  version: 5.x.x
+  repository: https://kubernetes-charts.storage.googleapis.com/
+  condition: mariadb.enabled
+  tags:
+    - wordpress-database
+```
+
+In order to disable this chart, you must set the value to false for both `mariadb.enabled` and `wordpress.mariadb.enabled`. The first is used by the mariadb subchart condition field, the second is used by the wordpress chart deployment template. An example demonstration is available in the values-nomaria.yaml file:
+```yaml
+mariadb:
+  enabled: false
+
+wordpress:
+  wordpressPassword: foo
+  mariadb:
+    enabled: false
+  externalDatabase:
+    host: localhost
+    user: bn_wordpress
+    password: ""
+    database: bitnami_wordpress
+    port: 3306
+```
