@@ -7,5 +7,4 @@ spec:
   - port: 80	
     targetPort: 80	
   selector:	
-    app: guestbook-ui	
-  type: LoadBalancer
+    app: guestbook-ui
