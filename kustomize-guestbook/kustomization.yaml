@@ -1,5 +1,8 @@
 namePrefix: kustomize-
 
+bases:
+- github.com/argoproj/argo-cd//manifests/base?ref=v0.11.0-rc3
+
 resources:
 - ../guestbook/guestbook-ui-deployment.yaml
 - ../guestbook/guestbook-ui-svc.yaml
