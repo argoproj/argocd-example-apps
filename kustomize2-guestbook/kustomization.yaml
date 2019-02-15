@@ -1,10 +1,7 @@
 namePrefix: kustomize-
 
-bases:
-- github.com/argoproj/argo-cd//manifests/base?ref=v0.11.0-rc3
-
 resources:
 - guestbook-ui-deployment.yaml
-- guestbook-ui-svc.yaml
+- sterguestbook-ui-svc.yaml
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
