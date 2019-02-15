@@ -4,7 +4,7 @@ bases:
 - github.com/argoproj/argo-cd//manifests/base?ref=v0.11.0-rc3
 
 resources:
-- ../guestbook/guestbook-ui-deployment.yaml
-- ../guestbook/guestbook-ui-svc.yaml
+- guestbook-ui-deployment.yaml
+- guestbook-ui-svc.yaml
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
