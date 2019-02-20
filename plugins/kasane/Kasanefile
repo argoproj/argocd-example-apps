@@ -1,0 +1,5 @@
+layers:
+- ../../guestbook/guestbook-ui-deployment.yaml
+- patch.jsonnet
+- ../../guestbook/guestbook-ui-svc.yaml
+
