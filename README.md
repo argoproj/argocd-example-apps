@@ -10,7 +10,6 @@ to explore ArgoCD and GitOps!
 | [ksonnet-guestbook](ksonnet-guestbook/) | The guestbook application as a ksonnet app |
 | [helm-guestbook](helm-guestbook/) | The guestbook application as a Helm chart |
 | [jsonnet-guestbook](jsonnet-guestbook/) | The guestbook application as a raw jsonnet |
-| [kustomize-guestbook](kustomize-guestbook/) | The guestbook application as a Kustomize 1 app |
 | [kustomize2-guestbook](kustomize2-guestbook/) | The guestbook application as a Kustomize 2 app |
 | [pre-post-sync](pre-post-sync/) | Demonstrates Argo CD PreSync and PostSync hooks |
 | [helm-dependency](helm-dependency/) | Demonstrates how to customize an OTS (off-the-shelf) helm chart from an upstream repo |
