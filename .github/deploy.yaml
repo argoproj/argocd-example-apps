@@ -1,0 +1,11 @@
+labels:
+  Deploy%20to%20Staging:
+    environment: default
+  deploy-to-test:
+    environment: default
+    description: A default environment based on Docker
+    transient_environment: true
+    auto_merge: false
+    required_contexts:
+    payload:
+      
