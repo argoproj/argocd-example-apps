@@ -11,7 +11,8 @@ Use following steps to try the application:
   configManagementPlugins: |
     - name: kustomized-helm
       init:
-        command: [helm, dependency, build]
+        command: ["/bin/sh", "-c"]
+        args: ["helm init --client-only && helm dependency build"]
       generate:
         command: [sh, -c]
         args: ["helm template . > all.yaml && kustomize build"]
