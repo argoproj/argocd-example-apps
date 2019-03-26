@@ -16,3 +16,4 @@ to explore ArgoCD and GitOps!
 | [blue-green-deploy](blue-green-deploy/) | Demonstrates an Argo CD Sync hook which performs a blue/green deployment |
 | [sock-shop](sock-shop/) | A microservices demo application (https://microservices-demo.github.io) |
 | [plugins](plugins/) | Applications which demonstrate config management plugins usage |
+| [blue-green](blue-green/) | Demonstrates how to implement blue-green deployment using [Argo Rollouts](https://github.com/argoproj/argo-rollouts)
