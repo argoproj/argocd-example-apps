@@ -24,7 +24,7 @@ The `ks-guestbook-demo:0.2` is still considered `blue` available only via previe
 4. Promote `ks-guestbook-demo:0.2` to `green` by patching `Rollout` resource:
 
 ```
-argocd app patch-resource blue-green --kind Rollout --resource-name blue-green-helm-guestbook --patch '{ "spec": { "paused": false } }' --patch-type 'application/merge-patch+json'
+argocd app patch-resource blue-green --kind Rollout --resource-name blue-green-helm-guestbook --patch '{ "status": { "verifyingPreview": false } }' --patch-type 'application/merge-patch+json'
 ```
 
 This promotes `ks-guestbook-demo:0.2` to `green` status and `Rollout` deletes old replica which runs `ks-guestbook-demo:0.1`.
