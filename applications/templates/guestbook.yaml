@@ -6,12 +6,12 @@ metadata:
 spec:
   destination:
     namespace: argocd
-    server: https://kubernetes.default.svc
+    server: {{ .Values.spec.destination.server }}
   project: default
   source:
     path: guestbook
     repoURL: https://github.com/argoproj/argocd-example-apps
-    targetRevision: HEAD
+    targetRevision: {{ .Values.spec.source.targetRevision }}
   syncPolicy:
     automated:
       prune: true
