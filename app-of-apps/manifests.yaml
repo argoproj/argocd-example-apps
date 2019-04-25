@@ -47,7 +47,6 @@ spec:
     targetRevision: HEAD
   syncPolicy:
     automated:
-      prune: true
 ---
 apiVersion: argoproj.io/v1alpha1
 kind: Application
@@ -62,29 +61,6 @@ spec:
     path: kustomize-guestbook
     repoURL: https://github.com/argoproj/argocd-example-apps
     targetRevision: HEAD
-    kustomize:
-      images:
-      - gcr.io/heptio-images/ks-guestbook-demo:0.3
-  syncPolicy:
-    automated:
-      prune: true
----
-apiVersion: argoproj.io/v1alpha1
-kind: Application
-metadata:
-  name: kustomize-guestbook
-spec:
-  destination:
-    namespace: default
-    server: https://kubernetes.default.svc
-  project: default
-  source:
-    path: kustomize-guestbook
-    repoURL: https://github.com/argoproj/argocd-example-apps
-    targetRevision: HEAD
-    kustomize:
-      images:
-      - gcr.io/heptio-images/ks-guestbook-demo:0.3
   syncPolicy:
     automated:
       prune: true
