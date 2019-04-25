@@ -19,7 +19,8 @@ spec:
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: helm-dependency
+  name: helm-dependency  
+  namespace: argocd
 spec:
   destination:
     namespace: argocd
@@ -37,6 +38,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: helm-guestbook
+  namespace: argocd
 spec:
   destination:
     namespace: argocd
@@ -53,6 +55,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: kustomize-guestbook
+  namespace: argocd
 spec:
   destination:
     namespace: argocd
