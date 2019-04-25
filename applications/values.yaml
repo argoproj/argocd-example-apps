@@ -1,0 +1,5 @@
+spec:
+  destination:
+    server: https://kubernetes.default.svc
+  source:
+    targretRevision: HEAD
