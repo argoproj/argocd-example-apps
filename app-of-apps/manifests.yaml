@@ -4,7 +4,7 @@ metadata:
   name: guestbook
 spec:
   destination:
-    namespace: default
+    namespace: argocd
     server: https://kubernetes.default.svc
   project: default
   source:
@@ -21,7 +21,7 @@ metadata:
   name: helm-dependency
 spec:
   destination:
-    namespace: default
+    namespace: argocd
     server: https://kubernetes.default.svc
   project: default
   source:
@@ -38,7 +38,7 @@ metadata:
   name: helm-guestbook
 spec:
   destination:
-    namespace: default
+    namespace: argocd
     server: https://kubernetes.default.svc
   project: default
   source:
@@ -54,7 +54,7 @@ metadata:
   name: kustomize-guestbook
 spec:
   destination:
-    namespace: default
+    namespace: argocd
     server: https://kubernetes.default.svc
   project: default
   source:
