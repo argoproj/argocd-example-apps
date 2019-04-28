@@ -1,19 +1,19 @@
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:
-  name: guestbook-ui
+  name: guestbook-custom
 spec:
   hosts:
-  - guestbook-ui
+  - guestbook-custom
   http:
   - match:
     - uri:
         prefix: "/"
     route:
     - destination:
-        host: guestbook-ui
+        host: guestbook-custom
         subset: v2
   - route:
     - destination:
-        host: guestbook-ui
+        host: guestbook-custom
         subset: v1
