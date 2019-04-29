@@ -4,7 +4,6 @@ metadata:
   name: sync-1
   annotations:
     argocd.argoproj.io/hook: Sync
-    argocd.argoproj.io/hook-weight: 1
     argocd.argoproj.io/hook-delete-policy: HookSucceeded
 spec:
   template:
