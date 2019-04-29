@@ -12,6 +12,6 @@ spec:
       containers:
       - name: sleep
         image: alpine:latest
-        command: ["sh", "-c", "echo 1 && sleep 10"]
+        command: ["sleep", "10"]
       restartPolicy: Never
   backoffLimit: 0
