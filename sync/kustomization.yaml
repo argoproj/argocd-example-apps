@@ -1,0 +1,4 @@
+resources:
+- ../guestbook/guestbook-ui-deployment.yaml
+- ../guestbook/guestbook-ui-svc.yaml
+- sync-job-1.yaml
