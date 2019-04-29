@@ -7,7 +7,7 @@ build:
       buildContext:
         localDir: {}
       cache: {}
-    cluster:
-      namespace: argo
-      dockerConfig:
-        secretName: docker-cfg-secret
+  cluster:
+    namespace: argo
+    dockerConfig:
+      secretName: docker-cfg-secret
