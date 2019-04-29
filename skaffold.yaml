@@ -8,6 +8,8 @@ build:
       buildContext:
         localDir: {}
       cache: {}
+  tagPolicy:
+    sha256: {}
   cluster:
     namespace: argo
     pullSecretName: 
