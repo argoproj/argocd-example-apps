@@ -4,4 +4,7 @@ resources:
 - ../guestbook/guestbook-ui-deployment.yaml
 - ../guestbook/guestbook-ui-svc.yaml
 - pre-sync-job.yaml
+# Note that they are out of order here.
+- sync-job-2.yaml
+- sync-job-1.yaml
 - post-sync-job.yaml

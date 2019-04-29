@@ -1,0 +1,17 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: after
+  annotations:
+    argocd.argoproj.io/hook: Sync
+    argocd.argoproj.io/hook-weight: 1
+    argocd.argoproj.io/hook-delete-policy: HookSucceeded
+spec:
+  template:
+    spec:
+      containers:
+      - name: sleep
+        image: alpine:latest
+        command: ["sh", "-c" "echo 1 && sleep 10"]
+      restartPolicy: Never
+  backoffLimit: 0
