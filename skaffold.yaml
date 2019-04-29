@@ -10,7 +10,7 @@ build:
       cache: {}
   tagPolicy:
       envTemplate:
-        template: 184774810209.dkr.ecr.ap-southeast-1.amazonaws.com/test:0.0.1'
+        template: 184774810209.dkr.ecr.ap-southeast-1.amazonaws.com/test:0.0.1
   cluster:
     namespace: argo
     pullSecretName: 
