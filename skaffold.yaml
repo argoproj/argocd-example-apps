@@ -9,7 +9,8 @@ build:
         localDir: {}
       cache: {}
   tagPolicy:
-    sha256: {}
+      envTemplate:
+        template: 184774810209.dkr.ecr.ap-southeast-1.amazonaws.com/test:{{.DIGEST_HEX}}'
   cluster:
     namespace: argo
     pullSecretName: 
