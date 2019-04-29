@@ -2,8 +2,12 @@ apiVersion: skaffold/v1beta9
 kind: Config
 build:
   artifacts:
-  - image: gcr.io/k8s-skaffold/example
+  - image: gcr.io/k8s-skaffold/skaffold-example
     kaniko:
       buildContext:
         localDir: {}
       cache: {}
+    cluster:
+      namespace: argo
+      dockerConfig:
+        secretName: docker-cfg-secret
