@@ -8,3 +8,4 @@ resources:
 - sync-job-2.yaml
 - sync-job-1.yaml
 - post-sync-job.yaml
+- post-sync-job-2.yaml
