@@ -4,7 +4,7 @@ metadata:
   name: sync-2
   annotations:
     argocd.argoproj.io/hook: PreSync
-    argocd.argoproj.io/foo: 1
+    alex/foo: 1
     argocd.argoproj.io/hook-delete-policy: HookSucceeded
 spec:
   template:
