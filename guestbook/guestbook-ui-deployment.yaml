@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: guestbook-ui
   annotations:
-    argocd.argoproj.io/sync-wave: "48"
+    argocd.argoproj.io/sync-wave: "50"
 spec:
   replicas: 1
   revisionHistoryLimit: 3
