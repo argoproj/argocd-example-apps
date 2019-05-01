@@ -3,7 +3,7 @@ kind: Service
 metadata:
   name: guestbook-ui
   annotations:
-    argocd.argoproj.io/sync-wave: "43"
+    argocd.argoproj.io/sync-wave: "45"
 spec:
   ports:
   - port: 80
