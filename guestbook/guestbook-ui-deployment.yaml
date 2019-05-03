@@ -16,7 +16,7 @@ spec:
         app: guestbook-ui
     spec:
       containers:
-      - image: gcr.io/heptio-images/ks-guestbook-demo:be0984e4febe41cf6e83d71875d03f796c074ee0
+      - image: docker.artifactory.a.intuit.com/dev/deploy/kayenta/service/kayenta.deserialize
         name: guestbook-ui
         ports:
         - containerPort: 80
