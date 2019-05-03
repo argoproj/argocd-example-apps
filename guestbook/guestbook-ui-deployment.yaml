@@ -23,6 +23,6 @@ spec:
         readinessProbe:
           exec:
             command:
-            - true
+            - "true"
           initialDelaySeconds: 30
           periodSeconds: 30
