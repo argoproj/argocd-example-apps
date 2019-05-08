@@ -19,3 +19,6 @@ to explore ArgoCD and GitOps!
 | [applications](applications/) | An application composed of other applications |
 
 Edit something
+
+
+Test Push Event
