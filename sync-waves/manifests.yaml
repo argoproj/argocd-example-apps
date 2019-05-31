@@ -35,7 +35,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: backend-svc
+  name: backend
 spec:
   selector:
     tier: backend
