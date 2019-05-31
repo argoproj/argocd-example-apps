@@ -77,7 +77,7 @@ spec:
     spec:
       containers:
         - name: main
-          image: node:latest
+          image: nginx:latest
 ---
 apiVersion: v1
 kind: Service
