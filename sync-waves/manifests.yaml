@@ -2,10 +2,9 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  generateName: upgrade-sql-schema-
+  name: upgrade-sql-schema
   annotations:
     argocd.argoproj.io/hook: PostSync
-    argocd.argoproj.io/hook-delete-policy: HookSucceeded
 spec:
   template:
     spec:
@@ -59,7 +58,7 @@ spec:
       containers:
         - name: page-up
           image: alpine:latest
-          command: ["sleep", "10"]
+          command: ["sleep", "3"]
       restartPolicy: Never
   backoffLimit: 0
 ---
@@ -100,13 +99,14 @@ kind: Job
 metadata:
   generateName: maint-page-down-
   annotations:
-    argocd.argoproj.io/hook: PostSync
+    argocd.argoproj.io/hook: Sync
     argocd.argoproj.io/hook-delete-policy: HookSucceeded
+    argocd.argoproj.io/sync-wave: "3"
 spec:
   template:
     spec:
       containers:
         - name: page-down
           image: alpine:latest
-          command: ["sleep", "10"]
+          command: ["sleep", "3"]
       restartPolicy: Never
