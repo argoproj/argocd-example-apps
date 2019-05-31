@@ -12,6 +12,7 @@ to explore ArgoCD and GitOps!
 | [jsonnet-guestbook](jsonnet-guestbook/) | The guestbook application as a raw jsonnet |
 | [kustomize-guestbook](kustomize-guestbook/) | The guestbook application as a Kustomize 2 app |
 | [pre-post-sync](pre-post-sync/) | Demonstrates Argo CD PreSync and PostSync hooks |
+| [sync-waves](sync-waves/) | Demonstrates Argo CD sync waves with hooks |
 | [helm-dependency](helm-dependency/) | Demonstrates how to customize an OTS (off-the-shelf) helm chart from an upstream repo |
 | [sock-shop](sock-shop/) | A microservices demo application (https://microservices-demo.github.io) |
 | [plugins](plugins/) | Applications which demonstrate config management plugins usage |

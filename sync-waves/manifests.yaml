@@ -4,7 +4,7 @@ kind: Job
 metadata:
   name: upgrade-sql-schema
   annotations:
-    argocd.argoproj.io/hook: PostSync
+    argocd.argoproj.io/hook: PreSync
 spec:
   template:
     spec:
