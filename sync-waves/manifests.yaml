@@ -5,6 +5,7 @@ metadata:
   generateName: upgrade-sql-schema-
   annotations:
     argocd.argoproj.io/hook: PostSync
+    argocd.argoproj.io/hook-delete-policy: HookSucceeded
 spec:
   template:
     spec:
@@ -50,6 +51,7 @@ metadata:
   generateName: maint-page-up-
   annotations:
     argocd.argoproj.io/hook: Sync
+    argocd.argoproj.io/hook-delete-policy: HookSucceeded
     argocd.argoproj.io/sync-wave: "1"
 spec:
   template:
@@ -99,6 +101,7 @@ metadata:
   generateName: maint-page-down-
   annotations:
     argocd.argoproj.io/hook: PostSync
+    argocd.argoproj.io/hook-delete-policy: HookSucceeded
 spec:
   template:
     spec:
