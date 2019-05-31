@@ -35,7 +35,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: backend
+  name: backend-svc
 spec:
   selector:
     tier: backend
@@ -43,24 +43,6 @@ spec:
     - protocol: TCP
       port: 8080
       targetPort: 8080
----
-apiVersion: apps/v1
-kind: ReplicaSet
-metadata:
-  name: backend
-spec:
-  replicas: 2
-  selector:
-    matchLabels:
-      tier: backend
-  template:
-    metadata:
-      labels:
-        tier: backend
-    spec:
-      containers:
-        - name: main
-          image: nginx:latest
 ---
 apiVersion: batch/v1
 kind: Job
