@@ -19,7 +19,7 @@ kind: ReplicaSet
 metadata:
   name: backend
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       tier: backend
@@ -69,7 +69,7 @@ metadata:
   annotations:
     argocd.argoproj.io/sync-wave: "2"
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       tier: frontend
