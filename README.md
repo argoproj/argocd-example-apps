@@ -10,6 +10,7 @@ to explore ArgoCD and GitOps!
 | [ksonnet-guestbook](ksonnet-guestbook/) | The guestbook application as a ksonnet app |
 | [helm-guestbook](helm-guestbook/) | The guestbook application as a Helm chart |
 | [jsonnet-guestbook](jsonnet-guestbook/) | The guestbook application as a raw jsonnet |
+| [jsonnet-guestbook-tla](jsonnet-guestbook-tla/) | The guestbook application as a raw jsonnet with support for top level arguments |
 | [kustomize-guestbook](kustomize-guestbook/) | The guestbook application as a Kustomize 2 app |
 | [pre-post-sync](pre-post-sync/) | Demonstrates Argo CD PreSync and PostSync hooks |
 | [sync-waves](sync-waves/) | Demonstrates Argo CD sync waves with hooks |
