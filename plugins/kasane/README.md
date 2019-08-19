@@ -4,7 +4,7 @@
 
 Use following steps to try the application:
 
-* Follow instructions from [custom_tools.md](https://github.com/argoproj/argo-cd/blob/master/docs/custom_tools.md) to make sure `kasane` binary is available in `argocd-repo-server` pod.
+* Follow instructions from [custom_tools.md](https://github.com/argoproj/argo-cd/blob/master/docs/operator-manual/custom_tools.md) to make sure `kasane` binary is available in `argocd-repo-server` pod.
 * Register `kasane` plugin `argocd-cm` ConfigMap:
 
 ```yaml
