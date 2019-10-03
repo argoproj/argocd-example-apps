@@ -4,7 +4,7 @@ metadata:
   name: guestbook-ui
 spec:
   replicas: 1
-  revisionHistoryLimit: 13
+  revisionHistoryLimit: 14
   selector:
     matchLabels:
       app: guestbook-ui
