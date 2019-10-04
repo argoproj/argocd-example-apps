@@ -13,6 +13,7 @@ spec:
       labels:
         app: guestbook-ui
     spec:
+      progressDeadlineSeconds: 10
       containers:
       - image: gcr.io/heptio-images/ks-guestbook-demo:0.3
         name: guestbook-ui
