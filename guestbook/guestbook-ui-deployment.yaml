@@ -5,6 +5,7 @@ metadata:
 spec:
   replicas: 1
   revisionHistoryLimit: 18
+  progressDeadlineSeconds: 10
   selector:
     matchLabels:
       app: guestbook-ui
@@ -13,7 +14,6 @@ spec:
       labels:
         app: guestbook-ui
     spec:
-      progressDeadlineSeconds: 10
       containers:
       - image: gcr.io/heptio-images/ks-guestbook-demo:0.3
         name: guestbook-ui
