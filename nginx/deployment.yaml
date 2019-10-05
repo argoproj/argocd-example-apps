@@ -17,7 +17,7 @@ spec:
         app: nginx
     spec:
       containers:
-        - image: nginx:1.17.4-alpine
+        - image: nginx:1.17.4
           name: nginx
           ports:
             - name: http
