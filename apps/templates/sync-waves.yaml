@@ -11,8 +11,8 @@ spec:
     server: {{ .Values.spec.destination.server }}
   project: default
   source:
-    path: guestbook
-    repoURL: https://github.com/argoproj/argocd-example-apps
+    path: sync-waves
+    repoURL: {{ .Values.spec.source.repoURL }}
     targetRevision: {{ .Values.spec.source.targetRevision }}
   syncPolicy:
     automated:
