@@ -8,6 +8,13 @@ metadata:
 apiVersion: v1
 kind: Namespace
 metadata:
+  name: helm-hooks
+  annotations:
+    argocd.argoproj.io/sync-wave: "-1"
+---
+apiVersion: v1
+kind: Namespace
+metadata:
   name: kustomize-guestbook
   annotations:
     argocd.argoproj.io/sync-wave: "-1"
