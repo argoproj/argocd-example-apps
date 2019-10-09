@@ -7,7 +7,7 @@ metadata:
   - resources-finalizer.argocd.argoproj.io
 spec:
   destination:
-    namespace: argocd
+    namespace: sync-waves
     server: {{ .Values.spec.destination.server }}
   project: default
   source:
