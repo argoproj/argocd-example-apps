@@ -4,7 +4,6 @@ kind: Job
 metadata:
   generateName: upgrade-sql-schema
   annotations:
-    argocd.argoproj.io/hook-delete-policy: BeforeHookCreation
     argocd.argoproj.io/hook: PreSync
 spec:
   template:
@@ -48,10 +47,10 @@ spec:
 apiVersion: batch/v1
 kind: Job
 metadata:
-  generateName: maint-page-up-
+  name: maint-page-up
   annotations:
     argocd.argoproj.io/hook: Sync
-    argocd.argoproj.io/hook-delete-policy: HookSucceeded
+    argocd.argoproj.io/hook-delete-policy: BeforeHookCreation
     argocd.argoproj.io/sync-wave: "1"
 spec:
   template:
@@ -100,10 +99,10 @@ spec:
 apiVersion: batch/v1
 kind: Job
 metadata:
-  generateName: maint-page-down-
+  name: maint-page-down
   annotations:
     argocd.argoproj.io/hook: Sync
-    argocd.argoproj.io/hook-delete-policy: HookSucceeded
+    argocd.argoproj.io/hook-delete-policy: BeforeHookCreation
     argocd.argoproj.io/sync-wave: "3"
 spec:
   template:
