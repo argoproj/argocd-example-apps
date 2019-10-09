@@ -5,6 +5,7 @@ metadata:
   generateName: upgrade-sql-schema
   annotations:
     helm.sh/hook: pre-install
+    helm.sh/hook-weight: "-2"
 spec:
   template:
     spec:
@@ -14,44 +15,14 @@ spec:
           command: ["sleep", "5"]
       restartPolicy: Never
 ---
-apiVersion: apps/v1
-kind: ReplicaSet
-metadata:
-  name: backend
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      tier: backend
-  template:
-    metadata:
-      labels:
-        tier: backend
-    spec:
-      containers:
-        - name: main
-          image: nginx:latest
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: backend
-spec:
-  selector:
-    tier: backend
-  ports:
-    - protocol: TCP
-      port: 8080
-      targetPort: 8080
----
 apiVersion: batch/v1
 kind: Job
 metadata:
   name: maint-page-up
   annotations:
-    helm.sh/hook: Sync
+    helm.sh/hook: pre-install
     helm.sh/hook-delete-policy: before-hook-creation
-    helm.sh/hook-weight: "1"
+    helm.sh/hook-weight: "-1"
 spec:
   template:
     spec:
@@ -66,8 +37,6 @@ apiVersion: apps/v1
 kind: ReplicaSet
 metadata:
   name: frontend
-  annotations:
-    helm.sh/hook-weight: "2"
 spec:
   replicas: 1
   selector:
@@ -101,9 +70,8 @@ kind: Job
 metadata:
   name: maint-page-down
   annotations:
-    helm.sh/hook: post-insntall
+    helm.sh/hook: post-install
     helm.sh/hook-delete-policy: before-hook-creation
-    helm.sh/hook-weight: "3"
 spec:
   template:
     spec:
