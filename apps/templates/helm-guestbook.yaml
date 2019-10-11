@@ -7,12 +7,12 @@ metadata:
   - resources-finalizer.argocd.argoproj.io
 spec:
   destination:
-    namespace: argocd
+    namespace: helm-guestbook
     server: {{ .Values.spec.destination.server }}
   project: default
   source:
     path: helm-guestbook
-    repoURL: https://github.com/argoproj/argocd-example-apps
+    repoURL: {{ .Values.spec.source.repoURL }}
     targetRevision: {{ .Values.spec.source.targetRevision }}
   syncPolicy:
     automated:

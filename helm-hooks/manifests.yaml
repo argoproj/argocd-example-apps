@@ -4,7 +4,8 @@ kind: Job
 metadata:
   generateName: upgrade-sql-schema
   annotations:
-    argocd.argoproj.io/hook: PreSync
+    helm.sh/hook: pre-install
+    helm.sh/hook-weight: "-2"
 spec:
   template:
     spec:
@@ -14,44 +15,14 @@ spec:
           command: ["sleep", "5"]
       restartPolicy: Never
 ---
-apiVersion: apps/v1
-kind: ReplicaSet
-metadata:
-  name: backend
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      tier: backend
-  template:
-    metadata:
-      labels:
-        tier: backend
-    spec:
-      containers:
-        - name: main
-          image: nginx:latest
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: backend
-spec:
-  selector:
-    tier: backend
-  ports:
-    - protocol: TCP
-      port: 8080
-      targetPort: 8080
----
 apiVersion: batch/v1
 kind: Job
 metadata:
   name: maint-page-up
   annotations:
-    argocd.argoproj.io/hook: Sync
-    argocd.argoproj.io/hook-delete-policy: BeforeHookCreation
-    argocd.argoproj.io/sync-wave: "1"
+    helm.sh/hook: pre-install
+    helm.sh/hook-delete-policy: before-hook-creation
+    helm.sh/hook-weight: "-1"
 spec:
   template:
     spec:
@@ -66,8 +37,6 @@ apiVersion: apps/v1
 kind: ReplicaSet
 metadata:
   name: frontend
-  annotations:
-    argocd.argoproj.io/sync-wave: "2"
 spec:
   replicas: 1
   selector:
@@ -87,7 +56,7 @@ kind: Service
 metadata:
   name: frontend
   annotations:
-    argocd.argoproj.io/sync-wave: "2"
+    helm.sh/hook-weight: "2"
 spec:
   selector:
     tier: frontend
@@ -101,9 +70,8 @@ kind: Job
 metadata:
   name: maint-page-down
   annotations:
-    argocd.argoproj.io/hook: Sync
-    argocd.argoproj.io/hook-delete-policy: BeforeHookCreation
-    argocd.argoproj.io/sync-wave: "3"
+    helm.sh/hook: post-install
+    helm.sh/hook-delete-policy: before-hook-creation
 spec:
   template:
     spec:
