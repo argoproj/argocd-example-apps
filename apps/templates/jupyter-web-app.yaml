@@ -11,6 +11,6 @@ spec:
     server: {{ .Values.spec.destination.server }}
   project: default
   source:
-    path: jupyter-web-app
+    path: volvo-kustomize/jupyter-web-app
     repoURL: {{ .Values.spec.source.repoURL }}
     targetRevision: {{ .Values.spec.source.targetRevision }}
