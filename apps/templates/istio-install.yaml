@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: istio-system
+  name: istio-install
   namespace: argocd
   finalizers:
   - resources-finalizer.argocd.argoproj.io
