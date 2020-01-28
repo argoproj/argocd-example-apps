@@ -1,0 +1,9 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+bases:
+- ../../../kustomize/jupyter-web-app
+kind: Kustomization
+namespace: kubeflow
+patches:
+- overlays/patch/config-map1.yaml
+
+namePrefix: jupyter1

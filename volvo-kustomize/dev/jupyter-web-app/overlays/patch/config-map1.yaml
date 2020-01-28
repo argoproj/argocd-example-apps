@@ -1,0 +1,73 @@
+apiVersion: v1
+data:
+  spawner_ui_config.yaml: |
+    # Configuration file for the Jupyter UI.
+    #
+    # Each Jupyter UI option is configured by two keys: 'value' and 'readOnly'
+    # - The 'value' key contains the default value
+    # - The 'readOnly' key determines if the option will be available to users
+    #
+    # If the 'readOnly' key is present and set to 'true', the respective option
+    # will be disabled for users and only set by the admin. Also when a
+    # Notebook is POSTED to the API if a necessary field is not present then
+    # the value from the config will be used.
+    #
+    # If the 'readOnly' key is missing (defaults to 'false'), the respective option
+    # will be available for users to edit.
+    #
+    # Note that some values can be templated. Such values are the names of the
+    # Volumes as well as their StorageClass
+    spawnerFormDefaults:
+      image:
+        # The container Image for the user's Jupyter Notebook
+        # If readonly, this value must be a member of the list below
+        value: gcr.io/kubeflow-images-public/tensorflow-1.14.0-notebook-cpu:v-base-ef41372-1177829795472347138
+        # The list of available standard container Images
+        options:
+          - quay.io/volvocars/jupyter:scipy-notebook
+          - quay.io/volvocars/jupyter:r-notebook
+          - gcr.io/kubeflow-images-public/tensorflow-2.0.0a0-notebook-cpu:v0.7.0
+          - gcr.io/kubeflow-images-public/tensorflow-2.0.0a0-notebook-gpu:v0.7.0
+        # By default, custom container Images are allowed
+        # Uncomment the following line to only enable standard container Images
+            #                  will replace th
+            # The Size of the Workspace Volume (in Gi)
+           
+            # The Path that the Workspace Volume will be mounted
+            
+            # The Access Mode of the Workspace Volume
+            # Supported values: 'ReadWriteOnce', 'ReadWriteMany', 'ReadOnlyMany'
+           
+            # The StrageClass the PVC will use if type is New. Special values are:
+            # {none}: default StorageClass
+            # {empty}: empty string ""
+         
+        # List of additional Data Volumes to be attached to the use  value: []
+        # Each Data Volume is declared with the following attributes:
+        # Type, Name, Size, MountPath and Access Mode
+        #
+        # For example, a list with 2 Data Volumes:
+        # value:
+        #   - value:
+        #       type:
+        #         value: New
+        #       name:
+        #         value: '{notebook-name}-vol-1'
+        #       size:
+        #         value: '10Gi'
+        #       class:
+        #         value: standard
+        #       mountPath:
+        #         value: /home/jovyan/vol-1
+        #       accessModes:
+        #         value: ReadWriteOnce
+        #       class:
+        #         value: {none}
+        #   - value:
+        #       type:
+        #         value: New
+        #       name:
+      
+kind: ConfigMap
+metadata:
+  name: config

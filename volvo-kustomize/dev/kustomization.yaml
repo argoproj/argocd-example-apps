@@ -1,0 +1,21 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+bases:
+# ../../kustomize/api-service/base
+#- ../../kustomization.yaml
+#- ../../kustomize/application-crds
+#- ../../kustomize/argo
+#- ../../kustomize/centraldashboard
+#- ../../kustomize/cert-manager
+#- ../../kustomize/cert-manager-crds
+#- ../../kustomize/cert-manager-kube-system-resources
+#- ../../kustomize/dex
+#- ../../kustomize/istio
+#- ../../kustomize/istio-crds
+#- ../../kustomize/istio-install
+- ./jupyter-web-app
+- ../../kustomize/application
+# ../../kustomize/minio
+
+#resources:
+#- ../../kustomize/base
