@@ -2,7 +2,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: istio-crds
-  namespace: istio-system
+  namespace: argocd
   finalizers:
   - resources-finalizer.argocd.argoproj.io
 spec:

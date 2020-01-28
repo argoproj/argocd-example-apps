@@ -2,7 +2,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: jupyter-web-app
-  namespace: kubeflow
+  namespace: argocd
   finalizers:
   - resources-finalizer.argocd.argoproj.io
 spec:
