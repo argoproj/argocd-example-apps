@@ -1,17 +1,16 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: helm-hooks
+  name: istio-system
   namespace: argocd
   finalizers:
   - resources-finalizer.argocd.argoproj.io
 spec:
   destination:
-    namespace: helm-hooks
+    namespace: istio-system
     server: {{ .Values.spec.destination.server }}
   project: default
   source:
-    path: helm-hooks
+    path: istio
     repoURL: {{ .Values.spec.source.repoURL }}
     targetRevision: {{ .Values.spec.source.targetRevision }}
-
