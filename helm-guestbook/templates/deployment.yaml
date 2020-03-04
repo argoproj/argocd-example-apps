@@ -50,8 +50,8 @@ spec:
       tolerations:
 {{ toYaml . | indent 8 }}
     {{- end }}
-      strategy:
-        canary: # A new field that used to provide configurable options for a Canary strategy
-          steps:
-          - setWeight: 20
-          - pause: {}
+  strategy:
+    canary: # A new field that used to provide configurable options for a Canary strategy
+      steps:
+      - setWeight: 20
+      - pause: {}
