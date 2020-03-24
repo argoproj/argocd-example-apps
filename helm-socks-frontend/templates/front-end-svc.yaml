@@ -1,0 +1,16 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "helm-socks-frontend.fullname" . }}
+  labels:
+    {{- include "helm-socks-frontend.labels" . | nindent 4 }}
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 80
+    targetPort: 8079
+  selector:
+    name: {{ include "helm-socks-frontend.fullname" . }}
+  loadBalancerSourceRanges:
+    - 205.207.104.229/32
