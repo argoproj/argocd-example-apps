@@ -13,6 +13,6 @@ spec:
   - port: 80
     targetPort: 8079
   selector:
-    app.kubernetes.io/name: {{ include "helm-socks-frontend.fullname" . }}
+    name: front-end
   loadBalancerSourceRanges:
     - 205.207.104.229/32
