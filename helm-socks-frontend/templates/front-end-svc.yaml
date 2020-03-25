@@ -5,6 +5,8 @@ metadata:
   name: {{ include "helm-socks-frontend.fullname" . }}
   labels:
     {{- include "helm-socks-frontend.labels" . | nindent 4 }}
+  annotations:
+    service.beta.kubernetes.io/aws-load-balancer-type: nlb
 spec:
   type: LoadBalancer
   ports:
