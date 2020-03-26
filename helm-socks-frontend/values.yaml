@@ -6,6 +6,7 @@ replicaCount: 1
 
 image:
   repository: index.docker.io/weaveworksdemos/front-end
+  tag: 0.3.12
   pullPolicy: IfNotPresent
 
 imagePullSecrets: []
