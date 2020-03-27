@@ -1,0 +1,22 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: "{{ include "helm-socks-frontend.fullname" . }}-credentials-test"
+  annotations:
+    helm.sh/hook: test
+    helm.sh/hook-delete-policy: before-hook-creation,hook-succeeded
+  namespace: {{ include "helm-socks-frontend.fullname" . }}-tests
+spec:
+  template:
+    spec:
+      containers:
+      - name: check-service-up
+        image: appropriate/curl
+        command:
+          - 'curl'
+          - '-X'
+          - 'GET'
+          - 's-fe-helm-socks-frontend'
+      restartPolicy: Never
+
+

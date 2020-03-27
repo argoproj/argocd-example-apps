@@ -3,6 +3,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ include "helm-socks-frontend.fullname" . }}
+  namespace: {{ include "helm-socks-frontend.fullname" . }}
   labels:
     {{- include "helm-socks-frontend.labels" . | nindent 4 }}
 spec:
