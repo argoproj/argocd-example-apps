@@ -5,12 +5,6 @@ metadata:
 spec:
   entrypoint: check-service-up
   onExit: exit-handler
-
-  # exit handler related templates
-  # After the completion of the entrypoint template, the status of the
-  # workflow is made available in the global variable {{workflow.status}}.
-  # {{workflow.status}} will be one of: Succeeded, Failed, Error
-
   templates:
   - name: check-service-up
     container:
