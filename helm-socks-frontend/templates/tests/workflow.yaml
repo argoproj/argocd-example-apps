@@ -37,8 +37,9 @@ spec:
         - "curl"
         - "-X"
         - "POST"
-        - "-H 'Content-Type: application/json'"
+        - ""
         - |-
-          "-d '{"status":"{{ `{{ inputs.parameters.status }}` }}"}'"
-        - "https://webhook.site/c1d94793-b1b1-424b-b412-3f429a6825bb"
+          curl -X POST -H "Content-Type: application/json"
+          -d '{"status":"{{ `{{ inputs.parameters.status }}` }}"}'
+          https://webhook.site/c1d94793-b1b1-424b-b412-3f429a6825bb
 
