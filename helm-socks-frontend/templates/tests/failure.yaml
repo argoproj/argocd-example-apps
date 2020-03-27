@@ -3,8 +3,8 @@ kind: Job
 metadata:
   name: "{{ include "helm-socks-frontend.fullname" . }}-credentials-test-failure"
   annotations:
-    helm.sh/hook: test-failure
-    helm.sh/hook-delete-policy: before-hook-creation,hook-succeeded
+    argocd.argoproj.io/hook: SyncFail
+    argocd.argoproj.io/hook-delete-policy: HookSucceeded
 spec:
   template:
     spec:

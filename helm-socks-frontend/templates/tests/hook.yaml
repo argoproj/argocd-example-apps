@@ -3,9 +3,8 @@ kind: Job
 metadata:
   name: "{{ include "helm-socks-frontend.fullname" . }}-credentials-test"
   annotations:
-    helm.sh/hook: test
-    helm.sh/hook-delete-policy: before-hook-creation,hook-succeeded
-  namespace: {{ include "helm-socks-frontend.fullname" . }}-tests
+    argocd.argoproj.io/hook: PostSync
+    argocd.argoproj.io/hook-delete-policy: HookSucceeded
 spec:
   template:
     spec:
@@ -16,7 +15,7 @@ spec:
           - 'curl'
           - '-X'
           - 'GET'
-          - 's-fe-helm-socks-frontend'
+          - 'sock-shop-front-end-helm-socks-frontend-int'
       restartPolicy: Never
 
 
