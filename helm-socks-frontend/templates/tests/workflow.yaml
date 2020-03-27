@@ -1,0 +1,46 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Workflow
+metadata:
+  generateName: integration-handlers-
+spec:
+  entrypoint: check-service-up
+  onExit: exit-handler
+
+  # exit handler related templates
+  # After the completion of the entrypoint template, the status of the
+  # workflow is made available in the global variable {{workflow.status}}.
+  # {{workflow.status}} will be one of: Succeeded, Failed, Error
+
+  templates:
+  - name: check-service-up
+    container:
+      image: appropriate/curl
+      command:
+        - 'curl'
+        - '-X'
+        - 'GET'
+        - 'sock-shop-front-end-helm-socks-frontend-int'
+
+  - name: exit-handler
+    steps:
+    - - name: notify
+        template: send-status-webhook
+        arguments:
+          parameters:
+          - name: status
+            value: "{{workflow.status}}"
+
+  - name: send-status-webhook
+    inputs:
+      parameters:
+      - name: status
+    container:
+      image: appropriate/curl
+      command:
+        - 'curl'
+        - '-X'
+        - 'POST'
+        - '-H "Content-Type: application/json"'
+        - '-d "{"status":"{{ inputs.parameters.status }}"}"'
+        - 'https://webhook.site/c1d94793-b1b1-424b-b412-3f429a6825bb'
+

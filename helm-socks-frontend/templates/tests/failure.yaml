@@ -1,7 +1,7 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: "{{ include "helm-socks-frontend.fullname" . }}-credentials-test-failure"
+  name: "{{ include "helm-socks-frontend.name" . }}-credentials-test-failure"
   annotations:
     argocd.argoproj.io/hook: SyncFail
     argocd.argoproj.io/hook-delete-policy: HookSucceeded
