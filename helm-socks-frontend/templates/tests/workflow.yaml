@@ -19,10 +19,18 @@ spec:
     steps:
     - - name: notify
         template: send-status-webhook
+        when: "{{workflow.status}} == Succeeded"
         arguments:
           parameters:
           - name: status
-            value: "{{workflow.status}}"
+            value: Succeeded
+      - name: notify
+        template: send-status-webhook
+        when: "{{workflow.status}} != Succeeded"
+        arguments:
+          parameters:
+          - name: status
+            value: Failed
 
   - name: send-status-webhook
     inputs:
