@@ -13,10 +13,10 @@ spec:
     container:
       image: appropriate/curl
       command:
-        - 'curl'
-        - '-X'
-        - 'GET'
-        - 'sock-shop-front-end-helm-socks-frontend-int'
+        - "curl"
+        - "-X"
+        - "GET"
+        - "sock-shop-front-end-helm-socks-frontend-int"
 
   - name: exit-handler
     steps:
@@ -34,10 +34,11 @@ spec:
     container:
       image: appropriate/curl
       command:
-        - 'curl'
-        - '-X'
-        - 'POST'
-        - '-H "Content-Type: application/json"'
-        - '-d "{"status":"{{ `{{ inputs.parameters.status }}` }}"}"'
-        - 'https://webhook.site/c1d94793-b1b1-424b-b412-3f429a6825bb'
+        - "curl"
+        - "-X"
+        - "POST"
+        - "-H 'Content-Type: application/json'"
+        - |-
+          "-d '{"status":"{{ `{{ inputs.parameters.status }}` }}"}'"
+        - "https://webhook.site/c1d94793-b1b1-424b-b412-3f429a6825bb"
 
