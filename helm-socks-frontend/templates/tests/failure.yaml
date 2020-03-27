@@ -5,7 +5,6 @@ metadata:
   annotations:
     helm.sh/hook: test-failure
     helm.sh/hook-delete-policy: before-hook-creation,hook-succeeded
-  namespace: {{ include "helm-socks-frontend.fullname" . }}-tests
 spec:
   template:
     spec:
