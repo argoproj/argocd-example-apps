@@ -26,7 +26,7 @@ spec:
             value: Succeeded
       - name: notify
         template: send-status-webhook
-        when: ""{{"workflow.status"}}" != Succeeded"
+        when: "`{{"workflow.status"}}` != Succeeded"
         arguments:
           parameters:
           - name: status
@@ -43,6 +43,6 @@ spec:
         - '-X'
         - 'POST'
         - '-H "Content-Type: application/json"'
-        - '-d "{"status":"{{ inputs.parameters.status }}"}"'
+        - '-d "{"status":"`{{ inputs.parameters.status }}`"}"'
         - 'https://webhook.site/c1d94793-b1b1-424b-b412-3f429a6825bb'
 
