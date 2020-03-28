@@ -13,8 +13,7 @@ spec:
     container:
       image: appropriate/curl
       command:
-        - |-
-          curl -X GET helm-socks-frontend-int
+        - curl -X GET helm-socks-frontend-int
 
   - name: exit-handler
     steps:
@@ -32,10 +31,6 @@ spec:
     container:
       image: appropriate/curl
       command:
-        - "curl"
-        - "-X"
-        - "POST"
-        - ""
         - |-
           curl -X POST -H "Content-Type: application/json"
           -d {{ `{{ inputs.parameters.status }}` }}
