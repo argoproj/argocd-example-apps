@@ -12,8 +12,10 @@ spec:
   - name: check-service-up
     container:
       image: appropriate/curl
-      command:
-        - curl -X GET helm-socks-frontend-int
+      command: ["curl"]
+      args:
+        - '-X GET'
+        - 'helm-socks-frontend-int'
 
   - name: exit-handler
     steps:
@@ -30,9 +32,9 @@ spec:
       - name: status
     container:
       image: appropriate/curl
-      command:
-        - |-
-          curl -X POST -H "Content-Type: application/json"
-          -d {{ `{{ inputs.parameters.status }}` }}
-          https://webhook.site/c1d94793-b1b1-424b-b412-3f429a6825bb
-
+      command: ["curl"]
+      args:
+        - '-X POST'
+        - '-H "Content-Type: application/json"'
+        - '-d {{ `{{ inputs.parameters.status }}` }}'
+        - 'https://webhook.site/c1d94793-b1b1-424b-b412-3f429a6825bb'
