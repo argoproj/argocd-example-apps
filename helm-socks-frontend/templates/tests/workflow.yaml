@@ -2,7 +2,6 @@ apiVersion: argoproj.io/v1alpha1
 kind: Workflow
 metadata:
   name: "{{ include "helm-socks-frontend.name" . }}-workflow"
-  namespace: argo
   annotations:
     argocd.argoproj.io/hook: PostSync
     # argocd.argoproj.io/hook-delete-policy: HookSucceeded
@@ -15,8 +14,8 @@ spec:
       image: appropriate/curl
       command: ['curl']
       args:
-        - '-X GET'
-        - 'helm-socks-frontend-int'
+        - '-vX GET'
+        - 'helm-socks-frontend-int.sock-shop-front-end'
 
   - name: exit-handler
     steps:
@@ -35,7 +34,7 @@ spec:
       image: appropriate/curl
       command: ['curl']
       args:
-        - '-X POST'
+        - '-vX POST'
         - '-H "Content-Type: application/json"'
-        - '-d {{ `{{ inputs.parameters.status }}` }}'
+        - '-d "{{ `{{ inputs.parameters.status }}` }}"'
         - 'https://webhook.site/c1d94793-b1b1-424b-b412-3f429a6825bb'
