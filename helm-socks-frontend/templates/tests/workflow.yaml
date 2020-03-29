@@ -12,7 +12,6 @@ spec:
   - name: check-service-up
     container:
       image: appropriate/curl
-      command: ["curl"]
       args:
         - '-X GET'
         - 'helm-socks-frontend-int'
@@ -32,7 +31,6 @@ spec:
       - name: status
     container:
       image: appropriate/curl
-      command: ["curl"]
       args:
         - '-X POST'
         - '-H "Content-Type: application/json"'
