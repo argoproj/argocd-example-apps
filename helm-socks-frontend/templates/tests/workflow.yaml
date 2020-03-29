@@ -6,37 +6,39 @@ metadata:
     argocd.argoproj.io/hook: PostSync
     # argocd.argoproj.io/hook-delete-policy: HookSucceeded
 spec:
-  entrypoint: curl
-  onExit: exit-handler # invoke the whalesay template
+  entrypoint: check-service-up
+  onExit: exit-handler
   templates:
-  - name: curl              # name of the template
+  - name: check-service-up
     container:
       image: curlimages/curl
-      command: [curl]
-      args: ["--url", "helm-socks-frontend-int.sock-shop-front-end"]
+      command: ['curl']
+      args:
+        - '-v'
+        - '-X'
+        - 'GET'
+        - 'helm-socks-frontend-int.sock-shop-front-end'
 
   - name: exit-handler
     steps:
     - - name: notify
-        template: send-email
-      - name: celebrate
-        template: celebrate
-        when: "{{ `{{workflow.status}}` }} == Succeeded"
-      - name: cry
-        template: cry
-        when: "{{ `{{workflow.status}}` }} != Succeeded"
-  - name: send-email
+        template: send-status-webhook
+        arguments:
+          parameters:
+          - name: status
+            value: "{{ `{{ workflow.status }}` }}"
+
+  - name: send-status-webhook
+    inputs:
+      parameters:
+      - name: status
     container:
-      image: alpine:latest
-      command: [sh, -c]
-      args: ["echo send e-mail: {{ `{{workflow.name}} {{workflow.status}}` }}"]
-  - name: celebrate
-    container:
-      image: alpine:latest
-      command: [sh, -c]
-      args: ["echo hooray!"]
-  - name: cry
-    container:
-      image: alpine:latest
-      command: [sh, -c]
-      args: ["echo boohoo!"]
+      image: curlimages/curl
+      command: ['curl']
+      args:
+        - '-v'
+        - '-X'
+        - 'POST'
+        - '-d'
+        - 'foo'
+        - 'https://webhook.site/c1d94793-b1b1-424b-b412-3f429a6825bb'
