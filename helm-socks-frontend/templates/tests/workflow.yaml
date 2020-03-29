@@ -6,14 +6,14 @@ metadata:
     argocd.argoproj.io/hook: PostSync
     # argocd.argoproj.io/hook-delete-policy: HookSucceeded
 spec:
-  entrypoint: whalesay
+  entrypoint: curl
   onExit: exit-handler # invoke the whalesay template
   templates:
-  - name: whalesay              # name of the template
+  - name: curl              # name of the template
     container:
-      image: docker/whalesay
-      command: [cowsay]
-      args: ["hello world"]
+      image: curlimages/curl
+      command: [curl]
+      args: ["-v helm-socks-frontend-int.sock-shop-front-end"]
 
   - name: exit-handler
     steps:
