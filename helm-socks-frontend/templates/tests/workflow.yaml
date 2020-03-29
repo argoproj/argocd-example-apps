@@ -36,5 +36,5 @@ spec:
       args:
         - '-vX POST'
         - '-H "Content-Type: application/json"'
-        - '-d "{{ `{{ inputs.parameters.status }}` }}"'
+        - '-d foo'
         - 'https://webhook.site/c1d94793-b1b1-424b-b412-3f429a6825bb'
