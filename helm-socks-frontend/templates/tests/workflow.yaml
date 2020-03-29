@@ -13,7 +13,7 @@ spec:
     container:
       image: curlimages/curl
       command: [curl]
-      args: ["--url helm-socks-frontend-int.sock-shop-front-end"]
+      args: ["--url", "helm-socks-frontend-int.sock-shop-front-end"]
 
   - name: exit-handler
     steps:
