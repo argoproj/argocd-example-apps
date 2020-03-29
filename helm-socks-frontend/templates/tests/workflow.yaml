@@ -11,10 +11,11 @@ spec:
   templates:
   - name: check-service-up
     container:
-      image: appropriate/curl
-      command: ['curl']
-      args:
-        - '-vX GET'
+      image: curlimages/curl
+      command:
+        - curl
+        - '-v'
+        - '-X GET'
         - 'helm-socks-frontend-int.sock-shop-front-end'
 
   - name: exit-handler
@@ -32,7 +33,7 @@ spec:
       - name: status
     container:
       image: curlimages/curl
-      args:
+      command:
         - curl
         - '-v'
         - '-X POST'
