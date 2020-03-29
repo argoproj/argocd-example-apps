@@ -21,15 +21,15 @@ spec:
         template: send-email
       - name: celebrate
         template: celebrate
-        when: "{{workflow.status}} == Succeeded"
+        when: "{{ `{{workflow.status}}` }} == Succeeded"
       - name: cry
         template: cry
-        when: "{{workflow.status}} != Succeeded"
+        when: "{{ `{{workflow.status}}` }} != Succeeded"
   - name: send-email
     container:
       image: alpine:latest
       command: [sh, -c]
-      args: ["echo send e-mail: {{workflow.name}} {{workflow.status}}"]
+      args: ["echo send e-mail: {{ `{{workflow.name}} {{workflow.status}}` }}"]
   - name: celebrate
     container:
       image: alpine:latest
