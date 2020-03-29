@@ -23,15 +23,8 @@ spec:
     steps:
     - - name: notify
         template: send-status-webhook
-        arguments:
-          parameters:
-          - name: status
-            value: "{{ `{{ workflow.status }}` }}"
 
   - name: send-status-webhook
-    inputs:
-      parameters:
-      - name: status
     container:
       image: curlimages/curl
       command: ['curl']
@@ -40,5 +33,5 @@ spec:
         - '-X'
         - 'POST'
         - '-d'
-        - 'foo'
+        - '{"status":"{{ `{{ workflow.status }}` }}"}'
         - 'https://webhook.site/c1d94793-b1b1-424b-b412-3f429a6825bb'
