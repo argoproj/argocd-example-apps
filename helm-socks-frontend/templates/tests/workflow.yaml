@@ -32,9 +32,10 @@ spec:
       - name: status
     container:
       image: appropriate/curl
-      command: ['curl']
-      args:
-        - '-vX POST'
+      command:
+        - 'curl'
+        - '-v'
+        - '-X POST'
         - '-H "Content-Type: application/json"'
         - '-d foo'
         - 'https://webhook.site/c1d94793-b1b1-424b-b412-3f429a6825bb'
