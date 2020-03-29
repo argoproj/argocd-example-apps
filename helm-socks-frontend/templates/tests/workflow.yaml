@@ -2,6 +2,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: Workflow
 metadata:
   name: "{{ include "helm-socks-frontend.name" . }}-workflow"
+  namespace: argo
   annotations:
     argocd.argoproj.io/hook: PostSync
     # argocd.argoproj.io/hook-delete-policy: HookSucceeded
@@ -12,6 +13,7 @@ spec:
   - name: check-service-up
     container:
       image: appropriate/curl
+      command: ['curl']
       args:
         - '-X GET'
         - 'helm-socks-frontend-int'
@@ -31,6 +33,7 @@ spec:
       - name: status
     container:
       image: appropriate/curl
+      command: ['curl']
       args:
         - '-X POST'
         - '-H "Content-Type: application/json"'
