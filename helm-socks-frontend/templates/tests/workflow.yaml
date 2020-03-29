@@ -33,5 +33,5 @@ spec:
         - '-X'
         - 'POST'
         - '-d'
-        - "{{ `{{ workflow.status }}` }}"
+        - '{"status":"{{ `{{workflow.status}}` }}"}'
         - 'https://webhook.site/c1d94793-b1b1-424b-b412-3f429a6825bb'
