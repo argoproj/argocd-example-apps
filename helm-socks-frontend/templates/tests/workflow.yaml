@@ -32,7 +32,8 @@ spec:
       - name: status
     container:
       image: curlimages/curl
-      command:
+      args:
+        - curl
         - '-v'
         - '-X POST'
         - '-d foo'
