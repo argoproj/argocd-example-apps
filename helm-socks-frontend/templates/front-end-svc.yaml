@@ -16,3 +16,4 @@ spec:
     name: front-end
   loadBalancerSourceRanges:
     - 205.207.104.229/32
+    - 205.207.104.237/32
