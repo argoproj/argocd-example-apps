@@ -4,7 +4,7 @@ metadata:
   name: "{{ include "helm-socks-frontend.name" . }}-workflow"
   annotations:
     argocd.argoproj.io/hook: PostSync
-    argocd.argoproj.io/hook-delete-policy: HookSucceeded
+    argocd.argoproj.io/hook-delete-policy: BeforeHookCreation
 spec:
   entrypoint: check-service-up
   onExit: exit-handler
