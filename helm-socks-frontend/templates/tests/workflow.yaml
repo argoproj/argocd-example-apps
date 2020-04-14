@@ -26,12 +26,5 @@ spec:
 
   - name: send-status-webhook
     container:
-      image: curlimages/curl
-      command: ['curl']
-      args:
-        - '-v'
-        - '-X'
-        - 'POST'
-        - '-d'
-        - '{"status":"{{ `{{workflow.status}}` }}"}'
-        - 'https://webhook.site/c1d94793-b1b1-424b-b412-3f429a6825bb'
+      image: alpine:latest
+      command: [echo, "{{workflow.status}}"]
