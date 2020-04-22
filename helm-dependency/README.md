@@ -17,6 +17,7 @@ A custom values.yaml is used to customize the parameters of the wordpress helm c
 
 ```yaml
 wordpress:
+  fullname: myWordPress
   wordpressPassword: foo
   mariadb:
     db:
@@ -43,6 +44,7 @@ mariadb:
   enabled: false
 
 wordpress:
+  fullname: myWordPress
   wordpressPassword: foo
   mariadb:
     enabled: false

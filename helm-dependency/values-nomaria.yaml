@@ -2,6 +2,7 @@ mariadb:
   enabled: false
 
 wordpress:
+  fullname: myWordPress
   wordpressPassword: foo
   mariadb:
     enabled: false
