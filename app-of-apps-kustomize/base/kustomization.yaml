@@ -1,0 +1,47 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+configurations:
+- kustomize-argocd-config.yaml
+
+resources:
+- helm-guestbook.yaml
+- helm-hooks.yaml
+- kustomize-guestbook.yaml
+- namespaces.yaml
+- sync-waves.yaml
+
+configMapGenerator:
+  - name: argocd-env
+    envs:
+      - config.env
+
+vars:
+- name: SERVER
+  objref:
+    kind: ConfigMap
+    name: argocd-env
+    apiVersion: v1
+  fieldref:
+    fieldpath: data.SERVER
+- name: TARGET_REVISION
+  objref:
+    kind: ConfigMap
+    name: argocd-env
+    apiVersion: v1
+  fieldref:
+    fieldpath: data.TARGET_REVISION
+- name: PROJECT
+  objref:
+    kind: ConfigMap
+    name: argocd-env
+    apiVersion: v1
+  fieldref:
+    fieldpath: data.PROJECT
+- name: REPO_URL
+  objref:
+    kind: ConfigMap
+    name: argocd-env
+    apiVersion: v1
+  fieldref:
+    fieldpath: data.REPO_URL

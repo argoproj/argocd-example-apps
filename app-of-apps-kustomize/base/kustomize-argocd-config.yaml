@@ -1,0 +1,13 @@
+varReference:
+- path: spec/destination/namespace
+  kind: Application
+  apiVersion: argoproj.io/v1alpha1
+- path: spec/destination/server
+  kind: Application
+  apiVersion: argoproj.io/v1alpha1
+- path: spec/project
+  kind: Application
+  apiVersion: argoproj.io/v1alpha1
+- path: spec/source/targetRevision
+  kind: Application
+  apiVersion: argoproj.io/v1alpha1

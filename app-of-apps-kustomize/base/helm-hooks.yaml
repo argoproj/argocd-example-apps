@@ -1,0 +1,16 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: helm-hooks
+  namespace: argocd
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  destination:
+    namespace: helm-hooks
+    server: $(SERVER)
+  project: $(PROJECT)
+  source:
+    path: helm-hooks
+    repoURL: $(REPO_URL)
+    targetRevision: $(TARGET_REVISION)
