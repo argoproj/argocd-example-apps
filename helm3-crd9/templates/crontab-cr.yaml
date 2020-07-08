@@ -1,9 +1,0 @@
-apiVersion: may9.example.com/v1
-kind: May9CronTab
-metadata:
-  name: may9-crontab
-  annotations:
-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-spec:
-  destination:
-    server: https://kubernetes.default.svc
