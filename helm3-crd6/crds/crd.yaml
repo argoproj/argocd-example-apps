@@ -1,0 +1,14 @@
+apiVersion: apiextensions.k8s.io/v1beta1
+kind: CustomResourceDefinition
+metadata:
+  name: may6crontabs.may6.example.com
+spec:
+  group: may6.example.com
+  version: v1
+  scope: Namespaced
+  names:
+    plural: may6crontabs
+    singular: may6crontab
+    kind: May6CronTab
+    shortNames:
+      - ct
