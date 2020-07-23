@@ -1,0 +1,7 @@
+apiVersion: may7.example.com/v1
+kind: May7CronTab
+metadata:
+  name: may7-crontab
+spec:
+  destination:
+    server: https://kubernetes.default.svc
