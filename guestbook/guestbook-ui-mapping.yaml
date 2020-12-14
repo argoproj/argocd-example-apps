@@ -1,0 +1,8 @@
+---
+apiVersion: getambassador.io/v2
+kind: Mapping
+metadata:
+  name: guestbook-ui
+spec:
+  prefix: /
+  service: guestbook-ui
