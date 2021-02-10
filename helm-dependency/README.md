@@ -10,7 +10,7 @@ In this example, the wordpress application is pulled from the stable helm repo, 
 dependencies:
 - name: wordpress
   version: 5.0.2
-  repository: https://kubernetes-charts.storage.googleapis.com
+  repository: https://charts.helm.sh/stable
 ```
 
 A custom values.yaml is used to customize the parameters of the wordpress helm chart:
@@ -31,7 +31,7 @@ The wordpress chart referenced in this example contains a subchart for mariadb a
 ```yaml
 - name: mariadb
   version: 5.x.x
-  repository: https://kubernetes-charts.storage.googleapis.com/
+  repository: https://charts.helm.sh/stable
   condition: mariadb.enabled
   tags:
     - wordpress-database
