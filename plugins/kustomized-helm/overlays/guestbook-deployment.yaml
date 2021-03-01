@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: release-name-helm-guestbook
+  name: RELEASE-NAME-helm-guestbook
 spec:
   template:
     spec:
