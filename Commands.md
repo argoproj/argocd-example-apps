@@ -17,6 +17,7 @@ argocd app create helm-guestbook \
 --dest-server https://kubernetes.default.svc \
 --dest-namespace helm-guestbook
 
+KUSTOMIZE -
 
 PROD:
 argocd app create prod-kustomize-guestbook \
