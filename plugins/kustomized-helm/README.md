@@ -12,10 +12,10 @@ Use following steps to try the application:
     - name: kustomized-helm
       init:
         command: ["/bin/sh", "-c"]
-        args: ["helm init --client-only && helm dependency build"]
+        args: ["helm dependency build"]
       generate:
         command: [sh, -c]
-        args: ["helm template . > all.yaml && kustomize build"]
+        args: ["helm template --release-name release-name . > all.yaml && kustomize build"]
 ```
 
 * create application using `kustomized-helm` as a config management plugin name:
