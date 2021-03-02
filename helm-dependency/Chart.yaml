@@ -24,5 +24,5 @@ appVersion: "1.0"
 
 dependencies:
 - name: wordpress
-  version: 5.3.2
+  version: 9.0.3
   repository: https://charts.helm.sh/stable
