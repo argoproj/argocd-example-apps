@@ -33,3 +33,5 @@ argocd app create dev-kustomize-guestbook \
 --path kustomize-guestbook/overlays/dev \
 --dest-server https://kubernetes.default.svc \
 --dest-namespace dev-kustomize-guestbook
+
+argocd app wait dev-kustomize-guestbook --sync
