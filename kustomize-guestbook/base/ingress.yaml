@@ -2,7 +2,7 @@ apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
   name: kustomize-guestbook-ingress
-  namespace: guestbook
+  # namespace: guestbook
   labels:
     app.kubernetes.io/component: server
     app.kubernetes.io/name: guestbook-server

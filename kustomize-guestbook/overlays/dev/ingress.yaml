@@ -2,6 +2,7 @@ apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
   name: kustomize-guestbook-ingress
+  namespace:
 spec:
   rules:
   - host: dev-kustomize-guestbook-argocd.natwest-labs.com
