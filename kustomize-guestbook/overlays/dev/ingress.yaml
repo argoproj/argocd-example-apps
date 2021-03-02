@@ -5,7 +5,7 @@ metadata:
   namespace:
 spec:
   rules:
-  - host: dev-kustomize-guestbook-argocd.natwest-labs.com
+  - host: dev-kustomize-guestbook-argocd1.natwest-labs.com
     http:
       paths:
       - backend:
