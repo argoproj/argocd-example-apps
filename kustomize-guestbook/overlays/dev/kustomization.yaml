@@ -1,3 +1,5 @@
 bases:
 - ../../base
 namePrefix: dev-
+patchesStrategicMerge:
+- ingress.yaml
