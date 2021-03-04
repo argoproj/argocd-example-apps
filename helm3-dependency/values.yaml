@@ -1,0 +1,7 @@
+wordpress:
+  wordpressPassword: foo
+  mariadb:
+    db:
+      password: bar
+    rootUser:
+      password: baz

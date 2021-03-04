@@ -1,0 +1,11 @@
+apiVersion: v2
+name: wordpress
+description: Wordpress Argo demo
+type: application
+version: 0.1.0
+appVersion: 5.0.2
+
+dependencies:
+- name: wordpress
+  version: 5.0.2
+  repository: https://kubernetes-charts.storage.googleapis.com
