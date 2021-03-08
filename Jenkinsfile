@@ -4,7 +4,7 @@ node {
     }
 
     stage('Start argocd') {
-        withKubeConfig(credentialsId: 'KUBECONFIG', serverUrl: '') {
+        withKubeConfig(credentialsId: 'eksctl-kubeconfig', serverUrl: '') {
             // sh 'kubectl get all'
             sh 'kubectl port-forward svc/argocd-server -n argocd 8080:443&'
             // sh 'argocd login 127.0.0.1:8080'
@@ -14,7 +14,7 @@ node {
     }
     
     stage('Create app') {
-        withKubeConfig(credentialsId: 'KUBECONFIG', serverUrl: '') {
+        withKubeConfig(credentialsId: 'eksctl-kubeconfig', serverUrl: '') {
             sh """
             argocd app create prod-kustomize-guestbook \
             --repo https://github.com/radtac-craft/argocd-example-apps.git \
@@ -28,7 +28,7 @@ node {
     }       
         
     stage('Verify app') {
-        withKubeConfig(credentialsId: 'KUBECONFIG', serverUrl: '') {
+        withKubeConfig(credentialsId: 'eksctl-kubeconfig', serverUrl: '') {
             sh 'argocd app list'
         }               
     }
