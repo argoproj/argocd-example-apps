@@ -10,12 +10,18 @@ argocd app create guestbook \
 --dest-server https://kubernetes.default.svc \
 --dest-namespace guestbook
 
+argocd app sync guestbook
+argocd app wait guestbook --sync
+
 
 argocd app create helm-guestbook \
 --repo https://github.com/radtac-craft/argocd-example-apps.git \
 --path helm-guestbook \
 --dest-server https://kubernetes.default.svc \
 --dest-namespace helm-guestbook
+
+argocd app sync helm-guestbook
+argocd app wait helm-guestbook --sync
 
 KUSTOMIZE -
 
@@ -26,6 +32,8 @@ argocd app create prod-kustomize-guestbook \
 --dest-server https://kubernetes.default.svc \
 --dest-namespace prod-kustomize-guestbook
 
+argocd app sync prod-kustomize-guestbook
+argocd app wait prod-kustomize-guestbook --sync
 
 DEV:
 argocd app create dev-kustomize-guestbook \
@@ -34,4 +42,5 @@ argocd app create dev-kustomize-guestbook \
 --dest-server https://kubernetes.default.svc \
 --dest-namespace dev-kustomize-guestbook
 
+argocd app sync dev-kustomize-guestbook
 argocd app wait dev-kustomize-guestbook --sync

@@ -11,7 +11,7 @@ metadata:
     kubernetes.io/ingress.class: traefik
 spec:
   rules:
-  - host: guestbook-argocd.natwest-labs.com
+  - host: guestbook-argocd1.natwest-labs.com
     http:
       paths:
       - backend:
