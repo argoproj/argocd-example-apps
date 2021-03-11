@@ -1,8 +1,4 @@
 node {
-    stage('SCM checkout') {
-        checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/radtac-craft/argocd-example-apps.git']]])
-    }
-
     stage('Start argocd') {
         withKubeConfig(credentialsId: 'aws-eksctl-kubeconfig', serverUrl: '') {
             // sh 'kubectl get all'
