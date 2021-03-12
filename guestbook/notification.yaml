@@ -11,6 +11,9 @@ spec:
       containers:
       - name: slack-notification
         image: curlimages/curl
+        envFrom:
+          - secretRef:
+              name: slack
         command:
           - "curl"
           - "-X"
@@ -18,7 +21,7 @@ spec:
           - "-H"
           - "Content-type: application/json"
           - "--data"
-          - "{\"text\": \"nemjuhuuu\"}"
-          - "https://hooks.slack.com/services/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"
+          - "{\"text\": \"juhuu\"}"
+          - "$(HOOK_URL)"
       restartPolicy: Never
   backoffLimit: 2
