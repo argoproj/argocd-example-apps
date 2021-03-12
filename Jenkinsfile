@@ -29,8 +29,8 @@ node {
             --dest-server https://kubernetes.default.svc \
             --dest-namespace ${env.BRANCH_NAME}-kustomize-guestbook
             """
-            sh 'argocd app sync ${env.BRANCH_NAME}-kustomize-guestbook'
-            sh 'argocd app wait ${env.BRANCH_NAME}-kustomize-guestbook --sync'
+            sh 'argocd app sync $BRANCH_NAME-kustomize-guestbook'
+            sh 'argocd app wait $BRANCH_NAME-kustomize-guestbook --sync'
         }
     }       
         
