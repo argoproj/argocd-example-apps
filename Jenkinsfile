@@ -3,8 +3,8 @@ node {
      properties([buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '3', numToKeepStr: '7'))])
 
     stage('Start argocd') {
-//        withKubeConfig(credentialsId: 'aws-eksctl-kubeconfig', serverUrl: '') {
-            withCredentials([usernamePassword(credentialsId: 'argocd-devops-lab', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
+        withKubeConfig(credentialsId: 'aws-eksctl-kubeconfig', serverUrl: '') {
+//            withCredentials([usernamePassword(credentialsId: 'argocd-devops-lab', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
                sh"""
                kubectl port-forward svc/argocd-server -n argocd 8080:443&
                argocd login 127.0.0.1:8080 --insecure --username admin --password admin
