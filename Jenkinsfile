@@ -4,7 +4,6 @@ node {
             // sh 'kubectl get all'
             sh"""
             kubectl port-forward svc/argocd-server -n argocd 8080:443&
-            kubectl get pods -A
             argocd login 127.0.0.1:8080 --insecure --username admin --password admin
             argocd app list
             """
