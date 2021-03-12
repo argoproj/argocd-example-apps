@@ -1,20 +1,23 @@
 node {
-    stage('SCM checkout') {
-        checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/radtac-craft/argocd-example-apps.git']]])
-    }
+   timestamps{
+     properties([buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '3', numToKeepStr: '7'))])
 
     stage('Start argocd') {
-        withKubeConfig(credentialsId: 'eksctl-kubeconfig', serverUrl: '') {
-            // sh 'kubectl get all'
-            sh 'kubectl port-forward svc/argocd-server -n argocd 8080:443&'
-            // sh 'argocd login 127.0.0.1:8080'
-            sh 'argocd login 127.0.0.1:8080 --config /Users/mac/.argocd/config --insecure --username admin --password admin'
-            sh 'argocd app list'
-        }       
+        withKubeConfig(credentialsId: 'aws-eksctl-kubeconfig', serverUrl: '') {
+//            withCredentials([usernamePassword(credentialsId: 'argocd-devops-lab', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
+               sh"""
+               kubectl port-forward svc/argocd-server -n argocd 8080:443&
+               kubectl get pods -A
+               argocd logout 127.0.0.1:8080 
+               argocd login 127.0.0.1:8080 --insecure --username admin --password admin
+               argocd app list
+               """
+            }
+//      }       
     }
     
     stage('Create app') {
-        withKubeConfig(credentialsId: 'eksctl-kubeconfig', serverUrl: '') {
+        withKubeConfig(credentialsId: 'aws-eksctl-kubeconfig', serverUrl: '') {
             sh """
             argocd app create prod-kustomize-guestbook \
             --repo https://github.com/radtac-craft/argocd-example-apps.git \
@@ -28,8 +31,9 @@ node {
     }       
         
     stage('Verify app') {
-        withKubeConfig(credentialsId: 'eksctl-kubeconfig', serverUrl: '') {
+        withKubeConfig(credentialsId: 'aws-eksctl-kubeconfig', serverUrl: '') {
             sh 'argocd app list'
         }               
     }
+}
 }
