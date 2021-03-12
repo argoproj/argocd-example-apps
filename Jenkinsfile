@@ -23,14 +23,14 @@ node {
     stage('Create app') {
         withKubeConfig(credentialsId: 'aws-eksctl-kubeconfig', serverUrl: '') {
             sh """
-            argocd app create ${env.BRANCHNAME}-kustomize-guestbook \
+            argocd app create ${env.BRANCH_NAME}-kustomize-guestbook \
             --repo https://github.com/radtac-craft/argocd-example-apps.git \
-            --path kustomize-guestbook/overlays/${env.BRANCHNAME} \
+            --path kustomize-guestbook/overlays/${env.BRANCH_NAME} \
             --dest-server https://kubernetes.default.svc \
-            --dest-namespace ${env.BRANCHNAME}-kustomize-guestbook
+            --dest-namespace ${env.BRANCH_NAME}-kustomize-guestbook
             """
-            sh 'argocd app sync ${env.BRANCHNAME}-kustomize-guestbook'
-            sh 'argocd app wait ${env.BRANCHNAME}-kustomize-guestbook --sync'
+            sh 'argocd app sync ${env.BRANCH_NAME}-kustomize-guestbook'
+            sh 'argocd app wait ${env.BRANCH_NAME}-kustomize-guestbook --sync'
         }
     }       
         
