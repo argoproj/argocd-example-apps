@@ -5,13 +5,15 @@
 replicaCount: 1
 
 image:
-  repository: gcr.io/heptio-images/ks-guestbook-demo
+  repository: 292090429255.dkr.ecr.ap-south-1.amazonaws.com/eks:latest
+# repository: gcr.io/heptio-images/ks-guestbook-demo
   tag: 0.1
   pullPolicy: IfNotPresent
 
 service:
-  type: ClusterIP
-  port: 80
+  type: LoadBalancer
+# type: ClusterIP
+# port: 80
 
 ingress:
   enabled: false
