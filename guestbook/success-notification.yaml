@@ -3,7 +3,7 @@ kind: Job
 metadata:
   generateName: app-slack-notification-
   annotations:
-    argocd.argoproj.io/hook: SyncFail
+    argocd.argoproj.io/hook: PostSync
     argocd.argoproj.io/hook-delete-policy: HookSucceeded
 spec:
   template:
@@ -21,7 +21,10 @@ spec:
           - "-H"
           - "Content-type: application/json"
           - "--data"
-          - "{\"text\": \"auuu\"}"
+          - "{\"text\": \"it works!\"}"
           - "$(HOOK_URL)"
       restartPolicy: Never
   backoffLimit: 2
+
+
+# k create secret generic slack --from-literal=HOOK_URL=https://hooks.slack.com/services/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 -n default
