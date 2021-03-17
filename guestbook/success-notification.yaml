@@ -1,0 +1,27 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  generateName: app-slack-notification-
+  annotations:
+    argocd.argoproj.io/hook: SyncFail
+    argocd.argoproj.io/hook-delete-policy: HookSucceeded
+spec:
+  template:
+    spec:
+      containers:
+      - name: slack-notification
+        image: curlimages/curl
+        envFrom:
+          - secretRef:
+              name: slack
+        command:
+          - "curl"
+          - "-X"
+          - "POST"
+          - "-H"
+          - "Content-type: application/json"
+          - "--data"
+          - "{\"text\": \"auuu\"}"
+          - "$(HOOK_URL)"
+      restartPolicy: Never
+  backoffLimit: 2
