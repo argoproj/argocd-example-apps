@@ -1,5 +1,5 @@
 pipeline {
-  agent none
+  agent any
   stages {
       stage('Check out') {
       agent any
@@ -8,7 +8,6 @@ pipeline {
             }
         }
     stage('Deploy Helm') {
-      agent any
       steps {
         withCredentials([usernamePassword(credentialsId: 'github-qas-labs', passwordVariable: 'gitpass', usernameVariable: 'gituser')]) {
           sh "git clone https://$gituser:$gitpass@github.com/byangtri/argocd-example-apps.git"
