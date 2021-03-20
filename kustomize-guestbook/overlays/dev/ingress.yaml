@@ -1,7 +1,7 @@
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: kustomize-guestbook-ingress
+  name: guestbook-ingress
   namespace:
 spec:
   rules:
