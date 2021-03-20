@@ -3,3 +3,4 @@ bases:
 namePrefix: prod-
 patchesStrategicMerge:
 - ingress.yaml
+- argo-app.yaml
