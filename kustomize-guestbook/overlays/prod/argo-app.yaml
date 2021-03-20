@@ -11,6 +11,6 @@ spec:
     server: https://kubernetes.default.svc
   project: default
   source:
-    path: kustomize-guestbook/overlays/dev
+    path: kustomize-guestbook/overlays/prod
     repoURL: https://github.com/radtac-craft/argocd-example-apps.git
     targetRevision: HEAD
