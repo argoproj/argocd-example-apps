@@ -16,11 +16,10 @@ node {
                sh 'argocd app list'
 //               """
             }
-      }       
-    }
-      
-    
-    stage('Create app') {
+//      }       
+    }   
+
+      stage('Create app') {
         withKubeConfig(credentialsId: 'aws-eksctl-kubeconfig', serverUrl: '') {
             sh """
             argocd app create ${env.BRANCH_NAME}-kustomize-guestbook \
