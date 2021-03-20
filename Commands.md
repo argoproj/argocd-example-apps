@@ -30,7 +30,8 @@ argocd app create prod-kustomize-guestbook \
 --repo https://github.com/radtac-craft/argocd-example-apps.git \
 --path kustomize-guestbook/overlays/prod \
 --dest-server https://kubernetes.default.svc \
---dest-namespace prod-kustomize-guestbook
+--dest-namespace prod-kustomize-guestbook \
+--revision HEAD
 
 argocd app sync prod-kustomize-guestbook
 argocd app wait prod-kustomize-guestbook --sync
