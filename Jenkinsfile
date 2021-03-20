@@ -14,9 +14,9 @@ node {
                """
             }
 //      }       
-    }
-    
-    stage('Create app') {
+    }   
+
+      stage('Create app') {
         withKubeConfig(credentialsId: 'aws-eksctl-kubeconfig', serverUrl: '') {
             sh """
             argocd app create prod-kustomize-guestbook \
