@@ -13,4 +13,4 @@ spec:
   source:
     path: kustomize-guestbook/overlays/dev
     repoURL: https://github.com/radtac-craft/argocd-example-apps.git
-    targetRevision: HEAD
+    targetRevision: dev
