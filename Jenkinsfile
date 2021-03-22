@@ -7,7 +7,7 @@ pipeline {
         checkout scm
             }
         }
-    stage('Deploy to Helm') {
+    stage('Deploy to Helm Chart') {
       steps {
         withCredentials([usernamePassword(credentialsId: 'github-qas-labs', passwordVariable: 'gitpass', usernameVariable: 'gituser')]) {
           sh "git clone https://$gituser:$gitpass@github.com/byangtri/argocd-example-apps.git"
