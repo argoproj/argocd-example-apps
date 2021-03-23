@@ -56,6 +56,8 @@ spec:
     canary: #Indicates that the rollout should use the Canary strategy
       maxSurge: "25%"
       maxUnavailable: 0
+      canaryService: guestbook-canary-service
+      stableService: {{ template "helm-guestbook.fullname" . }}
       steps:
       - setWeight: 10
       - pause:
