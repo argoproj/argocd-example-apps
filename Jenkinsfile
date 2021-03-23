@@ -11,7 +11,7 @@ pipeline {
       steps {
         withCredentials([usernamePassword(credentialsId: 'github-qas-labs', passwordVariable: 'gitpass', usernameVariable: 'gituser')]) {
           sh "git clone https://$gituser:$gitpass@github.com/byangtri/argocd-example-apps.git"
-           sh "chmod +x -R ${env.WORKSPACE}"
+           sh "chmod +x -R ~/.gitconfig"
            sh "git config --system user.email 'b.yang@ext.tricentis.com'"
            sh "git config --system user.name 'brandon'"
            dir("argocd-example-apps") {
