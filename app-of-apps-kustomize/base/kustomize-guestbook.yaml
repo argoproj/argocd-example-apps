@@ -1,0 +1,16 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: kustomize-guestbook
+  namespace: argocd
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  destination:
+    namespace: kustomize-guestbook
+    server: $(SERVER)
+  project: $(PROJECT)
+  source:
+    path: kustomize-guestbook
+    repoURL: $(REPO_URL)
+    targetRevision: $(TARGET_REVISION)
