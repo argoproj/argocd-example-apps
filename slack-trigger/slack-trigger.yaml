@@ -13,7 +13,7 @@ spec:
     - template:
         name: slack-trigger
         slack:
-          channel: argo-events-webhook
+          channel: argo-events
           message: hello world
           slackToken:
             key: token
