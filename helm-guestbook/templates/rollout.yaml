@@ -57,6 +57,7 @@ spec:
       analysis:
         templates:
         - templateName: success-rate
+          clusterScope: true
         startingStep: 2 # delay starting analysis run until setWeight: 40%
         args:
         - name: service-name
