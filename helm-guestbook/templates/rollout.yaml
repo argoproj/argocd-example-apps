@@ -54,18 +54,25 @@ spec:
   minReadySeconds: 30
   strategy:
     canary: #Indicates that the rollout should use the Canary strategy
+      analysis:
+        templates:
+        - templateName: success-rate
+        startingStep: 2 # delay starting analysis run until setWeight: 40%
+        args:
+        - name: service-name
+          value: {{ template "helm-guestbook.fullname" . }}
       maxSurge: "25%"
       maxUnavailable: 0
       canaryService: guestbook-canary-service
       stableService: {{ template "helm-guestbook.fullname" . }}
       steps:
-      - setWeight: 10
-      - pause:
-          duration: 1m # 1 minute
       - setWeight: 20
       - pause:
           duration: 1m # 1 minute
-      - setWeight: 50
+      - setWeight: 40
+      - pause:
+          duration: 1m # 1 minute
+      - setWeight: 60
       - pause:
           duration: 1m # 1 minute
       - setWeight: 80
