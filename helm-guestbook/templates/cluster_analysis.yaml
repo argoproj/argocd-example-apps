@@ -5,6 +5,7 @@ metadata:
 spec:
   args:
   - name: service-name
+    value: {{ template "helm-guestbook.fullname" . }}.default.svc.cluster.local
   - name: prometheus-port
     value: 9090
   metrics:
