@@ -60,7 +60,7 @@ spec:
         startingStep: 2 # delay starting analysis run until setWeight: 40%
         args:
         - name: service-name
-          value: {{ template "helm-guestbook.fullname" . }}
+          value: {{ template "helm-guestbook.fullname" . }}.default.svc.cluster.local
       maxSurge: "25%"
       maxUnavailable: 0
       canaryService: guestbook-canary-service
