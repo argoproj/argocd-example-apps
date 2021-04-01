@@ -8,11 +8,11 @@ spec:
     successCondition: result[0] >= 0.95
     provider:
       prometheus:
-        address: "http://a0179abbebc504fe1a02cc2868d10d20-1436141555.us-east-2.elb.amazonaws.com:{{args.prometheus-port}}"
+        address: "http://a0179abbebc504fe1a02cc2868d10d20-1436141555.us-east-2.elb.amazonaws.com:9090"
         query: |
           sum(irate(
-            istio_requests_total{reporter="source",destination_service=~"{{args.service-name}}",response_code!~"5.*"}[5m]
+            istio_requests_total{reporter="source",destination_service=~"{{ template "helm-guestbook.fullname" . }}.default.svc.cluster.local",response_code!~"5.*"}[5m]
           )) / 
           sum(irate(
-            istio_requests_total{reporter="source",destination_service=~"{{args.service-name}}"}[5m]
+            istio_requests_total{reporter="source",destination_service=~"{{ template "helm-guestbook.fullname" . }}.default.svc.cluster.local"}[5m]
           ))
