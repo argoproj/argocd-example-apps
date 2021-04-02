@@ -54,14 +54,14 @@ spec:
   minReadySeconds: 30
   strategy:
     canary: #Indicates that the rollout should use the Canary strategy
-      analysis:
-        templates:
-        - templateName: success-rate
-          clusterScope: true
-        startingStep: 2 # delay starting analysis run until setWeight: 40%
-        args:
-        - name: service-name
-          value: {{ template "helm-guestbook.fullname" . }}.default.svc.cluster.local
+      # analysis:
+      #   templates:
+      #   - templateName: success-rate
+      #     clusterScope: true
+      #   startingStep: 2 # delay starting analysis run until setWeight: 40%
+      #   args:
+      #   - name: service-name
+      #     value: {{ template "helm-guestbook.fullname" . }}.default.svc.cluster.local
       maxSurge: "25%"
       maxUnavailable: 0
       canaryService: guestbook-canary-service
