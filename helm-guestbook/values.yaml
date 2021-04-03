@@ -14,8 +14,37 @@ service:
   port: 80
 
 ingress:
-  enabled: false
-  annotations: {}
+  enabled: true
+  annotations:
+    kubernetes.io/ingress.class: alb
+    alb.ingress.kubernetes.io/actions.root-service: |
+      { 
+        "Type":"forward",
+        "ForwardConfig":{ 
+          "TargetGroups":[ 
+            { 
+                "Weight":20,
+                "ServiceName":"canary-service",
+                "ServicePort":"{{ .Values.service.port }}"
+            },
+            { 
+                "Weight":40,
+                "ServiceName":"canary-service",
+                "ServicePort":"{{ .Values.service.port }}"
+            },
+            { 
+                "Weight":60,
+                "ServiceName":"canary-service",
+                "ServicePort":"{{ .Values.service.port }}"
+            },                       
+            { 
+                "Weight":80,
+                "ServiceName":"stable-service",
+                "ServicePort":"{{ .Values.service.port }}"
+            }
+          ]
+        }
+      }   
     # kubernetes.io/ingress.class: nginx
     # kubernetes.io/tls-acme: "true"
   path: /
