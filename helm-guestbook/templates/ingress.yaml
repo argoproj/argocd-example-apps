@@ -9,23 +9,6 @@ metadata:
   {{- end }}
 spec:
   rules:
-  # host rule to only reach the desired pods (aka canary/preview)
-  - host: guestbook-desired.argoproj.io
-    http:
-      paths:
-      - backend:
-          serviceName: guestbook-canary-service
-          servicePort: {{ .Values.service.port }}
-        path: /*
-  # host rule to only reach the stable pods
-  - host: guestbook-stable.argoproj.io
-    http:
-      paths:
-      - backend:
-          serviceName: {{ template "helm-guestbook.fullname" . }}
-          servicePort: {{ .Values.service.port }}
-        path: /*
-  # default rule which omits host, and will split traffic between desired vs. stable
   - http:
       paths:
       - path: /*
