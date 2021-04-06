@@ -13,7 +13,7 @@ spec:
   - host: argo.cirruslabs.io
   - http:
       paths:
-      - path: /*
+      - path: /
         backend:
           # serviceName must match canary.stableService
           serviceName: {{ template "helm-guestbook.fullname" . }}
