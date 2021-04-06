@@ -67,13 +67,12 @@ spec:
       canaryService: guestbook-canary-service
       stableService: {{ template "helm-guestbook.fullname" . }}
       trafficRouting:
-        alb:
+        nginx:
           # The referenced ingress will be injected with a custom action annotation, directing
-          # the AWS Load Balancer Controller to split traffic between the canary and stable
-          # Service, according to the desired traffic weight (required).
-          ingress: {{ template "helm-guestbook.fullname" . }}
-          # Reference to a Service that the Ingress must target in one of the rules (optional).
-          # If omitted, uses canary.stableService.
-          rootService: guestbook-root-service
-          # Service port is the port which the Service listens on (required).
-          servicePort: {{ .Values.service.port }}
+          # the Nginx to split traffic between the canary and stable Service using headers
+          stableIngress: {{ template "helm-guestbook.fullname" . }}
+          annotationPrefix: nginx.ingress.kubernetes.io # optional
+          additionalIngressAnnotations:   # optional
+            canary: true
+            canary-by-header: Region
+            canary-by-header-value: aspc|eu

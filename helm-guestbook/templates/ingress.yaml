@@ -9,14 +9,12 @@ metadata:
   {{- end }}
 spec:
   rules:
+  - host: argo.cirruslabs.io
   - http:
       paths:
       - path: /*
         backend:
-          # serviceName must match either: canary.trafficRouting.alb.rootService (if specified),
-          # or canary.stableService (if rootService is omitted)
-          serviceName: root-service
-          # servicePort must be the value: use-annotation
-          # This instructs AWS Load Balancer Controller to look to annotations on how to direct traffic
-          servicePort: use-annotation
+          # serviceName must match canary.stableService
+          serviceName: {{ template "helm-guestbook.fullname" . }}
+          servicePort: {{ .Values.service.port }}
 {{- end }}
