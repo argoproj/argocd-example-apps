@@ -54,8 +54,8 @@ ingress:
     # nginx.ingress.kubernetes.io/canary-by-header-pattern: "aspc|eu"
     # kubernetes.io/tls-acme: "true"
   path: /
-  hosts:
-    - chart-example.local
+  # hosts:
+  #   - chart-example.local
   tls: []
   #  - secretName: chart-example-tls
   #    hosts:

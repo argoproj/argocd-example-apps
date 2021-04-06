@@ -12,6 +12,4 @@ spec:
       prometheus:
         address: "http://a0179abbebc504fe1a02cc2868d10d20-1436141555.us-east-2.elb.amazonaws.com:9090"
         query: |
-          avg(rate(app_not_founds_total{kubernetes_namespace="default", kubernetes_name="{{ template "helm-guestbook.fullname" . }}"}[5m])) /
-          (avg(rate(app_requests_total{kubernetes_namespace="default", kubernetes_name="{{ template "helm-guestbook.fullname" . }}"}[5m])) > 0) or
-          avg(rate(app_requests_total{kubernetes_namespace="default", kubernetes_name="{{ template "helm-guestbook.fullname" . }}"}[5m]))
+          round(sum(irate(nginx_ingress_controller_requests{controller_pod=~"$controller",controller_class=~"nginx",controller_namespace=~"ingress-nginx",ingress=~"$ingress"}[2m])) by (ingress), 0.001)
