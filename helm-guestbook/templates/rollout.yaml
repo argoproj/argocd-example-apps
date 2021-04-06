@@ -73,5 +73,6 @@ spec:
           stableIngress: {{ template "helm-guestbook.fullname" . }}
           annotationPrefix: nginx.ingress.kubernetes.io # optional
           additionalIngressAnnotations:   # optional
-            canary-by-header: Region
-            canary-by-header-value: aspc|eu
+            canary-by-header: tenantID
+            canary-by-header-value: us-east|us-west|eu|apac#TODO tenantID values
+            canary-weight: 20
