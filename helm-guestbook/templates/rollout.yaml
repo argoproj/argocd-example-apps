@@ -77,3 +77,5 @@ spec:
           args:
           - name: service-name
             value: {{ template "helm-guestbook.fullname" . }}
+      # Pauses indefinitely until manually resumed
+      - pause: {}
