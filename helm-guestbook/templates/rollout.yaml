@@ -75,4 +75,4 @@ spec:
           additionalIngressAnnotations:   # optional
             canary-by-header: tenantID
             canary-by-header-value: 10|11|12|13 # tenantID values
-            canary-weight: "50"
+            canary-weight: '50'
