@@ -7,7 +7,7 @@ spec:
   - name: service-name
   metrics:
   - name: success-rate
-    successCondition: isNaN(result[0]) || result[0] >= 0.10
+    successCondition: result[0] == NaN || result[0] >= 0.10
     provider:
       prometheus:
         address: "http://a0179abbebc504fe1a02cc2868d10d20-1436141555.us-east-2.elb.amazonaws.com:9090"
