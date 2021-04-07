@@ -74,5 +74,5 @@ spec:
           annotationPrefix: nginx.ingress.kubernetes.io # optional
           additionalIngressAnnotations:   # optional
             canary-by-header: tenantID
-            canary-by-header-value: us-east|us-west|eu|apac #TODO tenantID values
+            canary-by-header-value: 10|11|12|13 # tenantID values
             # canary-weight: 20
