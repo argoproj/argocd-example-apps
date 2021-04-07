@@ -7,9 +7,10 @@ spec:
   - name: service-name
   metrics:
   - name: success-rate
-    successCondition: isNaN(result[0]) || result[0] >= 0.10
+#    successCondition: isNaN(result[0]) || result[0] >= 0.10
+    successCondition: result[0] >= 0.90
     provider:
       prometheus:
         address: "http://52.149.216.245:9090"
         query: |
-          rate(nginx_ingress_controller_requests{ingress="aks-guestbook-helm-guestbook", controller_class="nginx",exported_namespace="aks-guestbook-helm-guestbook",status!~"[4-5].*"}[1h]) / rate(nginx_ingress_controller_requests{ingress="aks-guestbook-helm-guestbook", controller_class="nginx",exported_namespace="aks-guestbook-helm-guestbook"}[1h])
+          rate(nginx_ingress_controller_requests{ingress="aks-guestbook-helm-guestbook", controller_class="nginx",exported_namespace="aks-guestbook-helm-guestbook",status=~"[2].*"}[1h]) / rate(nginx_ingress_controller_requests{ingress="aks-guestbook-helm-guestbook", controller_class="nginx",exported_namespace="aks-guestbook-helm-guestbook"}[1h])
