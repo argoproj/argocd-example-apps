@@ -63,8 +63,8 @@ spec:
           # The referenced ingress will be injected with a custom action annotation, directing
           # the Nginx to split traffic between the canary and stable Service using headers
           stableIngress: {{ template "helm-guestbook.fullname" . }}
-          annotationPrefix: nginx.ingress.kubernetes.io # optional
-          additionalIngressAnnotations:   # optional
+          annotationPrefix: nginx.ingress.kubernetes.io 
+          additionalIngressAnnotations:  
             canary-by-header: tenantID
             canary-by-header-value: 10|11|12|13 # tenantID values
       steps:
