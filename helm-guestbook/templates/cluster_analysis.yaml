@@ -12,4 +12,4 @@ spec:
       prometheus:
         address: "http://52.149.216.245:9090"
         query: |
-          rate(nginx_ingress_controller_requests{ingress="{{ {{ template "helm-guestbook.fullname" . }} }}", controller_class="nginx",exported_namespace="{{ {{ template "helm-guestbook.fullname" . }} }}",status!~"[4-5].*"}[1h]) / rate(nginx_ingress_controller_requests{ingress="{{ {{ template "helm-guestbook.fullname" . }} }}", controller_class="nginx",exported_namespace="{{ {{ template "helm-guestbook.fullname" . }} }}"}[1h])
+          rate(nginx_ingress_controller_requests{ingress="{{`{{ template "helm-guestbook.fullname" . }}`}}", controller_class="nginx",exported_namespace="{{`{{ template "helm-guestbook.fullname" . }}`}}",status!~"[4-5].*"}[1h]) / rate(nginx_ingress_controller_requests{ingress="{{`{{ template "helm-guestbook.fullname" . }}`}}", controller_class="nginx",exported_namespace="{{`{{ template "helm-guestbook.fullname" . }}`}}"}[1h])
