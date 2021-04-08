@@ -66,10 +66,8 @@ spec:
           annotationPrefix: nginx.ingress.kubernetes.io 
           additionalIngressAnnotations:  
             canary-by-header: tenantID
-            canary-by-header-value: 10|11|12|13 # tenantID values
+            canary-by-header-pattern: 10|11|12|13 # tenantID values
       steps:
-      - setCanaryScale:
-          weight: 50
       - analysis:
           templates:
           - templateName: success-rate
