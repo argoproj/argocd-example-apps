@@ -19,7 +19,7 @@ spec:
     metadata:
       {{- with .Values.deployment.annotations }}
       annotations:
-        {{- toYaml . | nindent 4 }}
+        {{- toYaml . | nindent 8 }}
       {{- end }}
       labels:
         app: {{ template "helm-guestbook.name" . }}
