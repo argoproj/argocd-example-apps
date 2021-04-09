@@ -12,7 +12,7 @@ image:
 deployment:
   annotations:
     prometheus.io/scrape: 'true'
-    prometheus.io/port: '80'
+    # prometheus.io/port: '80'
 
 service:
   type: NodePort
