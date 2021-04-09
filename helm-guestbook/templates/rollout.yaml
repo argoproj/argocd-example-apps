@@ -17,13 +17,13 @@ spec:
       release: {{ .Release.Name }}
   template:
     metadata:
-      labels:
-        app: {{ template "helm-guestbook.name" . }}
-        release: {{ .Release.Name }}
       {{- with .Values.deployment.annotations }}
       annotations:
         {{- toYaml . | nindent 4 }}
       {{- end }}
+      labels:
+        app: {{ template "helm-guestbook.name" . }}
+        release: {{ .Release.Name }}
     spec:
       containers:
         - name: {{ .Chart.Name }}
