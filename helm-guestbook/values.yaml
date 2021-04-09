@@ -9,6 +9,11 @@ image:
   tag: 0.1
   pullPolicy: IfNotPresent
 
+deployment:
+  annotations:
+    prometheus.io/scrape: 'true'
+    
+
 service:
   type: NodePort
   port: 80
