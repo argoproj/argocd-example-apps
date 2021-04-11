@@ -4,7 +4,10 @@ metadata:
   name: guestbook-ui
 spec:
   ports:
-  - port: 80
+  - nodePort: 31001
+    port: 80
+    protocol: TCP
     targetPort: 80
   selector:
     app: guestbook-ui
+  type: NodePort
