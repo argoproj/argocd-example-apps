@@ -10,8 +10,8 @@ metadata:
   {{- end }}
 spec:
   rules:
-  # - host: argo.cirruslabs.io
-  - http:
+  - host: {{ .Values.ingress.host }}
+    http:
       paths:
       - path: {{ .Values.ingress.path }}
         backend:

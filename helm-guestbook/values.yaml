@@ -30,8 +30,7 @@ ingress:
     # nginx.ingress.kubernetes.io/canary-by-header-pattern: "aspc|eu"
     # kubernetes.io/tls-acme: "true"
   path: /
-  # hosts:
-  #   - chart-example.local
+  host: guestbook.52.255.162.155.nip.io
   tls: []
   #  - secretName: chart-example-tls
   #    hosts:
