@@ -80,4 +80,5 @@ spec:
           - name: service-name
             value: {{ template "helm-guestbook.fullname" . }}
       # Pauses indefinitely until manually resumed
+      - setWeight: 50
       - pause: {}
