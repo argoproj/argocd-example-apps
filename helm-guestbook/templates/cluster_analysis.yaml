@@ -8,7 +8,7 @@ spec:
   metrics:
   - name: success-rate
 #    successCondition: isNaN(result[0]) || result[0] >= 0.10
-    successCondition: result[0] >= 4 || isNaN(result[0]) 
+    successCondition: result[0] >= 0.01
     provider:
       prometheus:
         address: "http://52.149.216.245:9090"
