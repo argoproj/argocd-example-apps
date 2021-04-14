@@ -1,0 +1,11 @@
+namePrefix: kustomize-
+
+resources:
+- ./demo-ui01/demo-ui01-deployment.yaml
+- ./demo-ui01/demo-ui01-svc.yaml
+- ./demo-ui02/demo-ui02-deployment.yaml
+- ./demo-ui02/demo-ui02-svc.yaml
+- ./demo-ui03/demo-ui03-deployment.yaml
+- ./demo-ui03/demo-ui03-svc.yaml
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization

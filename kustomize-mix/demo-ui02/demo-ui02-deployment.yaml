@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: demo-ui02
+spec:
+  replicas: 1
+  revisionHistoryLimit: 3
+  selector:
+    matchLabels:
+      app: demo-ui02
+  template:
+    metadata:
+      labels:
+        app: demo-ui02
+    spec:
+      containers:
+      - image: docker.io/mohitgoyal/demo-ui02:1.0.0
+        name: demo-ui02
+        ports:
+        - containerPort: 80
