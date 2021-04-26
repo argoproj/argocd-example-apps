@@ -16,7 +16,7 @@ node {
                sh 'argocd app list'
 //               """
             }
-//      }       
+     }       
     }   
 
       stage('Create app') {
