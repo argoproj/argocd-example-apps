@@ -1,0 +1,14 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: guestbook-ingress
+  namespace:
+spec:
+  rules:
+  - host: kustomize-guestbook-argocd.natwest-labs.com
+    http:
+      paths:
+      - backend:
+          serviceName: guestbook-ui
+          servicePort: 80
+        path: /

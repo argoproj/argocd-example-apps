@@ -1,0 +1,20 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: guestbook-ingress
+  # namespace: guestbook
+  labels:
+    app.kubernetes.io/component: server
+    app.kubernetes.io/name: guestbook-server
+    app.kubernetes.io/part-of: guestbook 
+  annotations:
+    kubernetes.io/ingress.class: traefik
+spec:
+  rules:
+  - host: kustomize-guestbook-argocd.natwest-labs.com
+    http:
+      paths:
+      - backend:
+          serviceName: guestbook-ui
+          servicePort: 80
+        path: /
