@@ -1,0 +1,19 @@
+apiVersion: v1
+data:
+  configManagementPlugins: |
+    - name: cdk8s
+      init:
+        command: ["bash"]
+        args: ["-c", "pipenv install && cdk8s import -l python && cdk8s synth"]
+      generate:
+        command: ["bash"]
+        args: ["-c", "cat dist/*"]
+kind: ConfigMap
+metadata:
+  annotations:
+  labels:
+    app.kubernetes.io/name: argocd-cm
+    app.kubernetes.io/part-of: argocd
+  name: argocd-cm
+  namespace: argocd
+  selfLink: /api/v1/namespaces/argocd/configmaps/argocd-cm
