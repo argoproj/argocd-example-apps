@@ -1,6 +1,7 @@
 ArgoCD V2.0.1
-from folder argocd-example-apps, execute the following 
 
+from folder argocd-example-apps, execute the following 
+```
 helm chart save helm-values localhost:5000/myrepo/helm-values:1.0.0
 ref:     localhost:5000/myrepo/helm-values:1.0.0
 digest:  54cd9f79f0e383f02fc2408b4a3ba52e035e4a6c50e6dfbd5f022d715b572bff
@@ -26,5 +27,5 @@ repository 'localhost:5000/myrepo' added
 argocd app create mayoci --repo https://github.com/mayzhang2000/argocd-example-apps.git --path helm-oci-with-dependencies --dest-server https://kubernetes.default.svc --dest-namespace default
 application 'mayoci' created
 
-
+```
 
