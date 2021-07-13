@@ -9,39 +9,6 @@ docker build -f Dockerfile.maycmp -t <your doccker path>/maycmpserver:cmp .
 This is the plugin configuration file. It uses discover.fileName by matching with this pattern.
 
 ### Changes in argocd-repo-server.yaml.
-argocd repo server deployment file. The following are added.
-added the following to volumes.
-```
-      volumes:
-        - emptyDir: {}
-          name: var-files
-        - emptyDir: {}
-          name: plugins
-        - emptyDir: {}
-          name: tmp-dir
-        - configMap:
-            name: argocd-cmp-cm
-          name: config-files
-```
-added the following to initContainers
-```
-      initContainers:
-      - command:
-        - cp
-        - -n
-        - /usr/local/bin/argocd
-        - /var/run/argocd/argocd-cmp-server
-        image: quay.io/argoproj/argocd:latest
-        name: copyutil
-        volumeMounts:
-        - mountPath: /var/run/argocd
-          name: var-files
-```
-added the following to argocd-repo-server container
-```
-- mountPath: /home/argocd/cmp-server/plugins
-              name: plugins
-```
 added a new side car which uses the docker image built above.
 ```
       containers:
