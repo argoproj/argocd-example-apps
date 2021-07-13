@@ -1,0 +1,9 @@
+####################################################################################################
+# may-cmp-server
+####################################################################################################
+FROM busybox
+COPY plugin-withFilename-config.yaml /home/argocd/cmp-server/config/plugin-withFilename-config.yaml
+
+RUN mkdir -p /home/argocd/cmp-server/plugins
+
+USER 999
