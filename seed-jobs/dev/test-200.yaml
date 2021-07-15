@@ -13,4 +13,5 @@ spec:
     server: https://kubernetes.default.svc
     namespace: test-200
   syncPolicy:
-    automated: {}
+    syncOptions:
+      - CreateNamespace=true
