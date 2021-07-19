@@ -7,7 +7,7 @@ spec:
   project: default
   source:
     repoURL: git@github.com:dgadavin/argocd-example-apps.git
-    targetRevision: HEAD
+    targetRevision: test-100
     path: helm-dependency
   destination:
     server: https://kubernetes.default.svc
