@@ -1,0 +1,12 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+images:
+- name: argoprojlabs/argocd-applicationset
+  newName: docker.intuit.com/dev/patterns/kubernetes/dev/argoproj/argocd-applicationset
+  newTag: v0.1.0
+
+namespace: argocd
+
+resources:
+  - applicationset-rollout-spec.yaml

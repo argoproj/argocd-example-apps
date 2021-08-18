@@ -1,0 +1,43 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: argo-rollouts
+spec:
+  generators:
+  - git:
+      repoURL: https://github.com/mayzhang2000/argocd-example-apps.git
+      revision: rollout
+      files:
+      - path: applicationsets/env/*/iks-config.json
+  template:
+    metadata:
+      name: 'argo-rollouts.{{name}}'
+      labels:
+        appset: argo-rollouts
+        region: '{{region}}'
+        type: '{{type}}'
+        segment: '{{segment}}'
+        bu: '{{bu}}'
+    spec:
+      project: argo-rollouts
+      source:
+        repoURL: https://github.intuit.com/sbseg-cdp/cdp-deployments.git
+        targetRevision: HEAD
+        path: 'argo-rollouts/env/{{name}}'
+      destination:
+        server: '{{server}}'
+        namespace: argo-rollouts
+      info:
+      - name: splunk-logs
+        value: '{{splunk.splunkQueryServer}}/en-US/app/search/search?q=search%20index%3Diks%20host%3Dargo-rollouts-*%20clustername%3D{{name}}&display.page.search.mode=smart&dispatch.sample_ratio=1&earliest=-60m%40m&latest=now&display.events.fields=%5B%22event.message%22%2C%22msg%22%2C%22rollout%22%5D&display.events.type=raw&display.events.list.wrap=1&display.events.table.wrap=1'
+      - name: iksm-cluster-url
+        value: 'https://iksm.intuit.com/clusters/{{name}}/info'
+      - name: alb-ingress-controller-logs
+        value: '{{splunk.splunkQueryServer}}/en-US/app/search/search?q=search%20index%3Diks%20host%3Dalb-ingress-controller-*%20clustername%3D{{name}}&display.page.search.mode=smart&dispatch.sample_ratio=1&earliest=-60m%40m&latest=now&display.events.fields=%5B%22event.message%22%2C%22msg%22%2C%22rollout%22%5D&display.events.type=raw&display.events.list.wrap=1&display.events.table.wrap=1'
+      - name: app-events
+        value: https://sbg.splunk.intuit.com/en-US/app/search/search?earliest=-24h%40h&latest=now&q=search%20index%3Diks%20sourcetype%3Deventrouter%20clustername%3Dtools-sgmnt-prod.cluster.k8s.local%20event.involvedObject.namespace%3Ddev-deploy-argocd-usw2-prd-argo%20event.involvedObject.name%3Dargo-rollouts.{{name}}%7C%20spath%20%22event.message%22&display.page.search.mode=verbose&dispatch.sample_ratio=1
+      ignoreDifferences:
+      - group: apiextensions.k8s.io
+        kind: CustomResourceDefinition
+        jsonPointers:
+        - /spec/preserveUnknownFields

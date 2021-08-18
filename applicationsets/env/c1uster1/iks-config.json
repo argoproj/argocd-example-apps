@@ -1,0 +1,11 @@
+{
+  "name": "argo-cloudops-ppd-usw2-k8s",
+  "server": "https://api-argo-cloudops-ppd-usw2-k8s-93d235dc32feb47e.elb.us-west-2.amazonaws.com",
+  "region": "us-west-2",
+  "type": "preprod",
+  "bu": "ip",
+  "segment": "argo",
+  "splunk": {
+    "splunkQueryServer": "https://ip.e2e.adhoc.splunk.intuit.com"
+  }
+}
