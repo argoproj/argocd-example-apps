@@ -10,7 +10,7 @@ spec:
       elements:
      # v0.2.0+ form - does not require cluster/URL keys (but are still supported)
       - overlay: qa
-        gitRepo: git@github.com:evercas-chris/argocd-example-apps.git
+        gitRepo: git@github.com:evercast-chris/argocd-example-apps.git
         appPath: overlays
         appBranch: master
         cluster: test2
