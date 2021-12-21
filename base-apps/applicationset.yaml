@@ -24,3 +24,15 @@ spec:
   template:
     metadata:
       name: 'demo-{{cluster}}'
+    spec:
+      project: default
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+      source:
+        repoURL: '{{gitRepo}}'
+        targetRevision: '{{appBranch}}'
+        path: '{{appPath}}/{{overlay}}'
+      destination:
+        server: '{{url}}'
