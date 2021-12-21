@@ -1,0 +1,24 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: test-appset
+  namespace: argocd
+spec:
+  generators:
+  - list:
+      elements:
+      - overlay: qa
+        gitRepo: git@github.com:evercast-chris/argocd-example-apps.git
+        appPath: overlays
+        appBranch: chore/overlays
+        cluster: test2
+        url: https://kubernetes.default.svc
+      - overlay: stage
+        gitRepo: git@github.com:evercast-chris/argocd-example-apps.git
+        appPath: overlays
+        appBranch: chore/overlays
+        cluster: test1
+        url: https://kubernetes.default.svc
+  template:
+    metadata:
+      name: 'test-{{cluster}}'
