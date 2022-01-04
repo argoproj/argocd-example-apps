@@ -1,0 +1,1 @@
+To see built template run: `helm install --generate-name --dry-run mychart`

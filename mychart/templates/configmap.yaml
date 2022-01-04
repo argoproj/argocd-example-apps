@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Release.Name }}-configmap
+data:
+  myvalue: "Hello World"
+  myvalue2: "Hello World"
+  drink: {{ .Values.favoriteDrink | upper | repeat 5 | quote }}
+  food: {{ .Values.food | default (printf "%s-pizza" (include "fullname" .)) }}
