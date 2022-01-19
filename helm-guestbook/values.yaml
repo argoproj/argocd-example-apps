@@ -5,8 +5,8 @@
 replicaCount: 1
 
 image:
-  repository: gcr.io/heptio-images/ks-guestbook-demo
-  tag: 0.1
+  repository: docker.io/nginx
+  tag: 1.21.0
   pullPolicy: IfNotPresent
 
 service:
