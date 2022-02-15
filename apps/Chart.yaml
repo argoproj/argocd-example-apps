@@ -1,6 +1,6 @@
 apiVersion: v2
 name: applications
-description: Applications
+description: Sample applications
 
 # A chart can be either an 'application' or a 'library' chart.
 #
