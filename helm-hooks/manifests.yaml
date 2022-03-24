@@ -38,7 +38,7 @@ kind: ReplicaSet
 metadata:
   name: frontend
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       tier: frontend
