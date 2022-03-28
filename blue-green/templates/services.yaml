@@ -2,10 +2,10 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ template "helm-guestbook.fullname" . }}
+  name: {{ template "argotest.fullname" . }}
   labels:
-    app: {{ template "helm-guestbook.name" . }}
-    chart: {{ template "helm-guestbook.chart" . }}
+    app: {{ template "argotest.name" . }}
+    chart: {{ template "argotest.chart" . }}
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
 spec:
@@ -16,16 +16,16 @@ spec:
       protocol: TCP
       name: http
   selector:
-    app: {{ template "helm-guestbook.name" . }}
+    app: {{ template "argotest.name" . }}
     release: {{ .Release.Name }}
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ template "helm-guestbook.fullname" . }}-preview
+  name: {{ template "argotest.fullname" . }}-preview
   labels:
-    app: {{ template "helm-guestbook.name" . }}
-    chart: {{ template "helm-guestbook.chart" . }}
+    app: {{ template "argotest.name" . }}
+    chart: {{ template "argotest.chart" . }}
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
 spec:
@@ -36,5 +36,5 @@ spec:
       protocol: TCP
       name: http
   selector:
-    app: {{ template "helm-guestbook.name" . }}
+    app: {{ template "argotest.name" . }}
     release: {{ .Release.Name }}
