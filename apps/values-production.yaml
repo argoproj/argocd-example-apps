@@ -1,0 +1,13 @@
+global:
+  env: production
+  valuesFile: values-production.yaml
+  spec:
+    project: default
+
+argocdApplications:
+  helmGuestbook:
+    targetRevision: 1.0.0
+  kustomizeGuestbook:
+    disable: true
+  syncWaves:
+    disableAutomated: true
