@@ -1,6 +1,39 @@
-spec:
-  destination:
-    server: https://kubernetes.default.svc
-  source:
-    repoURL: https://github.com/argoproj/argocd-example-apps
-    targetRevision: HEAD
+global:
+  env: development
+  helmDefault: false
+  valuesFile: values.yaml
+  spec:
+    project: default
+    destination:
+      server: https://kubernetes.default.svc
+      namespace: default
+    source:
+      repoURL: https://github.com/argoproj/argocd-example-apps
+      targetRevision: HEAD
+
+argocdApplications:
+  helmGuestbook:
+    disableAutomated: false
+    disable: false
+    name: helm-guestbook
+    namespace: helm-guestbook
+    helm: true
+  #    targetRevision: HEAD
+  helmHooks:
+    disableAutomated: false
+    disable: false
+    name: helm-hooks
+    namespace: helm-hooks
+#    targetRevision: HEAD
+  kustomizeGuestbook:
+    disableAutomated: false
+    disable: false
+    name: kustomize-guestbook
+    namespace: kustomize-guestbook
+#    targetRevision: HEAD
+  syncWaves:
+    disableAutomated: false
+    disable: false
+    name: sync-waves
+    namespace: sync-waves
+#    targetRevision: HEAD
