@@ -26,3 +26,6 @@ dependencies:
 - name: wordpress
   version: 9.0.3
   repository: https://charts.helm.sh/stable
+- name: kyverno
+  version:  "v2.3.1"
+  repository:  "https://kyverno.github.io/kyverno"
