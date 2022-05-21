@@ -2,10 +2,10 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   annotations:
-     argocd.argoproj.io/compare-options: IgnoreExtraneous
+    argocd.argoproj.io/compare-options: IgnoreExtraneous
   name: guestbook-ui
 spec:
-  replicas: 3
+  replicas: 2
   revisionHistoryLimit: 3
   selector:
     matchLabels:
