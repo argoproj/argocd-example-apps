@@ -6,7 +6,7 @@ metadata:
     argocd.argoproj.io/sync-options: Prune=false
   name: guestbook-ui
 spec:
-  replicas: 1
+  replicas: 2
   revisionHistoryLimit: 3
   selector:
     matchLabels:
