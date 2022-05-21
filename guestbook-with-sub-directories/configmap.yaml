@@ -3,6 +3,6 @@ kind: ConfigMap
 metadata:
   annotations:
     argocd.argoproj.io/compare-options: IgnoreExtraneous
-  name: game-demo
+  name: config
 data:
   cache: "enabled"
