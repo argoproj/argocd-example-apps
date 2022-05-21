@@ -5,4 +5,4 @@ metadata:
     argocd.argoproj.io/compare-options: IgnoreExtraneous
   name: config
 data:
-  cache: "enabled"
+  cache: "disabled"
