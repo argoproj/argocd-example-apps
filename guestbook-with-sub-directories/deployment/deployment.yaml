@@ -3,7 +3,6 @@ kind: Deployment
 metadata:
   annotations:
     argocd.argoproj.io/compare-options: IgnoreExtraneous
-    argocd.argoproj.io/sync-options: Prune=false
   name: guestbook-ui
 spec:
   replicas: 2
