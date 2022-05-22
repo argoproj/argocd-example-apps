@@ -1,9 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  annotations:
-    argocd.argoproj.io/sync-options: Prune=false
-  name: guestbook-ui-no-prune
+  name: guestbook-ui
 spec:
   ports:
   - port: 80
