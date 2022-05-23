@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: PruneLast=true
+  name: guestbook-ui-prune-last
+spec:
+  ports:
+  - port: 80
+    targetPort: 80
+  selector:
+    app: guestbook-ui
