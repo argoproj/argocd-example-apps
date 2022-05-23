@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   annotations:
     argocd.argoproj.io/sync-options: PruneLast=true
-  name: guestbook-ui
+  name: guestbook-ui-prune-last
 spec:
   replicas: 3
   revisionHistoryLimit: 3
@@ -13,7 +13,7 @@ spec:
   template:
     metadata:
       labels:
-        app: guestbook-ui
+        app: guestbook-ui-prune-last
     spec:
       containers:
       - image: gcr.io/heptio-images/ks-guestbook-demo:0.2
