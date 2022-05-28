@@ -1,9 +1,9 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: sync
+  name: skip
   annotations:
-    argocd.argoproj.io/hook: Sync
+    argocd.argoproj.io/hook: Skip
 spec:
   template:
     spec:
