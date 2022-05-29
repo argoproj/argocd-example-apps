@@ -1,7 +1,4 @@
-namePrefix: pre-post-sync-
-
-bases:
-- ../kustomize-guestbook
+namePrefix: phases-practice-
 
 resources:
 - pre-sync-job.yaml
