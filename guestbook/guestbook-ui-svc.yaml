@@ -3,8 +3,10 @@ kind: Service
 metadata:
   name: guestbook-ui
 spec:
+  type: NodePort
   ports:
   - port: 80
     targetPort: 80
+    nodePort: 30036
   selector:
     app: guestbook-ui
