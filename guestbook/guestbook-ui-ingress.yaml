@@ -9,8 +9,8 @@ spec:
   - http:
       paths:
       - backend:
-          service: guestbook-ui
-            name: 
+          service:
+            name: guestbook-ui 
             port:
               number: 80
         path: /
