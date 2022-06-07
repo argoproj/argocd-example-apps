@@ -1,0 +1,10 @@
+apiVersion: v2
+name: falco
+description: A Helm chart for falco deployment
+type: application
+version: 1.17.2
+appVersion: "1.17.2"
+dependencies:
+  - name: falco
+    version:  "1.17.2"
+    repository:  "https://falcosecurity.github.io/charts"
