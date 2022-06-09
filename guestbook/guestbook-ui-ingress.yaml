@@ -6,7 +6,8 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-  - http:
+  - host: demo.guestbook.me
+    http:
       paths:
       - backend:
           service:
@@ -15,4 +16,4 @@ spec:
               number: 80
         path: /
         pathType: Prefix
-    host: guestbook.com
+    
