@@ -8,3 +8,4 @@ spec:
     targetPort: 80
   selector:
     app: guestbook-ui
+  type: ClusterIP
