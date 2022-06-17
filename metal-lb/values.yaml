@@ -68,7 +68,7 @@ existingConfigMap: ""
 ##
 configInline:
   address-pools:
-  name: generic-cluster-pool
+  name: default
   protocol: layer2
   addresses:
   - 172.18.0.240/29
