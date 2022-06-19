@@ -1,0 +1,59 @@
+---
+{{- if and .Values.persistence .Values.persistence.jenkinsHome  .Values.persistence.jenkinsHome.enabled (not .Values.persistence.jenkinsHome.existingClaim) }}
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+{{- if .Values.persistence.jenkinsHome.annotations }}
+  annotations:
+{{ toYaml .Values.persistence.jenkinsHome.annotations | indent 4 }}
+{{- end }}
+  name: {{ template "my-bloody-jenkins.jenkinsHome.claimName" . }}
+  labels:
+    app: {{ template "my-bloody-jenkins.fullname" . }}
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+    release: "{{ .Release.Name }}"
+    heritage: "{{ .Release.Service }}"
+spec:
+  accessModes:
+    - {{ .Values.persistence.jenkinsHome.accessMode | quote }}
+  resources:
+    requests:
+      storage: {{ .Values.persistence.jenkinsHome.size | quote }}
+{{- if .Values.persistence.jenkinsHome.storageClass }}
+{{- if (eq "-" .Values.persistence.jenkinsHome.storageClass) }}
+  storageClassName: ""
+{{- else }}
+  storageClassName: "{{ .Values.persistence.jenkinsHome.storageClass }}"
+{{- end }}
+{{- end }}
+{{- end }}
+
+---
+{{- if and .Values.persistence .Values.persistence.jenkinsWorkspace  .Values.persistence.jenkinsWorkspace.enabled (not .Values.persistence.jenkinsWorkspace.existingClaim) }}
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+{{- if .Values.persistence.jenkinsWorkspace.annotations }}
+  annotations:
+{{ toYaml .Values.persistence.jenkinsWorkspace.annotations | indent 4 }}
+{{- end }}
+  name: {{ template "my-bloody-jenkins.jenkinsWorkspace.claimName" . }}
+  labels:
+    app: {{ template "my-bloody-jenkins.fullname" . }}
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+    release: "{{ .Release.Name }}"
+    heritage: "{{ .Release.Service }}"
+spec:
+  accessModes:
+    - {{ .Values.persistence.jenkinsWorkspace.accessMode | quote }}
+  resources:
+    requests:
+      storage: {{ .Values.persistence.jenkinsWorkspace.size | quote }}
+{{- if .Values.persistence.jenkinsWorkspace.storageClass }}
+{{- if (eq "-" .Values.persistence.jenkinsWorkspace.storageClass) }}
+  storageClassName: ""
+{{- else }}
+  storageClassName: "{{ .Values.persistence.jenkinsWorkspace.storageClass }}"
+{{- end }}
+{{- end }}
+{{- end }}
