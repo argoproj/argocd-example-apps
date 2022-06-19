@@ -74,12 +74,12 @@ rbac:
 ## It is highly recommended to give jenkins the amount of
 ## cpu and memory in production usage
 resources:
-# requests:
-#   cpu: 200m
-#   memory: 256Mi
-# limits:
-#   cpu: 200m
-#   memory: 256Mi
+ requests:
+   cpu: 500m
+   memory: 512Mi
+ limits:
+   cpu: 2000m
+   memory: 2048Mi
 ########################################################
 
 ########################################################
@@ -87,7 +87,7 @@ resources:
 ## This is why the livenessProbe.initialDelaySeconds is high
 readinessProbe:
   timeoutSeconds: 5
-  initialDelaySeconds: 5
+  initialDelaySeconds: 120
   periodSeconds: 5
   failureThreshold: 3
 
