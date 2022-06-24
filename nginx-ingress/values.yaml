@@ -164,6 +164,7 @@ controller:
     configMapNamespace: ""
     # -- Annotations to be added to the tcp config configmap
     annotations: {}
+    "22": default/gitea-ssh:22
 
   udp:
     # -- Allows customization of the udp-services-configmap; defaults to $(POD_NAMESPACE)
