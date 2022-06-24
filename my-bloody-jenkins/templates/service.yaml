@@ -1,0 +1,40 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ template "my-bloody-jenkins.fullname" . }}
+  labels:
+    app: {{ template "my-bloody-jenkins.name" . }}
+    chart: {{ template "my-bloody-jenkins.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+{{- with .Values.service.annotations }}
+  annotations:
+{{ toYaml . | indent 4 }}
+{{- end }}
+spec:
+  type: {{ .Values.service.type }}
+{{- with .Values.service.externalTrafficPolicy }}
+  externalTrafficPolicy: {{ . | quote }}
+{{- end }}
+  selector:
+    app: {{ template "my-bloody-jenkins.name" . }}
+    release: {{ .Release.Name }}
+  ports:
+    - port: {{ default (include "my-bloody-jenkins.httpPort" .) .Values.service.httpPort }}
+      targetPort: http
+      protocol: TCP
+      name: http
+    - port: {{ default (include "my-bloody-jenkins.jnlpPort" .) .Values.service.jnlpPort }}
+      targetPort: jnlp
+      protocol: TCP
+      name: jnlp
+    - port: {{ default (include "my-bloody-jenkins.sshdPort" .) .Values.service.sshdPort }}
+      targetPort: sshd
+      protocol: TCP
+      name: sshd
+  {{- if eq .Values.service.type "LoadBalancer" }}
+  loadBalancerSourceRanges: {{ .Values.service.loadBalancerSourceRanges }}
+  {{- if .Values.service.loadBalancerIP }}
+  loadBalancerIP: {{ .Values.service.loadBalancerIP }}
+  {{end}}
+  {{end}}

@@ -1,0 +1,254 @@
+---
+########################################################
+## Override image
+image:
+  repository: odavid/my-bloody-jenkins
+  tag: 2.332.3-277
+  pullPolicy: IfNotPresent
+  imagePullSecrets:
+########################################################
+
+########################################################
+## Exposing service
+service:
+  # type: ClusterIP
+  type: ClusterIP
+  annotations: {}
+  # httpPort: 8080
+  # jnlpPort: 50000
+  # sshdPort: 16022
+  # loadBalancerSourceRanges: 0.0.0.0/0
+  # loadBalancerIP:
+########################################################
+
+########################################################
+## Exposing ingress
+##
+## Set the jenkinsURL configuration.
+## If not set and ingress is enabled, then jenkins URL is
+## {{ .Values.ingress.httpProtocol }}://{{ .Values.ingress.hostname }}{{ .Values.ingress.path }}
+# jenkinsURL: https://jenkins.host.name
+ingress:
+  ## Change to https if the ingress uses tls or you are using external
+  ## tls termination using annotations
+  httpProtocol: http
+  enabled: true
+  path: /
+  pathType: Prefix
+  ingressClassName: "nginx"
+  hostname: jenkins.172-18-0-241.nip.io
+  # annotations: {}
+  # labels: {}
+  # tls:
+  #   secretName:
+  #   certificate:
+  #   privateKey:
+
+  ## Ability to add more ingress rules
+  additionalRules:
+  # - http:
+  #     paths:
+  #     - path: path
+  #       backend:
+  preAdditionalRules:
+########################################################
+
+########################################################
+## By default rbac are not used and default service account
+## is being used.
+rbac:
+  ## Create serviceAccount, Eole and RoleBindings
+  create: true
+  ## If createServiceAccount = false, and rbac.create = true, the chart will only use the rbac.serviceAaccountName within RoleBindings
+  createServiceAccount: true
+  ## Ignored if createServiceAccount = true
+  serviceAaccountName: "default"
+  serviceAccount:
+    annotations: {}
+  ## Instead of Role, create a ClusterRole and ClusterRoleBindings
+  clusterWideAccess: false
+########################################################
+
+########################################################
+## Control requests limit
+## It is highly recommended to give jenkins the amount of
+## cpu and memory in production usage
+resources:
+ requests:
+   cpu: 500m
+   memory: 512Mi
+ limits:
+   cpu: 2000m
+   memory: 2048Mi
+########################################################
+
+########################################################
+## It can take a lot of time for jenkins to be started
+## This is why the livenessProbe.initialDelaySeconds is high
+readinessProbe:
+  timeoutSeconds: 5
+  initialDelaySeconds: 120
+  periodSeconds: 5
+  failureThreshold: 3
+
+livenessProbe:
+  timeoutSeconds: 5
+  initialDelaySeconds: 600
+  periodSeconds: 5
+  failureThreshold: 3
+########################################################
+
+########################################################
+## Control peristence of jenkins data:
+## By default, the master workspace and master home are separated
+## Since master should be used as executer, the workspace directory is
+## mainly used for fetching pipeline libraries and some initial clone of
+## projects. Therefore, the jenkinsWorkspace can be left as emptyDir (enabled=false).
+## On the other hand, jenkinsHome must be persistent!
+persistence:
+  mountDockerSocket: true
+  jenkinsHome:
+    enabled: true
+    annotations: {}
+    accessMode: ReadWriteOnce
+    size: 20Gi
+    ## A manually managed Persistent Volume and Claim
+    ## Requires persistence.jenkinsHome.enabled: true
+    ## If defined, PVC must be created manually before volume will be bound
+    existingClaim:
+    ## If defined, storageClass: <storageClass>
+    ## If set to "-", storageClass: "", which disables dynamic provisioning
+    ## If undefined (the default) or set to null, no storageClass spec is
+    ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
+    ##   GKE, AWS & OpenStack)
+    ##
+    storageClass: "local-path"
+  jenkinsWorkspace:
+    enabled: false
+    annotations: {}
+    accessMode: ReadWriteOnce
+    size: 8Gi
+    ## A manually managed Persistent Volume and Claim
+    ## Requires persistence.jenkinsWorkspace.enabled: true
+    ## If defined, PVC must be created manually before volume will be bound
+    existingClaim:
+    ## If defined, storageClass: <storageClass>
+    ## If set to "-", storageClass: "", which disables dynamic provisioning
+    ## If undefined (the default) or set to null, no storageClass spec is
+    ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
+    ##   GKE, AWS & OpenStack)
+    ##
+    storageClass: "local-path"
+
+  ## Additional volumes and mounts that will be attached to the container. e.g. secrets
+  volumes:
+  #  - name: nothing
+  #    emptyDir: {}
+  mounts:
+  #  - mountPath: /var/nothing
+  #    name: nothing
+  #    readOnly: true
+########################################################
+
+########################################################
+## See: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/
+nodeSelector: {}
+tolerations: []
+affinity: {}
+########################################################
+
+########################################################
+## Add more annotations to pod
+podAnnotations: {}
+########################################################
+
+########################################################
+## Security Context for jenkins pod
+securityContext: {}
+########################################################
+
+########################################################
+## If true, will set the jenkins master to use hostNetwork=true
+useHostNetwork: false
+########################################################
+
+########################################################
+## Additional Environment variables to be provided to the container
+env:
+#   ENVIRONMENT_VARIABLE_NAME: VALUE
+########################################################
+
+########################################################
+## If specified, an internal secret will be created.
+## Each key will become JENKINS_SECRET_<KEY> environment variable
+secrets:
+# MY_PASSWORD: Very Secret
+########################################################
+
+########################################################
+## Use external secrets as environment variables
+## Each item in the list represents an existing secret name
+## All its keys will be transformed to environment variables
+## See https://github.com/odavid/my-bloody-jenkins/pull/102
+envSecrets:
+#   - my-jenkins-external-secret
+########################################################
+
+########################################################
+## List of ConfigMaps that will be mounted as configuration files
+## All configuration files will be deep merged into single config
+## See https://github.com/odavid/my-bloody-jenkins/pull/102
+configMaps:
+#  - my-config-map
+########################################################
+
+########################################################
+## The jenkins Admin Username - must be a valid username
+## within the Jenkins Security Realm
+jenkinsAdminUser: admin
+########################################################
+
+########################################################
+## Java Options for Jenkins Master. Make sure
+## resource limits and requests are defined accordingly
+javaMemoryOpts: "-Xmx256m"
+########################################################
+
+########################################################
+## If enabled = 'true', then
+## a Default k8s Jenkins cloud will be configured to
+## provision slaves automatically based on labels
+defaultK8sCloud:
+  enabled: true
+  name: "k8s"
+  labels:
+    - "generic"
+  jvmArgs: "-Xmx1g"
+  remoteFs: "/home/jenkins"
+  image: "odavid/jenkins-jnlp-slave:latest"
+########################################################
+
+########################################################
+## A managed configuration based on
+## My Bloody Jenkins YAML config.
+## See: https://github.com/odavid/my-bloody-jenkins#configuration-reference
+managedConfig: {}
+## Configure Security - https://github.com/odavid/my-bloody-jenkins#security-section
+# security:
+## Configure tools - https://github.com/odavid/my-bloody-jenkins#tools-section
+# tools:
+## Configure credentials - https://github.com/odavid/my-bloody-jenkins#credentials-section
+# credentials:
+## Configure notifiers - https://github.com/odavid/my-bloody-jenkins#notifiers-section
+# notifiers:
+## Configure notifiers - https://github.com/odavid/my-bloody-jenkins#pipeline-libraries-section
+# pipeline_libraries:
+## Script Approvals - https://github.com/odavid/my-bloody-jenkins#script-approval-section
+# script_approval:
+## Configure Clouds - https://github.com/odavid/my-bloody-jenkins#clouds-section
+# clouds:
+## Configure Seed Jobs - https://github.com/odavid/my-bloody-jenkins#seed-jobs-section
+# seed_jobs:
+## Configure Job DSL Scripts - https://github.com/odavid/my-bloody-jenkins#jobdsl-scripts-section
+# job_dsl_scripts:
+########################################################

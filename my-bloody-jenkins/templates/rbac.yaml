@@ -1,0 +1,58 @@
+{{- if .Values.rbac.create }}
+{{- $fullName := include "my-bloody-jenkins.fullname" . }}
+{{- if .Values.rbac.createServiceAccount }}
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: {{ $fullName }}
+{{- with .Values.rbac.serviceAccount.annotations }}
+  annotations:
+{{ toYaml . | indent 4 }}
+{{- end }}
+{{- end }}
+
+---
+kind: {{ if .Values.rbac.clusterWideAccess }}"ClusterRole"{{ else }}"Role"{{ end }}
+{{- if .Capabilities.APIVersions.Has "rbac.authorization.k8s.io/v1" }}
+apiVersion: rbac.authorization.k8s.io/v1
+{{ else }}
+apiVersion: rbac.authorization.k8s.io/v1beta1
+{{- end }}
+metadata:
+  name: {{ $fullName }}
+rules:
+- apiGroups: [""]
+  resources: ["pods"]
+  verbs: ["create","delete","get","list","patch","update","watch"]
+- apiGroups: [""]
+  resources: ["pods/exec"]
+  verbs: ["create","delete","get","list","patch","update","watch"]
+- apiGroups: [""]
+  resources: ["pods/log"]
+  verbs: ["get","list","watch"]
+- apiGroups: [""]
+  resources: ["events"]
+  verbs: ["watch"]
+- apiGroups: [""]
+  resources: ["secrets"]
+  verbs: ["get"]
+
+---
+{{- if .Capabilities.APIVersions.Has "rbac.authorization.k8s.io/v1" }}
+apiVersion: rbac.authorization.k8s.io/v1
+{{ else }}
+apiVersion: rbac.authorization.k8s.io/v1beta1
+{{- end }}
+kind: {{ if .Values.rbac.clusterWideAccess }}"ClusterRoleBinding"{{ else }}"RoleBinding"{{ end }}
+metadata:
+  name: {{ $fullName }}
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: {{ if .Values.rbac.clusterWideAccess }}"ClusterRole"{{ else }}"Role"{{ end }}
+  name: {{ $fullName }}
+subjects:
+- kind: ServiceAccount
+  name: {{ if .Values.rbac.createServiceAccount }}{{ $fullName }}{{ else }}{{ .Values.rbac.serviceAccountName }}{{ end }}
+  namespace: "{{ .Release.Namespace }}"
+{{- end }}

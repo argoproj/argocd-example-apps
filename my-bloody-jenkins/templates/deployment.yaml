@@ -1,0 +1,224 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ template "my-bloody-jenkins.fullname" . }}
+  labels:
+    app: {{ template "my-bloody-jenkins.name" . }}
+    chart: {{ template "my-bloody-jenkins.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+    rollingUpdate: null
+  selector:
+    matchLabels:
+      app: {{ template "my-bloody-jenkins.name" . }}
+      release: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app: {{ template "my-bloody-jenkins.name" . }}
+        release: {{ .Release.Name }}
+    {{- if .Values.podAnnotations }}
+      annotations:
+{{ toYaml .Values.podAnnotations | indent 8 }}
+    {{- end }}
+    spec:
+      {{- if and .Values.useHostNetwork }}
+      hostNetwork: true
+      {{- end }}
+      {{- with .Values.securityContext }}
+      securityContext:
+{{ toYaml . | indent 8 }}
+      {{- end }}
+      {{- if and .Values.rbac .Values.rbac.create }}
+      serviceAccountName: {{ if .Values.rbac.createServiceAccount }}{{ (include "my-bloody-jenkins.fullname" .) | quote }}{{ else }}{{ .Values.rbac.serviceAccountName | quote }}{{ end }}
+      {{- end }}
+    {{- with .Values.image.imagePullSecrets }}
+      imagePullSecrets:
+{{ toYaml . | indent 8 }}
+    {{- end }}
+      containers:
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - name: http
+              containerPort: {{ template "my-bloody-jenkins.httpPort" . }}
+              protocol: TCP
+            - name: jnlp
+              containerPort: {{ template "my-bloody-jenkins.jnlpPort" . }}
+              protocol: TCP
+            - name: sshd
+              containerPort: {{ template "my-bloody-jenkins.sshdPort" . }}
+              protocol: TCP
+
+          {{- if .Values.livenessProbe }}
+          livenessProbe:
+            httpGet:
+              path: /login
+              port: http
+            initialDelaySeconds: {{ .Values.livenessProbe.initialDelaySeconds }}
+            periodSeconds: {{ .Values.livenessProbe.periodSeconds }}
+            timeoutSeconds: {{ .Values.livenessProbe.timeoutSeconds }}
+            failureThreshold: {{ .Values.livenessProbe.failureThreshold }}
+
+          {{- end }}
+
+          {{- if .Values.readinessProbe }}
+          readinessProbe:
+            httpGet:
+              path: /login
+              port: http
+            initialDelaySeconds: {{ .Values.readinessProbe.initialDelaySeconds }}
+            periodSeconds: {{ .Values.readinessProbe.periodSeconds }}
+            timeoutSeconds: {{ .Values.readinessProbe.timeoutSeconds }}
+            failureThreshold: {{ .Values.readinessProbe.failureThreshold }}
+          {{- end }}
+
+          {{- if .Values.resources }}
+          resources:
+{{ toYaml .Values.resources | indent 12 }}
+          {{- end }}
+
+          env:
+            - name: K8S_NAMESPACE
+              value: "{{ .Release.Namespace }}"
+          {{- if .Values.javaMemoryOpts }}
+            - name: JAVA_OPTS_MEMORY
+              value: {{ .Values.javaMemoryOpts | quote }}
+          {{- end }}
+          {{- if .Values.jenkinsAdminUser }}
+            - name: JENKINS_ENV_ADMIN_USER
+              value: {{ .Values.jenkinsAdminUser | quote }}
+          {{- end }}
+            - name: JENKINS_ENV_CONFIG_YML_URL
+              value: file:///var/jenkins_managed_config/k8s-default-cloud.yml,file:///var/jenkins_managed_config/jenkins-config.yml{{ range $i, $configMapName := .Values.configMaps }},file:///var/jenkins_config/{{ $configMapName }}{{ end }}
+          {{- range $key, $value := .Values.env }}
+            - name: {{ $key }}
+              value: {{ $value | quote }}
+          {{- end }}
+          {{- if .Values.jenkinsURL }}
+            - name: JENKINS_ENV_JENKINS_URL
+              value: {{ .Values.jenkinsURL | quote }}
+          {{- else if .Values.ingress.enabled }}
+            - name: JENKINS_ENV_JENKINS_URL
+              value: {{ .Values.ingress.httpProtocol }}://{{ .Values.ingress.hostname }}{{ .Values.ingress.path }}
+          {{- end }}
+            - name: ENVVARS_DIRS
+              value: /var/jenkins_secrets/JENKINS_SECRET{{ range $i, $name := .Values.envSecrets }},/var/jenkins_secrets/{{ $name }}{{ end }}
+            - name: JENKINS_ENV_HOST_IP
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.podIP
+
+          volumeMounts:
+{{- if and .Values.persistence .Values.persistence.mounts }}
+{{ toYaml .Values.persistence.mounts | indent 12 }}
+{{- end }}
+            - mountPath: /var/jenkins_home
+              name: jenkins-home
+              readOnly: false
+
+            - mountPath: /jenkins-workspace-home
+              name: jenkins-workspace-home
+              readOnly: false
+            {{- if .Values.persistence.mountDockerSocket }}
+
+            - mountPath: /var/run/docker.sock
+              name: docker-socket
+              readOnly: false
+            {{- end }}
+
+            {{/* Using internal secret - each key will become JENKINS_SECRET_${key} */}}
+            {{- if .Values.secrets }}
+            - mountPath: /var/jenkins_secrets/JENKINS_SECRET
+              name: {{ printf "%s-%s" (include "my-bloody-jenkins.fullname" .) "secrets" | quote }}
+              readOnly: true
+            {{- end }}
+
+            {{/* Using external secret - each key will become ${SECRET_NAME}_${key} */}}
+            {{- if .Values.envSecrets }}
+            {{- range .Values.envSecrets }}
+
+            - mountPath: /var/jenkins_secrets/{{ . }}
+              name: {{ . | quote }}
+              readOnly: true
+            {{- end }}
+            {{- end }}
+            {{- if .Values.configMaps }}
+            {{- range .Values.configMaps }}
+
+            - mountPath: /var/jenkins_config/{{ . }}
+              name: {{ . | quote }}
+              readOnly: true
+            {{- end }}
+            {{- end }}
+
+            - mountPath: /var/jenkins_managed_config
+              name: {{ (include "my-bloody-jenkins.fullname" .) | quote }}
+              readOnly: true
+
+
+
+      volumes:
+{{- if and .Values.persistence .Values.persistence.volumes }}
+{{ toYaml .Values.persistence.volumes | indent 8 }}
+{{- end }}
+        {{- if .Values.persistence.mountDockerSocket }}
+        - name: docker-socket
+          hostPath:
+            path: /var/run/docker.sock
+        {{- end }}
+        - name: jenkins-home
+        {{- if and .Values.persistence .Values.persistence.jenkinsHome .Values.persistence.jenkinsHome.enabled }}
+          persistentVolumeClaim:
+            claimName: {{ .Values.persistence.jenkinsHome.existingClaim | default (include "my-bloody-jenkins.jenkinsHome.claimName" .) }}
+        {{- else }}
+          emptyDir: {}
+        {{- end }}
+
+        - name: jenkins-workspace-home
+        {{- if and .Values.persistence .Values.persistence.jenkinsWorkspace .Values.persistence.jenkinsWorkspace.enabled }}
+          persistentVolumeClaim:
+            claimName: {{ .Values.persistence.jenkinsWorkspace.existingClaim | default (include "my-bloody-jenkins.jenkinsWorkspace.claimName" .) }}
+        {{- else }}
+          emptyDir: {}
+        {{- end }}
+        {{- if .Values.envSecrets }}
+        {{- range .Values.envSecrets }}
+        - name: {{ . | quote }}
+          secret:
+            secretName: {{ . }}
+        {{- end }}
+        {{- end }}
+        {{- if .Values.configMaps }}
+        {{- range .Values.configMaps }}
+        - name: {{ . | quote }}
+          configMap:
+            name: {{ . | quote }}
+        {{- end }}
+        {{- end }}
+        - name: {{ (include "my-bloody-jenkins.fullname" .) | quote }}
+          configMap:
+            name: {{ (include "my-bloody-jenkins.fullname" .) | quote }}
+        {{- if .Values.secrets }}
+        - name: {{ printf "%s-%s" (include "my-bloody-jenkins.fullname" .) "secrets" | quote }}
+          secret:
+            secretName: {{ (include "my-bloody-jenkins.fullname" .) | quote }}
+        {{- end }}
+
+    {{- with .Values.nodeSelector }}
+      nodeSelector:
+{{ toYaml . | indent 8 }}
+    {{- end }}
+    {{- with .Values.affinity }}
+      affinity:
+{{ toYaml . | indent 8 }}
+    {{- end }}
+    {{- with .Values.tolerations }}
+      tolerations:
+{{ toYaml . | indent 8 }}
+    {{- end }}

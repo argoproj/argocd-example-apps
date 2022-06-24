@@ -1,0 +1,39 @@
+1. Get Jenkins URL by running these commands:
+{{- if .Values.jenkinsURL }}
+  {{ .Values.jenkinsURL | quote }}
+{{- else if .Values.ingress.enabled }}
+  {{ .Values.ingress.httpProtocol }}://{{ .Values.ingress.hostname }}{{ .Values.ingress.path }}
+{{- else if contains "NodePort" .Values.service.type }}
+  export NODE_PORT=$(kubectl get --namespace {{ .Release.Namespace }} -o jsonpath="{.spec.ports[0].nodePort}" services {{ template "my-bloody-jenkins.fullname" . }})
+  export NODE_IP=$(kubectl get nodes --namespace {{ .Release.Namespace }} -o jsonpath="{.items[0].status.addresses[0].address}")
+  echo http://$NODE_IP:$NODE_PORT
+{{- else if contains "LoadBalancer" .Values.service.type }}
+     NOTE: It may take a few minutes for the LoadBalancer IP to be available.
+           You can watch the status of by running 'kubectl get svc -w --namespace {{ .Release.Namespace }} {{ template "my-bloody-jenkins.fullname" . }}'
+  export SERVICE_IP=$(kubectl get svc --namespace {{ .Release.Namespace }} {{ template "my-bloody-jenkins.fullname" . }} -o jsonpath='{.status.loadBalancer.ingress[0].hostname}')
+  echo http://$SERVICE_IP:{{ default (include "my-bloody-jenkins.httpPort" .) .Values.service.httpPort }}
+{{- else if contains "ClusterIP" .Values.service.type }}
+  export POD_NAME=$(kubectl get pods --namespace {{ .Release.Namespace }} -l "app={{ template "my-bloody-jenkins.name" . }},release={{ .Release.Name }}" -o jsonpath="{.items[0].metadata.name}")
+  echo "Visit http://127.0.0.1:8080 to use your application"
+  kubectl port-forward $POD_NAME 8080:8080
+{{- end }}
+
+2. To watch Jenkins logs, run the following command:
+export POD_NAME=$(kubectl get pods --namespace {{ .Release.Namespace }} -l "app={{ template "my-bloody-jenkins.name" . }},release={{ .Release.Name }}" -o jsonpath="{.items[0].metadata.name}")
+kubectl logs -f --namespace {{ .Release.Namespace }} $POD_NAME
+
+{{- if not .Values.persistence.jenkinsHome.enabled }}
+
+####################################################################################
+# WARNING: Persistent is not enabled!!!
+# In order to enable persistent, please set persistence.jenkinsHome.enabled to 'true'
+####################################################################################
+{{- end}}
+
+{{- if not .Values.rbac.create }}
+
+####################################################################################
+# WARNING: RBAC is not enabled
+# In order to enable RBAC, please set rbac.create to 'true'
+####################################################################################
+{{- end }}
