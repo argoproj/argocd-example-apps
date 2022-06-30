@@ -40,11 +40,11 @@ jobs:
           CF_JIRA_INTEGRATION: "jiratest"
     
           CF_ENRICHERS: "jira, git"    
-          CF_IMAGE: ${{ secrets.DOCKERHUB_USERNAME }}/ks-guestbook-demo:latest
+          CF_IMAGE: ${{ secrets.DOCKERHUB_USERNAME }}/ks-guestbook-demo:0.1
         
           CF_GITHUB_TOKEN: ${{ secrets.GIT_TOKEN }}
     
         #Jira issues that match
-          CF_JIRA_MESSAGE: "FIX -- TEST-1"
+          CF_JIRA_MESSAGE: "FIX -- TEST-2"
           CF_JIRA_PROJECT_PREFIX: "TEST"
         uses: codefresh-io/codefresh-report-image@Marketplace
