@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: guestbook-ui
 spec:
-  replicas: 1
+  replicas: 2
   revisionHistoryLimit: 3
   selector:
     matchLabels:
@@ -14,7 +14,7 @@ spec:
         app: guestbook-ui
     spec:
       containers:
-      - image: amankinenko/ks-guestbook-demo:0.5
+      - image: amankinenko/ks-guestbook-demo:0.6
         name: guestbook-ui
         ports:
         - containerPort: 80
