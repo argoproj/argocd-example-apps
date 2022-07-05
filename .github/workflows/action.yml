@@ -47,4 +47,4 @@ jobs:
         #Jira issues that match
           CF_JIRA_MESSAGE: "FIX -- TEST-2"
           CF_JIRA_PROJECT_PREFIX: "TEST"
-        uses: codefresh-io/codefresh-report-image@Marketplace
+        uses: codefresh-io/codefresh-report-image@0.0.61
