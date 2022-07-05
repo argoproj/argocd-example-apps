@@ -36,7 +36,7 @@ jobs:
         with:
           CF_HOST: ${{ secrets.CF_HOST }}
           CF_API_KEY: ${{ secrets.CF_TOKEN }}
-        
+          CF_GIT_BRANCH: "TEST-2-feature"
         #Codefresh Integrations to USE
           CF_CONTAINER_REGISTRY_INTEGRATION: "dockerr"
           CF_JIRA_INTEGRATION: "jira"
