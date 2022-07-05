@@ -36,8 +36,8 @@ jobs:
           CF_API_KEY: ${{ secrets.CF_TOKEN }}
         
         #Codefresh Integrations to USE
-          CF_CONTAINER_REGISTRY_INTEGRATION: "dockerhhub"
-          CF_JIRA_INTEGRATION: "jiratest"
+          CF_CONTAINER_REGISTRY_INTEGRATION: "dockerr"
+          CF_JIRA_INTEGRATION: "jira"
     
           CF_ENRICHERS: "jira, git"    
           CF_IMAGE: ${{ secrets.DOCKERHUB_USERNAME }}/ks-guestbook-demo:0.6
