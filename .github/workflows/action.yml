@@ -42,7 +42,7 @@ jobs:
           CF_JIRA_INTEGRATION: "jira"
     
           CF_ENRICHERS: "jira, git"    
-          CF_IMAGE: ${{ secrets.DOCKERHUB_USERNAME }}/ks-guestbook-demo:0.6
+          CF_IMAGE: ${{ secrets.DOCKERHUB_USERNAME }}/ks-guestbook-demo:0.5
         
           CF_GITHUB_TOKEN: ${{ secrets.GIT_TOKEN }}
     
