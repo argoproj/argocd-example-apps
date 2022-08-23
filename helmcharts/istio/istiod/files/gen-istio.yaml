@@ -1631,8 +1631,8 @@ spec:
             value: "Kubernetes"
           resources:
             requests:
-              cpu: 500m
-              memory: 2048Mi
+              cpu: 300m
+              memory: 800Mi
           securityContext:
             allowPrivilegeEscalation: false
             readOnlyRootFilesystem: true
