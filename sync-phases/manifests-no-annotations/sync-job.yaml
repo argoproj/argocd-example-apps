@@ -1,0 +1,13 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: sync
+spec:
+  template:
+    spec:
+      containers:
+      - name: sleep
+        image: alpine:latest
+        command: ["sleep", "10"]
+      restartPolicy: Never
+  backoffLimit: 0
