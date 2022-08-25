@@ -9,8 +9,10 @@ spec:
   template:
     spec:
       containers:
-      - name: sleep
-        image: alpine:latest
-        command: ["sleep", "10"]
+      - name: endpoint-consumer
+        image: curlimages/curl
+        command:
+          - "curl"
+          - "localhost:34567"
       restartPolicy: Never
-  backoffLimit: 0
+  backoffLimit: 2
