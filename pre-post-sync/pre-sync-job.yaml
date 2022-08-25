@@ -13,6 +13,6 @@ spec:
         image: curlimages/curl
         command:
           - "curl"
-          - "https://reqbin.com/echo"
+          - "https://api.aakhilv.me/fun/facts"
       restartPolicy: Never
   backoffLimit: 2
