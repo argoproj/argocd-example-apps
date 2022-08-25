@@ -13,6 +13,6 @@ spec:
         image: curlimages/curl
         command:
           - "curl"
-          - "https://api.aakhilv.me/fun/facts"
+          - "https://www.google.com"
       restartPolicy: Never
   backoffLimit: 2
