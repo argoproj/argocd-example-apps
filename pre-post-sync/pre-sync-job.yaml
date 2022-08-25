@@ -13,6 +13,6 @@ spec:
         image: curlimages/curl
         command:
           - "curl"
-          - "localhost:34567"
+          - "https://reqbin.com/echo"
       restartPolicy: Never
   backoffLimit: 2
