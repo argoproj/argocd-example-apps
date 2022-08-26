@@ -1,0 +1,21 @@
+app:
+  name: bede-devopsdashboard-api
+  version: "latest"
+
+container:
+  imageName: bede-devopsdashboard-api
+  port: 8000
+
+service:
+  port: 8000
+  targetPort: 8000
+
+ingress:
+  hostname: dashboard-api
+
+cache:
+  enabled: "true"
+  container:
+    name: bede-devopsdashboard-cache
+    image: memcached
+    port: 11211
