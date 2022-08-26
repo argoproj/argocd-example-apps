@@ -1,0 +1,25 @@
+app:
+  maintainer: name
+  slackChannel: channelName
+  repository: "https://github.com/repoName"
+
+container:
+  repository: acr.address
+  pullPolicy: Always
+
+deployment: {}
+
+service:
+  enabled: true
+  name: http
+  protocol: TCP
+
+ingress:
+  enabled: true
+  sslRedirectEnabled: false
+  enableCors: "true"
+
+secretName: "secretName"
+
+tolerateSpot: "true"
+spotEnabled: "true"
