@@ -14,9 +14,13 @@ Use following steps to try the application:
         command: ["/bin/sh", "-c"]
         args: ["helm dependency build"]
       generate:
-        command: [sh, -c]
-        args: ["helm template --release-name release-name . > all.yaml && kustomize build"]
+        command: ["/bin/sh", "-c"]
+        args: ["helm template . --name-template $ARGOCD_APP_NAME --namespace $ARGOCD_APP_NAMESPACE --kube-version $KUBE_VERSION > all.yaml && kustomize build"]
 ```
+
+Notes:
+- `$ARGOCD_APP_NAME`, `$ARGOCD_APP_NAMESPACE` and `$KUBE_VERSION` are environment variables that exists in the context of the plugin.
+- setting `--kube-version` is important as helm template can mock up data which may not match the actual cluster version.
 
 * create application using `kustomized-helm` as a config management plugin name:
 
