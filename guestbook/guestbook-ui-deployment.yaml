@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: guestbook-ui
   labels:
-    branch: ARGOCD_APP_SOURCE_TARGET_REVISION
+    branch: $ARGOCD_APP_SOURCE_TARGET_REVISION
 spec:
   replicas: 1
   revisionHistoryLimit: 3

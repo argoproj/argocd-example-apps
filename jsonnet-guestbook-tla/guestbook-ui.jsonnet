@@ -1,23 +1,23 @@
 function (
-    containerPort=80, 
-    image="gcr.io/heptio-images/ks-guestbook-demo:0.2", 
-    name="jsonnet-guestbook-ui",
-    replicas=1,
-    servicePort=80, 
-    type="LoadBalancer"
-)
-    [
-    {
+    containerPort = 80,
+    image = "gcr.io/heptio-images/ks-guestbook-demo:0.2",
+    name = "jsonnet-guestbook-ui",
+    replicas = 1,
+    servicePort = 80,
+    type = "LoadBalancer")
+[{
         "apiVersion": "v1",
         "kind": "Service",
         "metadata": {
-            "name": name
+            "name": name,
+            "labels": {
+                "branch": ARGOCD_APP_SOURCE_TARGET_REVISION
+            }
         },
         "spec": {
-            "ports": [
-                {
-                "port": servicePort,
-                "targetPort": containerPort
+            "ports": [{
+                    "port": servicePort,
+                    "targetPort": containerPort
                 }
             ],
             "selector": {
@@ -25,8 +25,7 @@ function (
             },
             "type": type
         }
-    },
-    {
+    }, {
         "apiVersion": "apps/v1",
         "kind": "Deployment",
         "metadata": {
@@ -37,29 +36,27 @@ function (
             "revisionHistoryLimit": 3,
             "selector": {
                 "matchLabels": {
-                "app": name
+                    "app": name
                 },
             },
             "template": {
                 "metadata": {
-                "labels": {
-                    "app": name
-                }
+                    "labels": {
+                        "app": name
+                    }
                 },
                 "spec": {
-                "containers": [
-                    {
-                        "image": image,
-                        "name": name,
-                        "ports": [
-                        {
-                            "containerPort": containerPort
+                    "containers": [{
+                            "image": image,
+                            "name": name,
+                            "ports": [{
+                                    "containerPort": containerPort
+                                }
+                            ]
                         }
-                        ]
-                    }
-                ]
+                    ]
                 }
             }
         }
     }
-    ]
+]
