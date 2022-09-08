@@ -4,8 +4,7 @@ function (
     name = "jsonnet-guestbook-ui",
     replicas = 1,
     servicePort = 80,
-    type = "LoadBalancer",
-    branch = ARGOCD_APP_SOURCE_TARGET_REVISION)
+    type = "LoadBalancer")
 [{
         "apiVersion": "v1",
         "kind": "Service",
