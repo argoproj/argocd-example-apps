@@ -4,15 +4,16 @@ function (
     name = "jsonnet-guestbook-ui",
     replicas = 1,
     servicePort = 80,
-    type = "LoadBalancer")
+    type = "LoadBalancer",
+	ns=$ARGOCD_APP_NAMESPACE)
 [{
         "apiVersion": "v1",
         "kind": "Service",
         "metadata": {
             "name": name,
-            "labels": {
-                "branch": branch
-            }
+            "labels": [{
+                "ns": "test"
+            }]
         },
         "spec": {
             "ports": [{
