@@ -1,0 +1,29 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: myapps
+spec:
+  generators:
+  - scmProvider:
+      github:
+        # The GitHub organization to scan.
+        organization: geekbozu
+        - repositoryMatch: ^argocd-example-apps
+        # For GitHub Enterprise:
+        allBranches: true
+        # Reference to a Secret containing an access token. (optional)
+        tokenRef:
+          secretName: github-token
+          key: token
+ template:
+    metadata:
+      name: '{{ repository }}+{{ branch }}'
+    spec:
+      source:
+        repoURL: '{{ url }}'
+        targetRevision: '{{ branch }}'
+        path: testApp/
+      project: default
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: default
