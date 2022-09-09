@@ -1,19 +1,17 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: guestbook-ui
-  labels:
-    branch: $ARGOCD_APP_SOURCE_TARGET_REVISION
+  name: networkme
 spec:
   replicas: 1
   revisionHistoryLimit: 3
   selector:
     matchLabels:
-      app: guestbook-ui
+      app: networkme
   template:
     metadata:
       labels:
-        app: guestbook-ui
+        app: networkme
     spec:
       containers:
       - image: praqma/network-multitool

@@ -4,25 +4,20 @@ metadata:
   name: myapps
 spec:
   generators:
-  - scmProvider:
+  - pullRequest:
       github:
-        # The GitHub organization to scan.
-        organization: geekbozu
-        - repositoryMatch: ^argocd-example-apps
-        # For GitHub Enterprise:
-        allBranches: true
-        # Reference to a Secret containing an access token. (optional)
-        tokenRef:
-          secretName: github-token
-          key: token
- template:
+        # The GitHub organization or user.
+        owner: geekbozu
+        # The Github repository
+        repo: argocd-example-apps
+  template:
     metadata:
-      name: '{{ repository }}+{{ branch }}'
+      name: 'myapp-{{branch}}-{{number}}'
     spec:
       source:
-        repoURL: '{{ url }}'
-        targetRevision: '{{ branch }}'
-        path: testApp/
+        repoURL: 'https://github.com/geekbozu/argocd-example-apps.git'
+        targetRevision: '{{head_sha}}'
+        path: Test/
       project: default
       destination:
         server: https://kubernetes.default.svc
