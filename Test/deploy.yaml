@@ -1,20 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: networkme
+  name: guestbook-ui
 spec:
   replicas: 1
   revisionHistoryLimit: 3
   selector:
     matchLabels:
-      app: networkme
+      app: guestbook-ui
   template:
     metadata:
       labels:
-        app: networkme
+        app: guestbook-ui
     spec:
       containers:
-      - image: praqma/network-multitool
-        name: net
+      - image: gcr.io/heptio-images/ks-guestbook-demo:0.2
+        name: guestbook-ui
         ports:
         - containerPort: 80

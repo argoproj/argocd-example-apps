@@ -10,6 +10,7 @@ spec:
         owner: geekbozu
         # The Github repository
         repo: argocd-example-apps
+  requeueAfterSeconds: 15
   template:
     metadata:
       name: 'myapp-{{branch}}-{{number}}'
