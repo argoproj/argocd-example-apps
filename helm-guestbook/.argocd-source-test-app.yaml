@@ -1,8 +1,0 @@
-helm:
-  parameters:
-  - name: image.name
-    value: nginx
-    forcestring: true
-  - name: image.tag
-    value: 1.23.1
-    forcestring: true
