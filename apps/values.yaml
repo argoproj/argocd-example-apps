@@ -1,3 +1,4 @@
+namespace: akuity
 spec:
   destination:
     server: http://cluster-kind-akuity:8001
