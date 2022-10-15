@@ -1,7 +1,7 @@
 namespace: argocd
 spec:
   destination:
-    server: http://cluster-kind-akuity:8001
+    name: kind-akuity
   source:
     repoURL: https://github.com/morey-tech/argocd-example-apps
     targetRevision: HEAD

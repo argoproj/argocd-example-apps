@@ -8,7 +8,7 @@ metadata:
 spec:
   destination:
     namespace: helm-hooks
-    server: {{ .Values.spec.destination.server }}
+    name: {{ .Values.spec.destination.name }}
   project: default
   source:
     path: helm-hooks
