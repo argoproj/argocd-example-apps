@@ -1,6 +1,6 @@
 spec:
   destination:
-    server: https://kubernetes.default.svc
+    server: http://cluster-kind-akuity:8001
   source:
     repoURL: https://github.com/morey-tech/argocd-example-apps
     targetRevision: HEAD
