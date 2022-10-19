@@ -10,7 +10,6 @@ spec:
         image: curlimages/curl
         command:
           - "curl"
-          - "-k"
           - "-X"
           - "GET"
           - "www.google.com"
