@@ -10,6 +10,6 @@ spec:
         image: curlimages/curl
         command:
           - "curl"
-          - "www.google.com"
+          - "https://172.31.112.1:5001/swagger/index.html"
       restartPolicy: Never
   backoffLimit: 4
