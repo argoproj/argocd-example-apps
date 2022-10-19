@@ -10,8 +10,6 @@ spec:
         image: curlimages/curl
         command:
           - "curl"
-          - "-X"
-          - "GET"
           - "www.google.com"
       restartPolicy: Never
   backoffLimit: 4
