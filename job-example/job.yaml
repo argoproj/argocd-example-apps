@@ -8,6 +8,6 @@ spec:
       containers:
       - name: dms-migrations
         image: curlimages/curl
-        command: ["curl", "-k -X GET https://172.31.112.1:5001/swagger/index.html"]
+        command: ["curl", "www.google.com"]
       restartPolicy: Never
   backoffLimit: 4
