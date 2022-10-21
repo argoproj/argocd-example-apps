@@ -6,8 +6,8 @@ replicaCount: 1
 
 image:
   repository: gcr.io/heptio-images/ks-guestbook-demo/not-exist
-  tag: 0.1
-  pullPolicy: IfNotPresent
+  tag: 0.999
+  pullPolicy: Never
 
 service:
   type: ClusterIP
