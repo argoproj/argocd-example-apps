@@ -15,7 +15,8 @@ spec:
     spec:
       containers:
         - name: canary-demo
-          image: testcodefresh/rollouts-demo:red
+          #image: testcodefresh/rollouts-demo:red
+          image: victorcodefresh/rollouts-demo:blue
           imagePullPolicy: Always
           ports:
             - name: http
