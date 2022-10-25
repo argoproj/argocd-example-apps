@@ -12,7 +12,11 @@ spec:
           - "curl"
           - "-k"
           - "-X"
-          - "GET"
-          - "https://172.31.112.1:5001/swagger/index.html"
+          - "POST"
+          - "https://172.31.112.1:5001/dbup?tenantAlias=dev-kaizen1&databaseType=TimeDatabase&artifactoryPath=artifactory%2Fgeneric-time%2Ftime-databases.18.5.3-f-DTE-25572-Se-0001%2F_DeployPackage%2FTimeDatabase%2Ftime.database.18.5.3-f-DTE-25572-Se-0001.zip"
+          - "-H"
+          - "'accept: */*'"
+          - "-d"
+          - "''"
       restartPolicy: Never
   backoffLimit: 4
