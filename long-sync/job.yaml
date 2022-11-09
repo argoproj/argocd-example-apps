@@ -4,6 +4,7 @@
    generateName: schema-migrate-
    annotations:
      argocd.argoproj.io/hook: Sync
+     argocd.argoproj.io/hook-delete-policy: BeforeHookCreation
      argocd.argoproj.io/sync-wave: "2"
  spec:
    backoffLimit: 1 # number of retries
@@ -14,5 +15,6 @@
          envFrom:
            - configMapRef:
                name: test-cm
-         image: gcr.io/heptio-images/ks-guestbook-demo:0.2
+         image: alpine:latest
+         command: ["sleep", "2"]
        restartPolicy: Never
