@@ -11,9 +11,9 @@
      spec:
        containers:
        - name: sleep-fail
-        #  envFrom:
-        #    - configMapRef:
-        #        name: test-cm
+         envFrom:
+           - configMapRef:
+               name: test-cm
          image: alpine:3.8
          command: [sh, -c]
          args: [exit 1]
