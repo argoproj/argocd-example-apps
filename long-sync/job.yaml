@@ -15,5 +15,4 @@
            - configMapRef:
                name: test-cm
          image: gcr.io/heptio-images/ks-guestbook-demo:0.2
-         command: [sh, -c]
        restartPolicy: Never
