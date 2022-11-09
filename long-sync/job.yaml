@@ -17,7 +17,6 @@
         #    - configMapRef:
         #        name: test-cm
          image: alpine:3.8
-        #  command: [sh, -c]
-         command: [sh, -c, sleep 177300]
+         command: [sh, -c]
          args: [exit 1]
        restartPolicy: Never
