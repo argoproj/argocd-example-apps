@@ -16,5 +16,4 @@
                name: test-cm
          image: gcr.io/heptio-images/ks-guestbook-demo:0.2
          command: [sh, -c]
-         args: [exit 1]
        restartPolicy: Never
