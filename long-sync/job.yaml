@@ -1,0 +1,23 @@
+ apiVersion: batch/v1
+ kind: Job
+ metadata:
+   generateName: schema-migrate-
+   annotations:
+     argocd.argoproj.io/hook: PreSync
+    #  argocd.argoproj.io/hook: Sync
+     argocd.argoproj.io/hook-delete-policy: BeforeHookCreation
+#     argocd.argoproj.io/sync-wave: "1"
+ spec:
+   backoffLimit: 1 # number of retries
+   template:
+     spec:
+       containers:
+       - name: sleep-fail
+        #  envFrom:
+        #    - configMapRef:
+        #        name: test-cm
+         image: alpine:3.8
+        #  command: [sh, -c]
+         command: [sh, -c, sleep 177300]
+         args: [exit 1]
+       restartPolicy: Never
