@@ -1,0 +1,17 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: guestbook-ui-ingress
+  namespace: default
+spec:
+  rules:
+  - host: guestbook-ui.corp.guardanet.net
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: guestbook-ui
+            port:
+              number: 80
