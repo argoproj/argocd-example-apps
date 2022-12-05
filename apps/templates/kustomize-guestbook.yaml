@@ -8,7 +8,7 @@ metadata:
 spec:
   destination:
     namespace: kustomize-guestbook
-    server: {{ .Values.spec.destination.server }}
+    name: in-cluster
   project: default
   source:
     path: kustomize-guestbook
