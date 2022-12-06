@@ -2,7 +2,7 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: guestbook-ui-ingress
-  namespace: default
+  namespace: guestbook
 spec:
   rules:
   - host: guestbook-ui.corp.guardanet.net
