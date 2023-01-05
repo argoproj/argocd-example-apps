@@ -8,7 +8,7 @@ spec:
     kind: Deployment
     name: {{ template "helm-guestbook.fullname" . }}
   minReplicas: 1
-  maxReplicas: 2
+  maxReplicas: 3
   metrics:
   - type: Resource
     resource:
