@@ -51,8 +51,8 @@ spec:
   weekdays: "*"
   # sleepAt: "*:*/5"
   # wakeUpAt: "*:*/7"
-  sleepAt: "12:10"
-  wakeUpAt: "12:15"
+  sleepAt: "12:52"
+  wakeUpAt: "13:00"
   timeZone: "America/Toronto"
   excludeRef:
     - apiVersion: "apps/v1"
