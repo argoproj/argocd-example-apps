@@ -85,7 +85,7 @@ spec:
   weekdays: "*"
   # sleepAt: "*:*/5"
   # wakeUpAt: "*:*/7"
-  sleepAt: "10:32"
+  sleepAt: "10:42"
   wakeUpAt: "10:50"
   timeZone: "America/Toronto"
   excludeRef:
