@@ -7,7 +7,7 @@ spec:
   - applications:
     - '*'  # any
     kind: deny
-    schedule: '52 12 * * *'
+    schedule: '37 13 * * *'
     duration: 8m
     timeZone: EST
     namespaces:
