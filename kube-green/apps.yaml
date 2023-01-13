@@ -13,7 +13,7 @@ spec:
     targetRevision: kube-green
   destination:
     namespace: argocd
-    name: kind-kube-green
+    name: in-cluster
   syncPolicy:
     automated: {}
     syncOptions:
