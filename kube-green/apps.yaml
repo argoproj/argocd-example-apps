@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: kube-green
+  name: apps
   namespace: argocd
   finalizers:
   - resources-finalizer.argocd.argoproj.io
@@ -9,19 +9,12 @@ spec:
   project: default
   source:
     repoURL: 'https://github.com/morey-tech/argocd-example-apps'
-    path: kube-green/manifests
+    path: kube-green/apps
     targetRevision: kube-green
   destination:
-    namespace: default
+    namespace: argocd
     name: kind-kube-green
   syncPolicy:
     automated: {}
     syncOptions:
-      - CreateNamespace=true
       - ServerSideApply=true
-  ignoreDifferences:
-  - group: apps
-    kind: Deployment
-    namespace: sleepme
-    jsonPointers:
-    - /spec/replicas
