@@ -52,7 +52,7 @@ spec:
   # sleepAt: "*:*/5"
   # wakeUpAt: "*:*/7"
   sleepAt: "13:40"
-  wakeUpAt: "12:00"
+  wakeUpAt: "13:44"
   timeZone: "America/Toronto"
   excludeRef:
     - apiVersion: "apps/v1"

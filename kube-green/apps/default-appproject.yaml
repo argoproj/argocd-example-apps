@@ -2,14 +2,14 @@ apiVersion: argoproj.io/v1alpha1
 kind: AppProject
 metadata:
   name: default
-spec:
-  syncWindows:
-  - applications:
-    - '*'  # any
-    kind: deny
-    schedule: '37 13 * * *'
-    duration: 8m
-    timeZone: EST
-    namespaces:
-    - sleepme
-    manualSync: true
+spec: {}
+  # syncWindows:
+  # - applications:
+  #   - '*'  # any
+  #   kind: deny
+  #   schedule: '37 13 * * *'
+  #   duration: 8m
+  #   timeZone: EST
+  #   namespaces:
+  #   - sleepme
+  #   manualSync: true
