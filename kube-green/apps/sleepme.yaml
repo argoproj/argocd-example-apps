@@ -19,9 +19,9 @@ spec:
     syncOptions:
       - ServerSideApply=true
       - CreateNamespace=true
-  ignoreDifferences:
-    - group: apps
-      kind: Deployment
-      namespace: sleepme
-      jsonPointers:
-      - /spec/replicas
+  # ignoreDifferences:
+  #   - group: apps
+  #     kind: Deployment
+  #     namespace: sleepme
+  #     jsonPointers:
+  #     - /spec/replicas
