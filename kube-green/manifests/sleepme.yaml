@@ -1,33 +1,6 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  creationTimestamp: null
-  labels:
-    app: echo-service-replica-1
-  name: echo-service-replica-1
-  namespace: sleepme
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: echo-service-replica-1
-  strategy: {}
-  template:
-    metadata:
-      creationTimestamp: null
-      labels:
-        app: echo-service-replica-1
-    spec:
-      containers:
-      - image: davidebianchi/echo-service
-        name: echo-service
-        resources: {}
-status: {}
----
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  creationTimestamp: null
   labels:
     app: do-not-sleep
   name: do-not-sleep
@@ -37,10 +10,8 @@ spec:
   selector:
     matchLabels:
       app: do-not-sleep
-  strategy: {}
   template:
     metadata:
-      creationTimestamp: null
       labels:
         app: do-not-sleep
     spec:
@@ -48,33 +19,28 @@ spec:
       - image: davidebianchi/echo-service
         name: echo-service
         resources: {}
-status: {}
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  creationTimestamp: null
   labels:
-    app: echo-service-replica-4
-  name: echo-service-replica-4
+    app: echo-service
+  name: echo-service
   namespace: sleepme
 spec:
   replicas: 4
   selector:
     matchLabels:
-      app: echo-service-replica-4
-  strategy: {}
+      app: echo-service
   template:
     metadata:
-      creationTimestamp: null
       labels:
-        app: echo-service-replica-4
+        app: echo-service
     spec:
       containers:
       - image: davidebianchi/echo-service
         name: echo-service
         resources: {}
-status: {}
 ---
 apiVersion: kube-green.com/v1alpha1
 kind: SleepInfo
