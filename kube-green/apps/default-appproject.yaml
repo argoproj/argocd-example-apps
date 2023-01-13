@@ -4,9 +4,12 @@ metadata:
   name: default
 spec:
   syncWindows:
-  - kind: deny
+  - applications:
+    - '*'  # any
+    kind: deny
     schedule: '52 12 * * *'
     duration: 8m
+    timeZone: EST
     namespaces:
     - sleepme
     manualSync: true
