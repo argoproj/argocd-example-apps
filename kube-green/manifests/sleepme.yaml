@@ -75,3 +75,19 @@ spec:
         name: echo-service
         resources: {}
 status: {}
+---
+apiVersion: kube-green.com/v1alpha1
+kind: SleepInfo
+metadata:
+  name: sleep-test
+spec:
+  weekdays: "*"
+  # sleepAt: "*:*/5"
+  # wakeUpAt: "*:*/7"
+  sleepAt: "10:26"
+  wakeUpAt: "10:30"
+  timeZone: "America/Toronto"
+  excludeRef:
+    - apiVersion: "apps/v1"
+      kind:       Deployment
+      name:       do-not-sleep
