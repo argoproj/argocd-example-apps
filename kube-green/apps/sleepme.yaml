@@ -15,7 +15,8 @@ spec:
     namespace: sleepme
     name: kind-kube-green
   syncPolicy:
-    automated: {}
+    automated:
+      selfHeal: true
     syncOptions:
       - ServerSideApply=true
       - CreateNamespace=true
