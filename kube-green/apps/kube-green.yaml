@@ -10,7 +10,7 @@ spec:
   source:
     repoURL: https://github.com/kube-green/kube-green
     path: config/default
-    targetRevision: 'main'
+    targetRevision: '8e2ad865ceb5e7a000616f886683d71bfbdc1ec2'
   destination:
     namespace: kube-green
     name: kind-kube-green

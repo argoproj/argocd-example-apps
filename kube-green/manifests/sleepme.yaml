@@ -49,12 +49,10 @@ metadata:
   namespace: sleepme
 spec:
   weekdays: "*"
-  # sleepAt: "*:*/5"
-  # wakeUpAt: "*:*/7"
-  sleepAt: "13:46"
-  wakeUpAt: "13:50"
+  sleepAt: "21:01"
+  wakeUpAt: "06:59"
   timeZone: "America/Toronto"
   excludeRef:
     - apiVersion: "apps/v1"
-      kind:       Deployment
-      name:       do-not-sleep
+      kind: Deployment
+      name: do-not-sleep
