@@ -9,5 +9,7 @@ data:
     </html>
 kind: ConfigMap
 metadata:
+  labels:
+    app.kubernetes.io/instance: kustomize-guestbook
   name: kustomize-guestbook-cm
   namespace: default
