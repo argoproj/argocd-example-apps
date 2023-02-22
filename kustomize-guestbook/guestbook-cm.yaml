@@ -5,6 +5,7 @@ data:
       <heaad></head>
       <body>
         <p>Testing configMaps auto reloading</p>
+        <p>Reloading</p>
       </body>
     </html>
 kind: ConfigMap
