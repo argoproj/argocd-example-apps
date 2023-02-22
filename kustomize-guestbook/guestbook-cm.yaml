@@ -11,5 +11,5 @@ kind: ConfigMap
 metadata:
   labels:
     app.kubernetes.io/instance: kustomize-guestbook
-  name: kustomize-guestbook-cm
+  name: guestbook-cm
   namespace: default
