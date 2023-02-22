@@ -18,3 +18,13 @@ spec:
         name: guestbook-ui
         ports:
         - containerPort: 80
+        volumeMounts:
+        - name: config-volume
+          mountPath: /var/www/html/
+      volumes:
+      - name: config-volume
+        configMap:
+         name: kustomize-guestbook-cm
+         items:
+         - key: index2.html
+           path: index2.html
