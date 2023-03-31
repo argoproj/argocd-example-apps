@@ -1,0 +1,10 @@
+apiVersion: database.starter.org/v1alpha1
+kind: PostgreSQLInstance
+metadata:
+  name: database-from-kind
+  namespace: default
+spec:
+  parameters:
+    region: east
+    size: small
+    storage: 20
