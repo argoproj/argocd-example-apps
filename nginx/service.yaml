@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-nginx
+  labels:
+    run: my-nginx
+spec:
+  type: NodePort
+  ports:
+  - port: 8081
+    targetPort: 80
+    nodePort: 31704
+    protocol: TCP
+    name: http
+  - port: 443
+    nodePort: 32453
+    protocol: TCP
+    name: https
+  selector:
+    run: my-nginx
