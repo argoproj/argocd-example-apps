@@ -5,7 +5,7 @@ metadata:
   namespace: argoexamples
 spec:
   rules:
-    - host: argocd.guestbook.local.willett.rocks
+    - host: guestbook.local.willett.rocks
       http:
         paths:
           - path: /
@@ -23,7 +23,7 @@ metadata:
   namespace: argoexamples
 spec:
   rules:
-    - host: argocd.guestbook-preview.local.willett.rocks
+    - host: guestbook-preview.local.willett.rocks
       http:
         paths:
           - path: /
