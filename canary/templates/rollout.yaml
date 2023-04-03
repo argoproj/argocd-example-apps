@@ -16,8 +16,8 @@ spec:
       release: {{ .Release.Name }}
   strategy:
     canary:
-      canaryService: canary-rollout
-      stableService: stable-rollout
+      canaryService: {{ template "helm-guestbook.fullname" . }}-preview
+      stableService: {{ template "helm-guestbook.fullname" . }}
       trafficRouting:
         traefik:
           weightedTraefikServiceName: traefik-service

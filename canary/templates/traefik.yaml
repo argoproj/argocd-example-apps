@@ -5,7 +5,7 @@ metadata:
 spec:
   weighted:
     services:
-      - name: stable-rollout # k8s service name that you need to create for stable application version
+      - name: {{ template "helm-guestbook.fullname" . }}
         port: 80
-      - name: canary-rollout # k8s service name that you need to create for new application version
+      - name: {{ template "helm-guestbook.fullname" . }}-preview
         port: 80
