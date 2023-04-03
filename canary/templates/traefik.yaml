@@ -9,3 +9,20 @@ spec:
         port: 80
       - name: {{ template "helm-guestbook.fullname" . }}-preview
         port: 80
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: canaryingressroute
+  namespace: default
+
+spec:
+  entryPoints:
+    - web
+  routes:
+    - match: Host(`canarygb.local.willett.rocks`)
+      kind: Rule
+      services:
+        - name: traefik-service
+          namespace: default
+          kind: TraefikService
