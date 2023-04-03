@@ -112,13 +112,3 @@ spec:
           image: alpine:latest
           command: ["sleep", "2"]
       restartPolicy: Never
----
-apiVersion: s3.aws.crossplane.io/v1beta1
-kind: Bucket
-metadata:
-  name: example-bucket
-spec:
-  bucketName: my-bucket-name
-  region: us-west-2
-  versioning:
-    enabled: true
