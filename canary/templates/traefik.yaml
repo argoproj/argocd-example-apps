@@ -15,6 +15,7 @@ apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:
   name: canaryingressroute
+  namespace: default
 
 spec:
   entryPoints:
