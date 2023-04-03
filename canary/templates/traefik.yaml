@@ -2,7 +2,7 @@ apiVersion: traefik.containo.us/v1alpha1
 kind: TraefikService
 metadata:
   name: traefik-service
-  namespace: argoexamples
+  namespace: default
 spec:
   weighted:
     services:
@@ -15,7 +15,6 @@ apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:
   name: canaryingressroute
-  namespace: argoexamples
 
 spec:
   entryPoints:
