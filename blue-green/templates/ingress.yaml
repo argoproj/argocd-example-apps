@@ -1,0 +1,35 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: {{ template "helm-guestbook.fullname" . }}-ingress
+  namespace: argoexamples
+spec:
+  rules:
+    - host: argocd.guestbook.local.willett.rocks
+      http:
+        paths:
+          - path: /
+            pathType: Exact
+            backend:
+              service:
+                name:  {{ template "helm-guestbook.fullname" . }}
+                port:
+                  number: 80
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: {{ template "helm-guestbook.fullname" . }}-preview-ingress
+  namespace: argoexamples
+spec:
+  rules:
+    - host: argocd.guestbook-preview.local.willett.rocks
+      http:
+        paths:
+          - path: /
+            pathType: Exact
+            backend:
+              service:
+                name:  {{ template "helm-guestbook.fullname" . }}-preview
+                port:
+                  number: 80
