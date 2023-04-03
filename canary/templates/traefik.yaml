@@ -2,7 +2,7 @@ apiVersion: traefik.containo.us/v1alpha1
 kind: TraefikService
 metadata:
   name: traefik-service
-  namespace: argo-examples
+  namespace: argoexamples
 spec:
   weighted:
     services:
