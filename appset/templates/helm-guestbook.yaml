@@ -15,10 +15,10 @@ spec:
         - "argo"
   template:
     metadata:
-      name: 'appset-app-{{branch}}-{{number}}}'
+      name: 'appset-app-{{`{{.branch}}`}}-{{`{{.number}}`}}'
     spec:
       destination:
-        namespace: "helm-guestbook-{{number}}""
+        namespace: 'helm-guestbook-{{`{{.number}}`}}'
         server: {{ .Values.spec.destination.server }}
       project: default
       source:
