@@ -1,0 +1,27 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: appset
+  namespace: argoexamples
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  generators:
+  - pullRequest:
+      github:
+        owner: "dwillett"
+        repo: "argocd-example-apps"
+        labels:
+        - "argo"
+  template:
+    metadata:
+      name: 'appset-app-{{branch}}-{{number}}}'
+    spec:
+      destination:
+        namespace: "helm-guestbook-{{number}}""
+        server: {{ .Values.spec.destination.server }}
+      project: default
+      source:
+        path: helm-guestbook
+        repoURL: {{ .Values.spec.source.repoURL }}
+        targetRevision: {{ .Values.spec.source.targetRevision }}
