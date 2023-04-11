@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: guestbook-ui
   annotations:
-    avp.kubernetes.io/path: "path/to/secret"
+    avp.kubernetes.io/path: "secret/example.yaml"
 spec:
   replicas: 1
   revisionHistoryLimit: 3
