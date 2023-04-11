@@ -7,6 +7,8 @@ metadata:
     chart: {{ template "helm-guestbook.chart" . }}
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
+  annotations:
+    avp.kubernetes.io/path: "path/to/secret"
 spec:
   replicas: {{ .Values.replicaCount }}
   revisionHistoryLimit: 3
@@ -19,6 +21,8 @@ spec:
       labels:
         app: {{ template "helm-guestbook.name" . }}
         release: {{ .Release.Name }}
+      annotations:
+        secret: <secret>
     spec:
       containers:
         - name: {{ .Chart.Name }}
