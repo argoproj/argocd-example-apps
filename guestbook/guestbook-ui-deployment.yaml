@@ -2,6 +2,8 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: guestbook-ui
+  annotations:
+    avp.kubernetes.io/path: "path/to/secret"
 spec:
   replicas: 1
   revisionHistoryLimit: 3
@@ -12,6 +14,8 @@ spec:
     metadata:
       labels:
         app: guestbook-ui
+      annotations:
+        test: <secret>
     spec:
       containers:
       - image: gcr.io/heptio-images/ks-guestbook-demo:0.2
