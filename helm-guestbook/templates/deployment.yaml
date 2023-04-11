@@ -22,7 +22,7 @@ spec:
         app: {{ template "helm-guestbook.name" . }}
         release: {{ .Release.Name }}
       annotations:
-        secret: <secret>
+        secret: <myapp1>
     spec:
       containers:
         - name: {{ .Chart.Name }}
