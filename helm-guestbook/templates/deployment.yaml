@@ -8,7 +8,7 @@ metadata:
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
   annotations:
-    avp.kubernetes.io/path: "secret/example.yaml"
+    avp.kubernetes.io/path: "secret/example.enc.yaml"
 spec:
   replicas: {{ .Values.replicaCount }}
   revisionHistoryLimit: 3
@@ -22,7 +22,7 @@ spec:
         app: {{ template "helm-guestbook.name" . }}
         release: {{ .Release.Name }}
       annotations:
-        secret: <myapp1>
+        secret: <test>
     spec:
       containers:
         - name: {{ .Chart.Name }}
