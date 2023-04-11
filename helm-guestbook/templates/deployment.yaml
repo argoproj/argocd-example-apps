@@ -8,7 +8,7 @@ metadata:
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
   annotations:
-    avp.kubernetes.io/path: "path/to/secret"
+    avp.kubernetes.io/path: "secret/example.yaml"
 spec:
   replicas: {{ .Values.replicaCount }}
   revisionHistoryLimit: 3
