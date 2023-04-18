@@ -6,7 +6,7 @@ spec:
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: test
+    name: guestbook-ui
   minReplicas: 1
   maxReplicas: 2
   metrics:
