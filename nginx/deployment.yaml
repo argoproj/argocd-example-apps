@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: my-nginx
+  namespace: nginx
 spec:
   selector:
     matchLabels:
@@ -20,8 +21,7 @@ spec:
             memory: "128Mi"
             cpu: "250m"
           limits:
-            memory: "384Mi"
-            cpu: "500m"
+            memory: "128Mi"
         ports:
         - containerPort: 443
         - containerPort: 80
