@@ -43,3 +43,5 @@ nodeSelector: {}
 tolerations: []
 
 affinity: {}
+
+autoPromotionEnabled: false
