@@ -2,8 +2,6 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: guestbook-ui
-  annotations: 
-    notifications.argoproj.io/subscribe.on-sync-succeeded.slack: infra-core-changelog
 spec:
   replicas: 1
   revisionHistoryLimit: 3
