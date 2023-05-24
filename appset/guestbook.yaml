@@ -1,0 +1,26 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: guestbook
+spec:
+  generators:
+    - list:
+        elements:
+          - cluster: engineering-dev
+            url: https://1.2.3.4
+          - cluster: engineering-prod
+            url: https://2.4.6.8
+          - cluster: finance-preprod
+            url: https://9.8.7.6
+  template:
+    metadata:
+      name: '{{cluster}}-guestbook'
+    spec:
+      project: default
+      source:
+        repoURL: https://github.com/mteodor/argocd-example-apps.git
+        targetRevision: HEAD
+        path: guestbook/{{cluster}}
+      destination:
+        server: '{{url}}'
+        namespace: mirko-test
