@@ -1,0 +1,8 @@
+namePrefix: dev-
+
+resources:
+- guestbook-ui-deployment.yaml
+- guestbook-ui-svc.yaml
+- namespace.yaml
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
