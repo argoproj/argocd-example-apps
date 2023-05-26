@@ -19,4 +19,4 @@ spec:
         path: guestbook/{{cluster}}
       destination:
         server: '{{url}}'
-        namespace: mirko-test
+        namespace: mirko-test2
