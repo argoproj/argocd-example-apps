@@ -7,7 +7,7 @@ spec:
     - list:
         elements:
           - cluster: engineering-dev
-            url: https://34.68.70.100
+            url: https://34.136.223.174
   template:
     metadata:
       name: '{{cluster}}-guestbook'
