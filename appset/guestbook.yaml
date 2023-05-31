@@ -20,6 +20,7 @@ spec:
       syncPolicy:
         syncOptions:
           - CreateNamespace=true
+          - preserveResourcesOnDeletion=true
       destination:
         server: '{{url}}'
         namespace: mirko-test2
