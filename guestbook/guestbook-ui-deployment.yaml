@@ -10,17 +10,18 @@ spec:
   minReplicas: 1
   maxReplicas: 2
   metrics:
-     - resource:
-        name: memory
-        target:
-          averageUtilization: 50
-          type: Utilization
-      type: Resource
-    - resource:
+    - type: Resource
+      resource:
         name: cpu
         target:
-          averageUtilization: 60
           type: Utilization
+          averageUtilization: 60
+    - type: Resource
+      resource:
+        name: memory
+        target:
+          type: Utilization
+          averageUtilization: 50
 ---     
 apiVersion: apps/v1
 kind: Deployment
@@ -29,18 +30,6 @@ metadata:
 spec:
   replicas: 1
   revisionHistoryLimit: 3
-  metrics:
-     - resource:
-        name: cpu
-        target:
-          averageUtilization: 50
-          type: Utilization
-      type: Resource
-    - resource:
-        name: memory
-        target:
-          averageUtilization: 60
-          type: Utilization
   selector:
     matchLabels:
       app: guestbook-ui
