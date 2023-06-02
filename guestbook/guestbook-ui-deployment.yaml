@@ -30,6 +30,18 @@ metadata:
 spec:
   replicas: 1
   revisionHistoryLimit: 3
+  metrics:
+     - resource:
+        name: cpu
+        target:
+          averageUtilization: 50
+          type: Utilization
+      type: Resource
+    - resource:
+        name: memory
+        target:
+          averageUtilization: 60
+          type: Utilization
   selector:
     matchLabels:
       app: guestbook-ui
