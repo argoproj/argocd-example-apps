@@ -1,0 +1,9 @@
+pipeline:
+  name: guestbook example
+  identifier: guestbook_example
+  template:
+    templateRef: pipeline_template_Helm_Guestbook
+    versionLabel: "1.0"
+  tags: {}
+  projectIdentifier: TemplatesDemo
+  orgIdentifier: default
