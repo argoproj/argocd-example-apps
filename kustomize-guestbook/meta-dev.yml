@@ -1,0 +1,47 @@
+names:
+  service: guestbook
+
+project:
+  squad: infra.core.squad
+  primary_maintainer: victora
+  secondary_maintainer: aitor
+  public_api: false
+  private_api: false
+
+deploy:
+  k8s_clusters:
+    - backend-ch1-dev
+  instances: 2
+  service:
+    - name: guestbook
+      port: 8080
+      tags: ["metrics"]
+      check:
+        type: http
+        path: /health
+        timeout: 120s
+        initial_delay_seconds: 1
+        success_threshold: 1
+        failure_threshold: 1
+      ready:
+        type: http
+        path: /ready
+        interval: 1s
+        timeout: 10s
+        initial_delay_seconds: 1
+        success_threshold: 1
+        failure_threshold: 1
+  env:
+    site:
+      ch1:
+        LOG_LEVEL: "error"
+      dc2:
+        LOG_LEVEL: "debug"
+
+autoscaling:
+  minInstances: 5
+  maxInstances: 10
+  averageCpu: 70
+  averageMemory: 70
+alerts: {
+}
