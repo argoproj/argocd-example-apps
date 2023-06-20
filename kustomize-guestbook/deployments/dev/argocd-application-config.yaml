@@ -1,1 +1,3 @@
-autoSync: false
+syncPolicy:
+  automated:
+    autoHeal: true
