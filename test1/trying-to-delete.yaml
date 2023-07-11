@@ -1,0 +1,27 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: trying-to-delete
+  labels:
+    codefresh.io/entity: 'git-source'
+    codefresh.io/internal: 'false'
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/a-mankinenko/test-apps-argo.git
+    path: test1/
+    targetRevision: master
+    directory:
+      include: '*'
+      exclude: ''
+      recurse: true
+  destination:
+    namespace: gitops-rt
+    server: https://kubernetes.default.svc
+  syncPolicy:
+    automated:
+      allowEmpty: true
+      prune: true
+      selfHeal: true
