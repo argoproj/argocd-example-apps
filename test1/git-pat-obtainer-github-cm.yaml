@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: git-pat-obtainer-github
+  labels:
+    codefresh_io_entity: git-pat-obtainer
+    codefresh_io_git_provider: github
+data:
+  config: |
+    provider: github
+    mode: CODEFRESH
+    appName: ''
+    secret:
+      name: ''
+      namespace: ''
+      path:
+        appId: ''
+        clientId: ''
+        clientSecret: ''
+        url: ''
