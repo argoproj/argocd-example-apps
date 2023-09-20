@@ -12,7 +12,7 @@ spec:
     metadata:
       name: '{{cluster}}-guestbook'
     spec:
-      project: 14a3dc9e
+      project: default
       source:
         repoURL: https://github.com/mteodor/argocd-example-apps.git
         targetRevision: HEAD
