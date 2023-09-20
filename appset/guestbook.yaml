@@ -19,8 +19,6 @@ spec:
         path: guestbook/{{cluster}}
       syncPolicy:
         preserveResourcesOnDeletion: true
-        automated:     
-          selfHeal: true 
         syncOptions:
          - Validate=true     
          - CreateNamespace=true
