@@ -18,9 +18,12 @@ spec:
         targetRevision: HEAD
         path: guestbook/{{cluster}}
       syncPolicy:
+        preserveResourcesOnDeletion: true 
+        automated:     
+          selfHeal: true 
         syncOptions:
-          - CreateNamespace=true
-          - preserveResourcesOnDeletion=true
+         - Validate=true     
+         - CreateNamespace=true
       destination:
         server: '{{url}}'
         namespace: mirko-test2
