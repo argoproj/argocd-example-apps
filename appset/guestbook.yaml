@@ -18,7 +18,6 @@ spec:
         targetRevision: HEAD
         path: guestbook/{{cluster}}
       syncPolicy:
-        preserveResourcesOnDeletion: true
         syncOptions:
          - Validate=true     
          - CreateNamespace=true
