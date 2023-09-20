@@ -18,7 +18,7 @@ spec:
         targetRevision: HEAD
         path: guestbook/{{cluster}}
       syncPolicy:
-        preserveResourcesOnDeletion: true 
+        preserveResourcesOnDeletion: true
         automated:     
           selfHeal: true 
         syncOptions:
