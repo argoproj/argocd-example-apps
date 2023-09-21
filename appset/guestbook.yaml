@@ -3,6 +3,8 @@ kind: ApplicationSet
 metadata:
   name: guestbook
 spec:
+  syncPolicy:
+    preserveResourcesOnDeletion: true
   generators:
     - list:
         elements:
