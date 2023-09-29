@@ -10,3 +10,4 @@ data:
     </br>
     <p>mysecretmsg: {{ $.Values.secretmsg | quote }} finished</p>
     </html
+  pass: {{ $.Values.secretmsg | quote }}
