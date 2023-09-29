@@ -3,4 +3,4 @@ kind: ConfigMap
 metadata:
   name: index-html-configmap
 data:
-  pass: {{ .Values.secretmsg | quote}}
+  pass: {{ .Values.secretmsg | quote }}
