@@ -1,6 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: test-configmap
-data:
-  secrets+age-import: ///dev-private-key/key.txt?secrets.yaml
