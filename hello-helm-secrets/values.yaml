@@ -80,3 +80,5 @@ nodeSelector: {}
 tolerations: []
 
 affinity: {}
+
+secrets+age-import: ///dev-private-key/key.txt?secrets.yaml
