@@ -3,11 +3,4 @@ kind: ConfigMap
 metadata:
   name: index-html-configmap
 data:
-  index.html: |
-    <html>
-    <title>hello-helm-secrets</title>
-    <h1>hello-helm-secrets</h1>
-    </br>
-    <p>mysecretmsg: {{ $.Values.secretmsg | quote }} finished</p>
-    </html
-  pass: {{ $.Values.secretmsg | quote }}
+  pass: {{ .Values.secretmsg | quote}}
