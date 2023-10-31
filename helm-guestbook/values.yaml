@@ -2,16 +2,28 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
-replicaCount: 1
+replicaCount: 3
+
+container:
+  port: 8080
 
 image:
-  repository: gcr.io/heptio-images/ks-guestbook-demo
-  tag: 0.1
-  pullPolicy: IfNotPresent
+  repository: quay.io/quay/busybox
+  tag: latest
+  pullPolicy: Always
+  args: ['sh', '-c', 'tail -f /dev/null']
+
+probe: {}
+
+# image:
+#   repository: gcr.io/heptio-images/ks-guestbook-demo
+#   tag: 0.1
+#   pullPolicy: IfNotPresent
 
 service:
   type: ClusterIP
   port: 80
+
 
 ingress:
   enabled: false
