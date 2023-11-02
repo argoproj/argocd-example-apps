@@ -8,10 +8,9 @@ container:
   port: 8080
 
 image:
-  repository: quay.io/quay/busybox
+  repository: quay.io/ablock/gitops-helm-quarkus
   tag: latest
   pullPolicy: Always
-  commands: ['sh', '-c', 'tail -f /dev/null']
 
 probe: {}
 
