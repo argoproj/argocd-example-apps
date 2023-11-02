@@ -11,7 +11,7 @@ image:
   repository: quay.io/quay/busybox
   tag: latest
   pullPolicy: Always
-  args: ['sh', '-c', 'tail -f /dev/null']
+  commands: ['sh', '-c', 'tail -f /dev/null']
 
 probe: {}
 
