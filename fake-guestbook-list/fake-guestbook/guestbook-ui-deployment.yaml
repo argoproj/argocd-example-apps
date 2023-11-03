@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fake-guestbook
+spec:
+  replicas: 10
+  selector:
+    matchLabels:
+      app: fake-guestbook
+  template:
+    metadata:
+      labels:
+        app: fake-guestbook
+    spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                  - key: type
+                    operator: In
+                    values:
+                      - kwok
+      # A taints was added to an automatically created Node.
+      # You can remove taints of Node or add this tolerations.
+      tolerations:
+        - key: "kwok.x-k8s.io/node"
+          operator: "Exists"
+          effect: "NoSchedule"
+      containers:
+        - name: fake-guestbook-container
+          image: fake-image
