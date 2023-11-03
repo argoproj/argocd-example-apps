@@ -50,3 +50,5 @@ spec:
       destination:
         server: '{{url}}'
         namespace: '{{cluster}}-guestbook'
+      syncPolicy:
+        automated: {}
