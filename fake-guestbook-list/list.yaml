@@ -18,7 +18,7 @@ spec:
       source:
         repoURL: https://github.com/mteodor/argocd-example-apps.git
         targetRevision: HEAD
-        path: fake-guestbook-list
+        path: fake-guestbook-list/fake-guestbook
       destination:
         server: '{{url}}'
         namespace: '{{cluster}}-guestbook'
