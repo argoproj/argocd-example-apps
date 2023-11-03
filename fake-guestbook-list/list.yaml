@@ -10,33 +10,33 @@ spec:
             url: https://kubernetes.default.svc
           - cluster: cluster2
             url: https://kubernetes.default.svc
-          - cluster: cluster1
+          - cluster: cluster3
             url: https://kubernetes.default.svc
-          - cluster: cluster2
+          - cluster: cluster4
             url: https://kubernetes.default.svc
-          - cluster: cluster1
+          - cluster: cluster5
             url: https://kubernetes.default.svc
-          - cluster: cluster2
+          - cluster: cluster6
             url: https://kubernetes.default.svc
-          - cluster: cluster1
+          - cluster: cluster7
             url: https://kubernetes.default.svc
-          - cluster: cluster2
+          - cluster: cluster8
             url: https://kubernetes.default.svc
-          - cluster: cluster1
+          - cluster: cluster9
             url: https://kubernetes.default.svc
-          - cluster: cluster2
+          - cluster: cluster10
             url: https://kubernetes.default.svc
-          - cluster: cluster1
+          - cluster: cluster11
             url: https://kubernetes.default.svc
-          - cluster: cluster2
+          - cluster: cluster12
             url: https://kubernetes.default.svc
-          - cluster: cluster1
+          - cluster: cluster13
             url: https://kubernetes.default.svc
-          - cluster: cluster2
+          - cluster: cluster14
             url: https://kubernetes.default.svc
-          - cluster: cluster1
+          - cluster: cluster15
             url: https://kubernetes.default.svc
-          - cluster: cluster2
+          - cluster: cluster16
             url: https://kubernetes.default.svc
   template:
     metadata:
