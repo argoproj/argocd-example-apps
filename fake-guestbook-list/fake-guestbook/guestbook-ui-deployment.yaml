@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: fake-guestbook
 spec:
-  replicas: 3
+  replicas: 5
   selector:
     matchLabels:
       app: fake-guestbook
