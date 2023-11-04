@@ -38,7 +38,7 @@ spec:
             url: https://kubernetes.default.svc
           - cluster: cluster16
             url: https://kubernetes.default.svc
-          - cluster: cluster16
+          - cluster: cluster17
             url: https://kubernetes.default.svc
   template:
     metadata:
