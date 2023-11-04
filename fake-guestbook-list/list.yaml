@@ -52,3 +52,5 @@ spec:
         namespace: '{{cluster}}-guestbook'
       syncPolicy:
         automated: {}
+        syncOptions:
+        - CreateNamespace=true
