@@ -5,7 +5,8 @@ metadata:
 spec:
   generators:
     - list:
-        elements:- cluster: cluster1
+        elements:
+          - cluster: cluster1
             url: https://kubernetes.default.svc
           - cluster: cluster2
             url: https://kubernetes.default.svc
