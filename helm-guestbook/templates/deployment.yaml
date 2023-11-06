@@ -28,7 +28,11 @@ spec:
             - name: http
               containerPort: {{ .Values.containerPort }}
               protocol: TCP
-          resources:
+              livenessProbe:
+{{ toYaml .Values.livenessProbe | indent 12 }}
+              readinessProbe:
+{{ toYaml .Values.readinessProbe | indent 12 }}
+              resources:
 {{ toYaml .Values.resources | indent 12 }}
     {{- with .Values.nodeSelector }}
       nodeSelector:
