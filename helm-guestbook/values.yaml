@@ -5,7 +5,7 @@
 replicaCount: 3
 
 container:
-  port: 8080
+  port: 80
 
 image:
   repository: quay.io/ablock/gitops-helm-quarkus
