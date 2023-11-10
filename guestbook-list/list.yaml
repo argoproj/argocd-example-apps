@@ -51,4 +51,10 @@ spec:
         server: '{{url}}'
         namespace: '{{cluster}}-guestbook'
       syncPolicy:
-        automated: {}
+        automated:
+          selfHeal: true
+          prune: true
+        syncOptions:
+        - CreateNamespace=true
+        - Prune=true
+        - PruneLast=true
