@@ -1,0 +1,54 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: guestbook
+spec:
+  generators:
+    - list:
+        elements:
+          - cluster: cluster1
+            url: https://kubernetes.default.svc
+          - cluster: cluster2
+            url: https://kubernetes.default.svc
+          - cluster: cluster3
+            url: https://kubernetes.default.svc
+          - cluster: cluster4
+            url: https://kubernetes.default.svc
+          - cluster: cluster5
+            url: https://kubernetes.default.svc
+          - cluster: cluster6
+            url: https://kubernetes.default.svc
+          - cluster: cluster7
+            url: https://kubernetes.default.svc
+          - cluster: cluster8
+            url: https://kubernetes.default.svc
+          - cluster: cluster9
+            url: https://kubernetes.default.svc
+          - cluster: cluster10
+            url: https://kubernetes.default.svc
+          - cluster: cluster11
+            url: https://kubernetes.default.svc
+          - cluster: cluster12
+            url: https://kubernetes.default.svc
+          - cluster: cluster13
+            url: https://kubernetes.default.svc
+          - cluster: cluster14
+            url: https://kubernetes.default.svc
+          - cluster: cluster15
+            url: https://kubernetes.default.svc
+          - cluster: cluster16
+            url: https://kubernetes.default.svc
+  template:
+    metadata:
+      name: '{{cluster}}-guestbook'
+    spec:
+      project: default
+      source:
+        repoURL: https://github.com/mteodor/argocd-example-apps.git
+        targetRevision: HEAD
+        path: guestbook-list/guestbook
+      destination:
+        server: '{{url}}'
+        namespace: '{{cluster}}-guestbook'
+      syncPolicy:
+        automated: {}
