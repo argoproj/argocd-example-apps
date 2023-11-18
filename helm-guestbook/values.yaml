@@ -12,7 +12,7 @@ image:
 containerPort: 80
 
 service:
-  type: ClusterIP
+  type: NordPort
   port: 80
 
 ingress:
