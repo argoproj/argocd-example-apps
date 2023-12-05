@@ -6,7 +6,7 @@ replicaCount: 2
 
 image:
   repository: gcr.io/heptio-images/ks-guestbook-demo
-  tag: 0.1
+  tag: 0.2
   pullPolicy: IfNotPresent
 
 service:
