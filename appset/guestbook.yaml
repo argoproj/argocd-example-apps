@@ -25,4 +25,4 @@ spec:
          - CreateNamespace=true
       destination:
         server: '{{url}}'
-        namespace: mirko-test2
+        namespace: mirko-test4
