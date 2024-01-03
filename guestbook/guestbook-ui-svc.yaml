@@ -2,9 +2,11 @@ apiVersion: v1
 kind: Service
 metadata:
   name: guestbook-ui
+  product: engineering-productivity
+  team: deploy-platform
 spec:
   ports:
-  - port: 80
-    targetPort: 80
+    - port: 80
+      targetPort: 80
   selector:
     app: guestbook-ui
