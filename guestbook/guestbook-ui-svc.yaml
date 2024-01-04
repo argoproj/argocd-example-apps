@@ -5,6 +5,7 @@ metadata:
   labels:
     product: engineering-productivity
     team: deploy-platform
+    project: guestbook
   namespace: guestbook
 spec:
   ports:
