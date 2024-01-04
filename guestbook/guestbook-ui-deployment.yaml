@@ -19,6 +19,7 @@ spec:
         app: guestbook-ui
         product: engineering-productivity
         team: deploy-platform
+        project: guestbook
     spec:
       containers:
         - image: gcr.io/heptio-images/ks-guestbook-demo:0.2
