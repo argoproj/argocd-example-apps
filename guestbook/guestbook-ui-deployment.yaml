@@ -2,8 +2,9 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: guestbook-ui
-  product: engineering-productivity
-  team: deploy-platform
+  labels:
+    product: engineering-productivity
+    team: deploy-platform
   namespace: guestbook
 spec:
   replicas: 1
