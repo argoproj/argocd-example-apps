@@ -4,6 +4,7 @@ metadata:
   name: guestbook-ui
   product: engineering-productivity
   team: deploy-platform
+  namespace: guestbook
 spec:
   replicas: 1
   revisionHistoryLimit: 3
