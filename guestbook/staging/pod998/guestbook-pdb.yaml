@@ -1,0 +1,15 @@
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  labels:
+    product: engineering-productivity
+    team: deploy-platform
+    project: guestbook
+  name: guestbook-ui
+  namespace: guestbook
+spec:
+  maxUnavailable: 20%
+  selector:
+    matchLabels:
+      product: engineering-productivity
+      project: guestbook
