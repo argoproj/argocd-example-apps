@@ -6,7 +6,6 @@ metadata:
     team: deploy-platform
     project: guestbook
   name: guestbook-ui
-  namespace: guestbook
 spec:
   maxUnavailable: 20%
   selector:

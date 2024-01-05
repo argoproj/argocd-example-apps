@@ -2,7 +2,6 @@ apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
   name: guestbook-ui
-  namespace: guestbook
 spec:
   scaleTargetRef:
     apiVersion: apps/v1
