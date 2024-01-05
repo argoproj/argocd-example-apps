@@ -1,12 +1,13 @@
 apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
-  name: guestbook
+  name: guestbook-ui
+  namespace: guestbook
 spec:
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: guestbook
+    name: guestbook-ui
   minReplicas: 1
   maxReplicas: 3
   metrics:
