@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: crashloop-app
+spec:
+  replicas: 1
+  revisionHistoryLimit: 5
+  selector:
+    matchLabels:
+      app: crashloop-app
+  template:
+    metadata:
+      labels:
+        app: crashloop-app
+    spec:
+      containers:
+      - image: ashinsabu/crashloopimage:0.1.0
+        name: crashloop-app
+        ports:
+        - containerPort: 80
+# gcr.io/heptio-images/ks-guestbook-demo:0.1
