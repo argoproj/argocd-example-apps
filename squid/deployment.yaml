@@ -4,13 +4,7 @@ metadata:
   labels:
     app: squid
   name: squid
-spec:
-  replicas: 1
-  template:
-    metadata:
-      labels:
-        app: squid
-    spec:
+  spec:
       containers:
         - name: squid
           image: ubuntu/squid:latest
