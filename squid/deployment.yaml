@@ -1,11 +1,16 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  name: squid
   labels:
-   -  app: squid
-name: squid
-  
+    app.kubernetes.io/app: squid
 spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/app: squid
+    spec:
       containers:
         - name: squid
           image: ubuntu/squid:latest
