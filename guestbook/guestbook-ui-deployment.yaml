@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: guestbook-ui
 spec:
-  replicas: 3
+  replicas: 2
   revisionHistoryLimit: 3
   selector:
     matchLabels:
@@ -13,6 +13,8 @@ spec:
       labels:
         app: guestbook-ui
     spec:
+      nodeSelector:
+         kubernetes.io/hostname: aks-testpool-32929358-vmss000001 
       containers:
       - image: gcr.io/heptio-images/ks-guestbook-demo:0.2
         name: guestbook-ui
