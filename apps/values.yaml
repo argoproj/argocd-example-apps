@@ -23,7 +23,6 @@ applications:
   - name: helm-hooks
   - name: jsonnet-guestbook
   - name: jsonnet-guestbook-tla
-  - name: ksonnet-guestbook
   - name: kustomize-guestbook
   - name: plugin-kasane
     path: plugins/kasane
