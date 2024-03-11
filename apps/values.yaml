@@ -8,6 +8,9 @@ config:
 
 applications:
   - name: blue-green
+    tool:
+      helm:
+        releaseName: blue-green
   - name: guestbook
   - name: helm-dependency
   - name: helm-guestbook
