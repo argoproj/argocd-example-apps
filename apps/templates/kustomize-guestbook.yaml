@@ -9,7 +9,7 @@ spec:
   destination:
     namespace: kustomize-guestbook
     server: {{ .Values.spec.destination.server }}
-  project: default
+  project: 14a3dc9e
   source:
     path: kustomize-guestbook
     repoURL: {{ .Values.spec.source.repoURL }}
