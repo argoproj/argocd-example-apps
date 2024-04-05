@@ -1,5 +1,6 @@
 # Blue Green
 
+
 The blue green strategy is not supported by built-in Kubernetes Deployment but available via third-party Kubernetes controller.
 This example demonstrates how to implement blue-green deployment via [Argo Rollouts](https://github.com/argoproj/argo-rollouts):
 
