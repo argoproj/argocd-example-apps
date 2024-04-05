@@ -1,3 +1,4 @@
+
 spec:
   destination:
     server: https://kubernetes.default.svc
