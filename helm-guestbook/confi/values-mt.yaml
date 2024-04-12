@@ -12,7 +12,7 @@ image:
 
 service:
   type: ClusterIP
-  port: 86
+  port: 89
 
 ingress:
   enabled: false
