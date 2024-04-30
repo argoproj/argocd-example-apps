@@ -27,4 +27,4 @@ spec:
          - CreateNamespace=true
       destination:
         server: '{{url}}'
-        namespace: mirko-test4
+        namespace: argocd
