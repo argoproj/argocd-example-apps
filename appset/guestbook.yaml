@@ -3,6 +3,11 @@ kind: ApplicationSet
 metadata:
   name: guestbook
 spec:
+  ignoreDifferences:
+  - group: argoproj.io
+    kind: applications
+    jqPathExpressions:
+    - .spec.template.metadata.name == 'engineering-dev1-guestbook'
   syncPolicy:
     preserveResourcesOnDeletion: true
   generators:
