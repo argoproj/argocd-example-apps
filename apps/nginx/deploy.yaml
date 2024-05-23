@@ -14,6 +14,6 @@ spec:
     spec:
       containers:
       - name: example-container
-        image: example-image
+        image: nginx/nginx
         ports:
         - containerPort: 8080
