@@ -34,11 +34,11 @@ resources:
   # resources, such as Minikube. If you do want to specify resources, uncomment the following
   # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
   limits:
-   cpu: 1000m
-   memory: 128Mi
+   cpu: 1
+   memory: 0.8Gi
   requests:
-   cpu: 1000m
-   memory: 128Mi
+   cpu: 1
+   memory: 0.8Gi
 
 nodeSelector: {}
 
