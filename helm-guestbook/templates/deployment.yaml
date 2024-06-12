@@ -20,6 +20,18 @@ spec:
         app: {{ template "helm-guestbook.name" . }}
         release: {{ .Release.Name }}
     spec:
+      topologySpreadConstraints:
+        - maxSkew: 1
+          minDomains: 1
+          topologyKey: "kubernetes.io/hostname"
+          whenUnsatisfiable: "DoNotSchedule"
+          labelSelector:
+            matchLabels:
+              app: petclinic-demo-app-1
+          matchLabelKeys:
+            - pod-template-hash
+          nodeAffinityPolicy: Honor
+          nodeTaintsPolicy: Ignore
       containers:
         - name: {{ .Chart.Name }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
