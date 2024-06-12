@@ -28,10 +28,10 @@ spec:
           labelSelector:
             matchLabels:
               app: petclinic-demo-app-1
-          matchLabelKeys:
-            - pod-template-hash
-          nodeAffinityPolicy: Honor
-          nodeTaintsPolicy: Ignore
+          # matchLabelKeys:
+          #   - pod-template-hash
+          # nodeAffinityPolicy: Honor
+          # nodeTaintsPolicy: Ignore
       containers:
         - name: {{ .Chart.Name }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
