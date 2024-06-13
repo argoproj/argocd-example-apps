@@ -36,6 +36,6 @@ spec:
            memory: 0.9Gi
           requests:
            cpu: 1000m
-           memory: 1Gi
+           memory: 0.9Gi
       
 # gcr.io/heptio-images/ks-guestbook-demo:0.1
