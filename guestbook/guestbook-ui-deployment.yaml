@@ -13,18 +13,18 @@ spec:
       labels:
         app: guestbook-ui
     spec:
-      # topologySpreadConstraints:
-      #   - maxSkew: 1
-      #     minDomains: 1
-      #     topologyKey: "kubernetes.io/hostname"
-      #     whenUnsatisfiable: "DoNotSchedule"
-      #     labelSelector:
-      #       matchLabels:
-      #         app: petclinic-demo-app-1
-      #     matchLabelKeys:
-      #       - pod-template-hash
-      #     nodeAffinityPolicy: Honor
-      #     nodeTaintsPolicy: Ignore
+      topologySpreadConstraints:
+        - maxSkew: 1
+          minDomains: 1
+          topologyKey: "kubernetes.io/hostname"
+          whenUnsatisfiable: "DoNotSchedule"
+          labelSelector:
+            matchLabels:
+              app: petclinic-demo-app-1
+          matchLabelKeys:
+            - pod-template-hash
+          nodeAffinityPolicy: Honor
+          nodeTaintsPolicy: Ignore
       containers:
       - image: gcr.io/heptio-images/ks-guestbook-demo:0.1
         name: guestbook-ui
@@ -33,9 +33,9 @@ spec:
         resources:
           limits:
            cpu: 1000m
-           memory: 0.9Gi
+           memory: 1Gi
           requests:
            cpu: 1000m
-           memory: 0.9Gi
+           memory: 1Gi
       
 # gcr.io/heptio-images/ks-guestbook-demo:0.1
