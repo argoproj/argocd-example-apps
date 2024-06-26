@@ -20,7 +20,7 @@ spec:
           whenUnsatisfiable: "DoNotSchedule"
           labelSelector:
             matchLabels:
-              app: petclinic-demo-app-1
+              app: guestbook-ui
           matchLabelKeys:
             - pod-template-hash
           nodeAffinityPolicy: Honor
