@@ -17,7 +17,7 @@ spec:
         purpose: komodor-demo
     spec:
       containers:
-      - image: gcr.io/heptio-images/ks-guestbook-demo:0.2
+      - image: gcr.io/heptio-images/ks-guestbook-demo:0.2.1
         name: guestbook-ui
         ports:
         - containerPort: 80
