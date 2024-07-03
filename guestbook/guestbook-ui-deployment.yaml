@@ -2,6 +2,9 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: guestbook-ui
+  annotations:
+    app.komodor.com/guestbook: https://github.com/damuret/guestbook
+    app.komodor.com/guestbook.ref: 
 spec:
   replicas: 2
   revisionHistoryLimit: 3
@@ -17,7 +20,7 @@ spec:
         purpose: komodor-demo
     spec:
       containers:
-      - image: gcr.io/heptio-images/ks-guestbook-demo:0.2.1
+      - image: gcr.io/heptio-images/ks-guestbook-demo:0.2
         name: guestbook-ui
         ports:
         - containerPort: 80
