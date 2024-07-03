@@ -2,11 +2,6 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: guestbook-ui
-  annotations:
-    app.komodor.com/[name]: FULL_REPO_URL
-    app.komodor.com/[name].ref: SOURCE_CONTROL_REF
-    app.komodor.com/[another-name]: ANOTHER_FULL_REPO_URL
-    app.komodor.com/[another-name].ref: ANOTHER_ SOURCE_CONTROL_REF  
 spec:
   replicas: 2
   revisionHistoryLimit: 3
