@@ -17,10 +17,9 @@ spec:
   template:
     metadata:
       labels:
-        app: guestbook-ui
-        owner: dan
+        app: guestbook-uii
+        owner: danm
         region: us-west-2
-        purpose: komodor-demo
     spec:
       containers:
       - image: gcr.io/heptio-images/ks-guestbook-demo:0.2
