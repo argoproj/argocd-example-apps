@@ -18,6 +18,7 @@ spec:
     metadata:
       labels:
         app: guestbook-ui
+        owner: dan
     spec:
       containers:
       - image: gcr.io/heptio-images/ks-guestbook-demo:0.2
