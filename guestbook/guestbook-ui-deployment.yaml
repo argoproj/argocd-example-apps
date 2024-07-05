@@ -3,9 +3,11 @@ kind: Deployment
 metadata:
   name: guestbook-ui
   annotations:
-    link.argocd.argoproj.io/external-link: https://app.komodor.com/main/deep-dive/wspddemo.wspd-demo-default.guestbook
+     link.argocd.argoproj.io/external-link: https://app.komodor.com/main/deep-dive/wspddemo.wspd-demo-default.guestbook
+    app.komodor.com/tracked_files: |
+      *.yaml
     app.komodor.com/guestbook: https://github.com/damuret/guestbook
-    app.komodor.com/guestbook.ref: 
+    app.komodor.com/guestbook.ref:  f63b9f2672abcbded8a6d15520c8b5e325d3b8d0
 spec:
   replicas: 2
   revisionHistoryLimit: 3
