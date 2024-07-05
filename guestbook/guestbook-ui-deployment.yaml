@@ -9,7 +9,7 @@ metadata:
     app.komodor.com/guestbook: https://github.com/damuret/guestbook
     app.komodor.com/guestbook.ref:  e513b3ba0fee5ddae7c46323a04e86b659b3c456 
 spec:
-  replicas: 2
+  replicas: 3
   revisionHistoryLimit: 3
   selector:
     matchLabels:
@@ -19,7 +19,6 @@ spec:
       labels:
         app: guestbook-ui
         owner: dan
-        purpose: demo
     spec:
       containers:
       - image: gcr.io/heptio-images/ks-guestbook-demo:0.2
