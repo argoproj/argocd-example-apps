@@ -18,8 +18,6 @@ spec:
     metadata:
       labels:
         app: guestbook-uii
-        owner: danm
-        region: us-west-2
     spec:
       containers:
       - image: gcr.io/heptio-images/ks-guestbook-demo:0.2
