@@ -22,7 +22,7 @@ spec:
         purpose: demo
     spec:
       containers:
-      - image: gcr.io/heptio-images/ks-guestbook-demo:0.2.1
+      - image: gcr.io/heptio-images/ks-guestbook-demo:0.2
         name: guestbook-ui
         ports:
         - containerPort: 80
