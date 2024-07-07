@@ -25,3 +25,6 @@ spec:
         name: guestbook-ui
         ports:
         - containerPort: 80
+        resources
+          requests
+            memory: 100m
