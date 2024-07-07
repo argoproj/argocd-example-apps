@@ -9,7 +9,7 @@ metadata:
     app.komodor.com/guestbook: https://github.com/damuret/guestbook
     app.komodor.com/guestbook.ref:  e513b3ba0fee5ddae7c46323a04e86b659b3c456 
 spec:
-  replicas: 3
+  replicas: 1
   revisionHistoryLimit: 3
   selector:
     matchLabels:
@@ -27,6 +27,6 @@ spec:
         - containerPort: 80
         resources:
           requests:
-            memory: 100Mi
+            memory: 6Mi
           limits:
-            memory: 200Mi
+            memory: 10Mi
