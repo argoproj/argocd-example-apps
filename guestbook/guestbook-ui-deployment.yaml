@@ -32,10 +32,10 @@ spec:
         - containerPort: 80
         resources:
           limits:
-           cpu: 1900m
+           cpu: 1.9
            memory: 1900Mi
           requests:
-           cpu: 1900m
+           cpu: 1.9
            memory: 1900Mi
       
 # gcr.io/heptio-images/ks-guestbook-demo:0.1
