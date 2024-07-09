@@ -33,9 +33,9 @@ spec:
         resources:
           limits:
            cpu: 1900m
-           memory: 2100Mi
+           memory: 1900Mi
           requests:
            cpu: 1900m
-           memory: 2100Mi
+           memory: 1900Mi
       
 # gcr.io/heptio-images/ks-guestbook-demo:0.1
