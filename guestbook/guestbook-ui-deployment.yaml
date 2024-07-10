@@ -2,6 +2,8 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: guestbook-ui
+  annotations:
+   codefresh.io/product: guestbook-test
 spec:
   replicas: 2
   revisionHistoryLimit: 3
