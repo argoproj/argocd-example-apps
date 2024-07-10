@@ -3,8 +3,7 @@ kind: Deployment
 metadata:
   name: guestbook-ui
   namespace: guestbook
-  annotations:
-   codefresh.io/product: guestbook-test
+
 spec:
   replicas: 1
   revisionHistoryLimit: 3
@@ -17,7 +16,7 @@ spec:
         app: guestbook-ui
     spec:
       containers:
-      - image: amankinenko/ks-guestbook-demo:0.5
+      - image: amankinenko/ks-guestbook-demo:0.6
         name: guestbook-ui
         ports:
         - containerPort: 80
