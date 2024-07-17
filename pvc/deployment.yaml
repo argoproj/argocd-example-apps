@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: example-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: example-app
+  template:
+    metadata:
+      labels:
+        app: example-app
+    spec:
+      containers:
+        - name: example-container
+          image: busybox
+          command: ["sleep", "3600"]
+          volumeMounts:
+            - mountPath: /mnt/data
+              name: pvc-storage
+      volumes:
+        - name: pvc-storage
+          persistentVolumeClaim:
+            claimName: example-pvc
