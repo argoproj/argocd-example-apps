@@ -2,6 +2,8 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: example-pvc
+  labels:
+    app.kubernetes.io/instance: semantic-reranker-qa
 spec:
   accessModes:
     - ReadWriteOnce
