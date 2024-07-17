@@ -4,6 +4,8 @@ metadata:
   name: example-pvc
   labels:
     app.kubernetes.io/instance: semantic-reranker-2
+  annotations:
+    argocd.argoproj.io/sync-options: Replace=false
 spec:
   accessModes:
     - ReadWriteOnce
