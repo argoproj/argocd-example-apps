@@ -1,0 +1,26 @@
+image:
+  tag: 0.1
+  repository: "gcr.io/heptio-images/ks-guestbook-demo"
+  pullPolicy: "IfNotPresent"
+ingress:
+  path: "/"
+  hosts:
+  - "chart-example.local"
+  annotations: {}
+  tls: []
+  enabled: false
+replicaCount: 1
+tolerations: []
+service:
+  port: 80
+  type: "ClusterIP"
+containerPort: 80
+resources:
+  requests:
+    memory: "0.88Gi"
+    cpu: 0.8
+  limits:
+    memory: "0.88Gi"
+    cpu: 0.8
+nodeSelector: {}
+affinity: {}
