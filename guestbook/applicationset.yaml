@@ -1,0 +1,44 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: guestbook-preview
+spec:
+  generators:
+    - pullRequest:
+        github:
+          owner: eladcon
+          repo: argocd-example-apps
+          tokenRef:
+            key: token
+            secretName: github-token
+        requeueAfterSeconds: 60
+  template:
+    metadata:
+      name: 'guestbook-preview-{{branch}}-{{number}}'
+    spec:
+      destination:
+        namespace: 'preview-{{branch}}'
+        server: 'https://kubernetes.default.svc'
+      project: default
+      source:
+        # (3)
+        path: guestbook/
+        repoURL: 'https://github.com/eladcon/argocd-example-apps.git'
+        targetRevision: HEAD
+        helm:
+          parameters:
+            # (4)
+            - name: namespace
+              value: 'preview-{{branch}}'
+            # (5)
+            - name: version
+              value: '{{head_sha}}'
+            # (6)
+            - name: image
+              value: sample-kotlin-spring
+            - name: name
+              value: sample-spring-kotlin
+      # (7)
+      syncPolicy:
+        automated:
+          selfHeal: true
