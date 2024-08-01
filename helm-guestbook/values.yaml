@@ -1,5 +1,5 @@
 image:
-  tag: 0.1
+  tag: 0.2
   repository: "gcr.io/heptio-images/ks-guestbook-demo"
   pullPolicy: "IfNotPresent"
 ingress:
@@ -17,10 +17,10 @@ service:
 containerPort: 80
 resources:
   requests:
-    memory: "1Gi"
-    cpu: 1
+    memory: "0.5Gi"
+    cpu: 0.5
   limits:
-    memory: "1Gi"
-    cpu: 1
+    memory: "0.5Gi"
+    cpu: 0.5
 nodeSelector: {}
 affinity: {}
