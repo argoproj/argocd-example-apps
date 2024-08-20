@@ -1,25 +1,14 @@
-apiVersion: argoproj.io/v1alpha1 
-
-Kind: Application 
-
-Metadata: 
-
-    name: application-from-scratch #name of application 
-
-Spec: 
-
-  destination: 
-
-       namespace: default  #will deploy in defaultnamespace 
-
-       server: https://kubernetes.default.svc  #(we will copy the kubernetes default address , argocd cluster list --grpc-web ) 
-
-   project: default     #project will contain multiple applications and application should be in project 
-
-   source:  
-
-       path: v3-argocd-applications/helm/nginx  #source location where the manifest, chart.yml are present 
-
-       repoURL: https://github.com/sajansingh-hcl/argocd-project.git 
-
-       targetRevision: master  # provide the branch name in git repo
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: application-from-scratch
+  namespace: argocd
+spec:
+  destination:
+    namespace: default
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: v3-argocd-applications/helm/nginx
+    repoURL: https://github.com/sajansingh-hcl/argocd-project.git
+    targetRevision: HEAD
