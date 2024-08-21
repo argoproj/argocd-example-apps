@@ -3,6 +3,8 @@ kind: ApplicationSet
 metadata:
   name: guestbook
 spec:
+  goTemplate: true
+  goTemplateOptions: ["missingkey=error"]
   syncPolicy:
     preserveResourcesOnDeletion: true
   generators:
@@ -19,8 +21,6 @@ spec:
     metadata:
       name: '{{.name}}-guestbook'
     spec:
-      goTemplate: true
-      goTemplateOptions: ["missingkey=error"]
       project: 5deb602d
       source:
         repoURL: https://github.com/ashinsabu3/argocd-example-apps.git
