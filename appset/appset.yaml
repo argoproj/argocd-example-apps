@@ -8,6 +8,8 @@ spec:
   syncPolicy:
     preserveResourcesOnDeletion: true
   generators:
+  - clusters: {}
+  
     # - list:
     #     elements:
     #       - cluster: engineering-dev
@@ -16,7 +18,6 @@ spec:
     #       - cluster: engineering-dev1
     #         url: https://kubernetes.default.svc
     #         namespace: ashin-test3
-      - clusters: {}
   template:
     metadata:
       name: '{{.name}}-guestbook'
@@ -31,5 +32,5 @@ spec:
          - Validate=true     
          - CreateNamespace=true
       destination:
-        server: '{{.server}}'
+        server: '{{server}}'
         namespace: 'ashin-test3'
