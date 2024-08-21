@@ -29,5 +29,5 @@ spec:
          - Validate=true     
          - CreateNamespace=true
       destination:
-        server: '{{url}}'
+        server: '{{.server}}'
         namespace: '{{namespace}}'
