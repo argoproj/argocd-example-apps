@@ -3,8 +3,6 @@ kind: ApplicationSet
 metadata:
   name: guestbook
 spec:
-  goTemplate: true
-  goTemplateOptions: ["missingkey=error"]
   syncPolicy:
     preserveResourcesOnDeletion: true
   generators:
@@ -20,7 +18,7 @@ spec:
     #         namespace: ashin-test3
   template:
     metadata:
-      name: '{{.name}}-guestbook'
+      name: '{{name}}-guestbook'
     spec:
       project: 5deb602d
       source:
