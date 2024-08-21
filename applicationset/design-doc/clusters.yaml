@@ -15,8 +15,8 @@ spec:
       selector:
         matchLabels:
           argocd.argoproj.io/secret-type: cluster
-      values:
-        project: default
+      # values:
+      #   project: default
   template:
     metadata:
       name: '{{name}}-guestbook'
