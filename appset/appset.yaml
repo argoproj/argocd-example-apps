@@ -17,7 +17,7 @@ spec:
       - clusters: {}
   template:
     metadata:
-      name: '{{cluster}}-guestbook'
+      name: '{{.name}}-guestbook'
     spec:
       project: f6bd2309
       source:
