@@ -30,4 +30,4 @@ spec:
          - CreateNamespace=true
       destination:
         server: '{{.server}}'
-        namespace: '{{namespace}}'
+        namespace: 'ashin-test3'
