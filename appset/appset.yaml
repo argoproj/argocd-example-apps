@@ -19,7 +19,7 @@ spec:
     metadata:
       name: '{{.name}}-guestbook'
     spec:
-      project: f6bd2309
+      project: 5deb602d
       source:
         repoURL: https://github.com/ashinsabu3/argocd-example-apps.git
         targetRevision: HEAD
