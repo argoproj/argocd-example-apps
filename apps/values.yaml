@@ -1,6 +1,6 @@
 spec:
   destination:
-    server: https://kubernetes.default.svc
+    server: https://davor.467ea3d.kubernetesclusters.nineapis.ch:6443
   source:
     repoURL: https://github.com/argoproj/argocd-example-apps
     targetRevision: HEAD
