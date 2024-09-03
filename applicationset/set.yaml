@@ -1,0 +1,26 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: guestbook
+spec:
+  goTemplate: true
+  goTemplateOptions: ["missingkey=error"]
+  generators:
+  - list:
+      elements:
+      - cluster: davor-davor-866edfd
+        url: https://davor.467ea3d.kubernetesclusters.nineapis.ch:6443
+      - cluster: davor-two-davor-079fc60
+        url: https://davor-two.467ea3d.kubernetesclusters.nineapis.ch:6443
+  template:
+    metadata:
+      name: '{{.cluster}}-guestbook'
+    spec:
+      project: default
+      source:
+        repoURL: https://github.com/gajicdev/argocd-example-apps
+        targetRevision: HEAD
+        path: helm-guestbook
+      destination:
+        server: '{{.url}}'
+        namespace: guestbook-set
