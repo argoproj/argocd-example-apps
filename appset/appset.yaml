@@ -9,15 +9,6 @@ spec:
     preserveResourcesOnDeletion: true
   generators:
   - clusters: {}
-  
-    # - list:
-    #     elements:
-    #       - cluster: engineering-dev
-    #         url: https://kubernetes.default.svc
-    #         namespace: ashin-test2
-    #       - cluster: engineering-dev1
-    #         url: https://kubernetes.default.svc
-    #         namespace: ashin-test3
   template:
     metadata:
       name: '{{.name}}-guestbook'
