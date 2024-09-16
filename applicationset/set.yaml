@@ -15,6 +15,7 @@ spec:
   template:
     metadata:
       name: '{{.cluster}}-guestbook'
+      namespace: nine-staging
     spec:
       project: default
       source:
