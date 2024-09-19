@@ -14,7 +14,7 @@ spec:
       name: '{{.name}}-guestbook'
       labels: 
         harness.io/serviceRef: svc1
-        harness.io/environmentRef: env1
+        harness.io/envRef: env1
     spec:
       project: 5deb602d
       source:
