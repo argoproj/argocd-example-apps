@@ -6,6 +6,7 @@ to explore ArgoCD and GitOps!
 
 | Application | Description |
 |-------------|-------------|
+| [nginx-hello](nginx-hello/) | A basic nginx app as plain YAML |
 | [guestbook](guestbook/) | A hello word guestbook app as plain YAML |
 | [ksonnet-guestbook](ksonnet-guestbook/) | The guestbook app as a ksonnet app |
 | [helm-guestbook](helm-guestbook/) | The guestbook app as a Helm chart |
