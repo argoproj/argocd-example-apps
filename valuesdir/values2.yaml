@@ -6,11 +6,11 @@ replicaCount: 1
 containerPort: 80
 resources:
   requests:
-    memory: "0.88Gi"
-    cpu: 0.8
+    memory: "1Gi"
+    cpu: 1
   limits:
-    memory: "0.88Gi"
-    cpu: 0.8
+    memory: "1Gi"
+    cpu: 1
 
 testSecret: 
 
