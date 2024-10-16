@@ -1,16 +1,16 @@
 image:
   tag: 0.2
 
-replicaCount: 1
+replicaCount: 3
 
 containerPort: 80
 resources:
   requests:
-    memory: "1Gi"
-    cpu: 1
+    memory: "256Mi"
+    cpu: 0.1
   limits:
-    memory: "1Gi"
-    cpu: 1
+    memory: "256Mi"
+    cpu: 0.1
 
 testSecret: 
 
