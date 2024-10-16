@@ -11,16 +11,21 @@ ingress:
   enabled: false
 replicaCount: 1
 tolerations: []
+resource:
+  limits:
+    memory: "256Mi"
+  requests:
+    memory: "256Mi"
 service:
   port: 80
   type: "ClusterIP"
 containerPort: 80
 resources:
   requests:
-    memory: 512Mi
+    memory: "512Mi"
     cpu: 1
   limits:
-    memory: 512Mi
+    memory: "512Mi"
     cpu: 1
 nodeSelector: {}
 affinity: {}
