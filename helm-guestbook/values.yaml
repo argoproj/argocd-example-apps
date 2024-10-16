@@ -1,5 +1,5 @@
 image:
-  tag: "0.2"
+  tag: "0.1"
   repository: "gcr.io/heptio-images/ks-guestbook-demo"
   pullPolicy: "IfNotPresent"
 ingress:
@@ -16,11 +16,11 @@ service:
   type: "ClusterIP"
 containerPort: 80
 resources:
-  requests:
-    memory: "512Mi"
-    cpu: "1"
   limits:
-    memory: "512Mi"
     cpu: "1"
+    memory: "256Mi"
+  requests:
+    cpu: "1"
+    memory: "256Mi"
 nodeSelector: {}
 affinity: {}
