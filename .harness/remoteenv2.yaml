@@ -1,0 +1,6 @@
+environment:
+  name: remoteenv2
+  identifier: remoteenv2
+  orgIdentifier: default
+  projectIdentifier: ashintest
+  type: Production
