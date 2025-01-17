@@ -34,6 +34,11 @@ applications:
     tool:
       plugin:
         name: kustomized-helm
+  - name: plugin-nix
+    path: plugins/nix
+    tool:
+      plugin:
+        name: nix
   - name: pre-post-sync
   - name: sock-shop
   - name: sync-waves
