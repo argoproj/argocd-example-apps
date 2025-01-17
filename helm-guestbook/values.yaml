@@ -9,6 +9,8 @@ image:
   tag: 0.1
   pullPolicy: IfNotPresent
 
+containerPort: 80
+
 service:
   type: ClusterIP
   port: 80
