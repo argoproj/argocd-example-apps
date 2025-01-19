@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: degraded-app-config
+  labels:
+    app: degraded-app-config
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: degraded-app-config
+  template:
+    metadata:
+      labels:
+        app: degraded-app-config
+    spec:
+      containers:
+      - name: main-container
+        image: nginx:latest
+        envFrom:
+        - configMapRef:
+            name: missing-configmap # ConfigMap not created
