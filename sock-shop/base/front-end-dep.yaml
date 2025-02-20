@@ -4,7 +4,7 @@ kind: Deployment
 metadata:
   name: front-end
 spec:
-  replicas: 20
+  replicas: 3
   selector:
     matchLabels:
       name: front-end
