@@ -5,7 +5,7 @@ metadata:
 spec:
   ingressClassName: internal-ingress-nginx
   rules:
-  - host: sockshop.k8s.wc.int.ehn.services
+  - host: sock-shop.k8s.wc.int.ehn.services
     http:
       paths:
       - path: /
