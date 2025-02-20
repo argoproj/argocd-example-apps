@@ -1,0 +1,17 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress
+spec:
+  ingressClassName: internal-ingress-nginx
+  rules:
+  - host: sock-shop.k8s.wc.int.ehn.services
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: front-end
+            port:
+              number: 443
