@@ -5,7 +5,7 @@ metadata:
 spec:
   ingressClassName: internal-ingress-nginx
   rules:
-  - host: sock-shop.k8s.wc.int.ehn.services
+  - host: sockshop.k8s.wc.int.ehn.services
     http:
       paths:
       - path: /
@@ -14,4 +14,4 @@ spec:
           service:
             name: front-end
             port:
-              number: 443
+              number: 80
