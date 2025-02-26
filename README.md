@@ -18,3 +18,4 @@ to explore ArgoCD and GitOps!
 | [plugins](plugins/) | Apps which demonstrate config management plugins usage |
 | [blue-green](blue-green/) | Demonstrates how to implement blue-green deployment using [Argo Rollouts](https://github.com/argoproj/argo-rollouts)
 | [apps](apps/) | An app composed of other apps |
+| [private-helm-repo-with-values-yaml](private-helm-repo-with-values-yaml/)| A helm chart from a private repository with a values yaml from a private git repository |
