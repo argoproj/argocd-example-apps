@@ -15,7 +15,7 @@ metadata:
     metadata.automat.seek.com/system: tutorial-system
     metadata.automat.seek.com/tenant: playground
     metadata.automat.seek.com/component: guestbook
-    metadata.automat.seek.com/deployment-id: N8VUW3bDpDYkKDjUrWf4Ku
+    metadata.automat.seek.com/deployment-id: 2QtG3G64vcRVU9dt2hTd5N
     metadata.automat.seek.com/deployment: dev
     metadata.automat.seek.com/tier: development
     metadata.automat.seek.com/region: ap-southeast-2
