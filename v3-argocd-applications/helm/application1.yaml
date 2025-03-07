@@ -1,0 +1,17 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: application-from-scratch
+  namespace: argocd
+  annotations:
+  notifications.argoproj.io/subscribe.on-sync-succeeded.teams: argocd-notifications #Teams Channel
+  notifications.argoproj.io/subscribe.on-sync-failed.teams: argocd-notifications #Teams Channel
+spec:
+  destination:
+    namespace: default
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: v3-argocd-applications/helm/nginx
+    repoURL: https://github.com/sajansingh-hcl/argocd-project.git
+    targetRevision: HEAD
