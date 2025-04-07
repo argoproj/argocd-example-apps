@@ -1,0 +1,24 @@
+apiVersion: applications.automat.seek.com/v1beta1
+kind: ArgoCdApplicationSetConfig
+metadata:
+  name: unused
+  annotations:
+    metadata.automat.seek.com/deployed-from: SEEK-Jobs/automat-tenant-deployments
+    metadata.automat.seek.com/cli-version: 0.29.0
+  labels:
+    app.kubernetes.io/name: guestbook
+    app.kubernetes.io/instance: dev
+    app.kubernetes.io/part-of: tutorial-system
+    app.kubernetes.io/managed-by: automat-cli
+    app.kubernetes.io/version: "20250211144205"
+    ownership.seek.com/owner: tigger
+    metadata.automat.seek.com/system: tutorial-system
+    metadata.automat.seek.com/tenant: playground
+    metadata.automat.seek.com/component: guestbook
+    metadata.automat.seek.com/deployment-id: UjAhK6yLya7LG5NQ7ZTSZo
+    metadata.automat.seek.com/deployment: dev
+    metadata.automat.seek.com/tier: development
+    metadata.automat.seek.com/region: ap-southeast-2
+    metadata.automat.seek.com/application-class: baseline
+    metadata.automat.seek.com/owner: tigger
+  namespace: guestbook
