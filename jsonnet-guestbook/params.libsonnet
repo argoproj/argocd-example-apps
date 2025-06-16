@@ -1,6 +1,6 @@
 {
   containerPort: 80,
-  image: "quay.io/argoprojlabs/argocd-e2e-container:0.2",
+  image: "gcr.io/google-samples/gb-frontend:v5",
   name: "jsonnet-guestbook-ui",
   replicas: 1,
   servicePort: 80,

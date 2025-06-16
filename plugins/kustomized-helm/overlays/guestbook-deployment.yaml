@@ -7,4 +7,4 @@ spec:
     spec:
       containers:
         - name: helm-guestbook
-          image: "quay.io/argoprojlabs/argocd-e2e-container:0.2"
+          image: 'gcr.io/google-samples/gb-frontend:v5'
