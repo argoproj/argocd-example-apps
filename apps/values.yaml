@@ -3,8 +3,8 @@ config:
     destination:
       server: https://kubernetes.default.svc
     source:
-      repoURL: https://github.com/agaudreault/argocd-example-apps
-      targetRevision: sync-from-demo
+      repoURL: https://github.com/argoproj/argocd-example-apps
+      targetRevision: master
 
 applications:
   - name: blue-green
