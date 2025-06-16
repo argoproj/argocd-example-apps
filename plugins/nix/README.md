@@ -30,14 +30,14 @@ repoServer:
       # the init container copies the whole nix store and profiles into the
       # temporary volume and makes sure the permissions are correct
       command:
-        - "sh"
-        - "-c"
-        - "cp -a /nix/* /nixvol && chown -R 999 /nixvol/*"
+        - 'sh'
+        - '-c'
+        - 'cp -a /nix/* /nixvol && chown -R 999 /nixvol/*'
       image: nixos/nix:latest
       # the image will always be updated at init step, so the one in the
       # extraContainers must have the policy of Never to always be the same
       # exact image.
-      imagePullPolicy: Always 
+      imagePullPolicy: Always
       volumeMounts:
         - mountPath: /nixvol
           name: nix-cmp-nix
@@ -123,7 +123,7 @@ data:
           fi
           nix build $IMPURE_FLAG ".#${OUTPUT}"
       lockRepo: true
-      name: nix-cmp-plugin
+      name: nix
       version: v1.0
 ```
 
