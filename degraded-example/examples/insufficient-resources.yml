@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: insufficient-resources
+  labels:
+    app: insufficient-resources
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: insufficient-resources
+  template:
+    metadata:
+      labels:
+        app: insufficient-resources
+    spec:
+      containers:
+      - name: main-container
+        image: nginx:latest
+        resources:
+          requests:
+            memory: "10Ti" # Exceeds cluster capacity
+            cpu: "5000"    # Exceeds cluster capacity
