@@ -1,0 +1,17 @@
+apiVersion: v2
+name: nginx-webapp
+description: A Helm chart for deploying a simple nginx web application
+type: application
+version: 0.1.0
+appVersion: "1.25.3"
+keywords:
+  - nginx
+  - web
+  - frontend
+home: https://github.com/your-org/nginx-webapp
+sources:
+  - https://github.com/your-org/nginx-webapp
+maintainers:
+  - name: Your Name
+    email: your.email@company.com
+dependencies: []
