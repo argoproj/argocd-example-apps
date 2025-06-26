@@ -1,0 +1,23 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: front-end-ingress
+  labels:
+    name: front-end
+  annotations:
+    ingress.kubernetes.io/proxy-body-size: 100M
+    ingress.kubernetes.io/app-root: '/'
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: sockshop.apps.argoproj.io
+      http:
+        paths:
+          - path: /
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: front-end
+                port:
+                  number: 80
