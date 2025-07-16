@@ -5,6 +5,7 @@ on:
   push:
     branches:
     - environment/development-next
+  workflow_dispatch:
 
 permissions:
   contents: write
