@@ -4,7 +4,7 @@ name: Automatically create / update pull request
 on:
   push:
     branches:
-    - environment/development-next
+    - environment/staging-next
   workflow_dispatch:
 
 permissions:
@@ -12,7 +12,7 @@ permissions:
   pull-requests: write
 
 jobs:
-  create_pr_development:
+  create_pr_staging:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -20,5 +20,5 @@ jobs:
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v7
         with:
-          base: environment/development
-          branch: environment/development-next
+          base: environment/staging
+          branch: environment/staging-next
