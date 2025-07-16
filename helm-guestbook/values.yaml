@@ -3,7 +3,7 @@
 # Declare variables to be passed into your templates.
 
 
-replicaCount: 3
+replicaCount: 2
 
 image:
   repository: gcr.io/google-samples/gb-frontend
