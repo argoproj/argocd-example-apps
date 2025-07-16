@@ -21,4 +21,3 @@ jobs:
         with:
           base: environment/development
           branch: environment/development-next
-          author: argocd <email@address.com>
