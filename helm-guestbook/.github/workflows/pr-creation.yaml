@@ -1,0 +1,24 @@
+name: Automatically create / update pull request
+
+# run this workflow only on new feature branches, not when they're merged to main
+on:
+  push:
+    branches-ignore:
+      - "main"
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  create_pr_development:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v7
+        with:
+          base: development-next
+          branch: development-next
+          author: argocd <email@address.com>
