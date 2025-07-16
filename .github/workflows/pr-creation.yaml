@@ -3,8 +3,8 @@ name: Automatically create / update pull request
 # run this workflow only on new feature branches, not when they're merged to main
 on:
   push:
-    branch:-ignore:
-      - "development-next"
+    branches:
+    - development-next
 
 permissions:
   contents: write
