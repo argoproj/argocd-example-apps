@@ -4,7 +4,7 @@ name: Automatically create / update pull request
 on:
   push:
     branches:
-    - development-next
+    - environment/development-next
 
 permissions:
   contents: write
@@ -19,6 +19,6 @@ jobs:
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v7
         with:
-          base: development-next
-          branch: development-next
+          base: environment/development
+          branch: environment/development-next
           author: argocd <email@address.com>
