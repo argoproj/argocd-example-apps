@@ -1,0 +1,24 @@
+apiVersion: storage.nine.ch/v1alpha1
+kind: MySQL
+metadata:
+  name: davor
+spec:
+  deletionPolicy: Delete
+  forProvider:
+    characterSet:
+      collation: utf8mb4_unicode_ci
+      name: utf8mb4
+    keepDailyBackups: 10
+    location: nine-cz41
+    longQueryTime: 10s
+    machineType: nine-standard-1
+    minWordLength: 3
+    sqlMode:
+    - ONLY_FULL_GROUP_BY
+    - STRICT_TRANS_TABLES
+    - NO_ZERO_IN_DATE
+    - NO_ZERO_DATE
+    - ERROR_FOR_DIVISION_BY_ZERO
+    - NO_ENGINE_SUBSTITUTION
+    transactionIsolation: REPEATABLE-READ
+    version: "8"

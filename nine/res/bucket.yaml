@@ -1,0 +1,33 @@
+apiVersion: storage.nine.ch/v1alpha1
+kind: Bucket
+metadata:
+  name: davor
+spec:
+  deletionPolicy: Delete
+  forProvider:
+    backendVersion: v2
+    encryption: true
+    location: nine-cz42
+    permissions:
+    - role: reader
+      userRefs:
+      - name: davor
+    - role: writer
+      userRefs:
+      - name: davor
+    storageTier: standard
+  managementPolicies:
+  - '*'
+---
+apiVersion: storage.nine.ch/v1alpha1
+kind: BucketUser
+metadata:
+  name: davor
+spec:
+  deletionPolicy: Delete
+  forProvider:
+    backendVersion: v2
+    location: nine-cz42
+    resetCredentials: false
+  managementPolicies:
+  - '*'
