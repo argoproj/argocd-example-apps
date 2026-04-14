@@ -1,0 +1,16 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: glob-double-star
+spec:
+  source:
+    repoURL: https://github.com/nitishfy/argocd-helm-example.git
+    targetRevision: HEAD
+    path: .
+    helm:
+      valueFiles:
+      - values/double-star/**/*.yaml # a.yaml, b.yaml, nested/c.yaml
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: default
+  project: default

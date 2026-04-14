@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1               
+kind: Application                              
+metadata:                                      
+  name: glob-ignore-missing
+spec:                      
+  source:
+    repoURL: https://github.com/nitishfy/argocd-helm-example.git                              
+    targetRevision: HEAD                       
+    path: .             
+    helm:                                      
+      ignoreMissingValueFiles: true
+      valueFiles:         
+      # no files will be matched, but since ignoreMissingValueFiles is true, it will not error out
+      # hence default values will be used for the helm chart         
+      - values/no-match/staging-*.yaml   
+      server: https://kubernetes.default.svc
+      namespace: default                         
+    project: default

@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: glob-multi-entry
+spec:
+  source:
+    repoURL: https://github.com/nitishfy/argocd-helm-example.git
+    targetRevision: HEAD
+    path: .
+    helm:
+      valueFiles:
+      - values/multi-entry/base.yaml
+      - values/multi-entry/overrides/*.yaml # x.yaml and y.yaml
+      - values/multi-entry/final.yaml
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: default
+  project: default

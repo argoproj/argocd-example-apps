@@ -1,0 +1,16 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: glob-single-char-wildcard
+spec:
+  source:
+    repoURL: https://github.com/nitishfy/argocd-helm-example.git
+    targetRevision: HEAD
+    path: .
+    helm:
+      valueFiles:
+      - values/single-char-wildcard/e?.yaml # ea.yaml and eb.yaml (eab.yaml will be ignored)
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: default
+  project: default

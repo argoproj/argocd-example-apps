@@ -1,0 +1,16 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: glob-char-class
+spec:
+  source:
+    repoURL: https://github.com/nitishfy/argocd-helm-example.git
+    targetRevision: HEAD
+    path: .
+    helm:
+      valueFiles:
+      - values/char-class/[a-b].yaml # a.yaml, b.yaml (c.yaml will be ignored)
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: default
+  project: default
