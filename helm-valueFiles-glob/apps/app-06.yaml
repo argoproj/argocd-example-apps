@@ -4,9 +4,9 @@ metadata:
   name: glob-char-class
 spec:
   source:
-    repoURL: https://github.com/nitishfy/argocd-helm-example.git
+    repoURL: https://github.com/argoproj/argocd-example-apps.git
     targetRevision: HEAD
-    path: .
+    path: helm-valueFiles-glob
     helm:
       valueFiles:
       - values/char-class/[a-b].yaml # a.yaml, b.yaml (c.yaml will be ignored)

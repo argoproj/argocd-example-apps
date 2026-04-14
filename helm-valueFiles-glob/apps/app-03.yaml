@@ -4,9 +4,9 @@ metadata:
   name: glob-numeric-prefix
 spec:
   source:
-    repoURL: https://github.com/nitishfy/argocd-helm-example.git
+    repoURL: https://github.com/argoproj/argocd-example-apps.git
     targetRevision: HEAD
-    path: .
+    path: helm-valueFiles-glob
     helm:
       valueFiles:
       - values/numeric-prefix/*.yaml # 00-, 10-, 20- will be applied in that order

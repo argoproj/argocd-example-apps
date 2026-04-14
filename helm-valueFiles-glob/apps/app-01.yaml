@@ -4,9 +4,9 @@ metadata:
   name: glob-single-star
 spec:
   source:
-    repoURL: https://github.com/nitishfy/argocd-helm-example.git
+    repoURL: https://github.com/argoproj/argocd-example-apps.git
     targetRevision: HEAD
-    path: .
+    path: helm-valueFiles-glob
     helm:
       valueFiles:
       - values/single-star/*.yaml

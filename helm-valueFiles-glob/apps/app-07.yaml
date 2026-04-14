@@ -4,9 +4,9 @@ metadata:
   name: glob-single-char-wildcard
 spec:
   source:
-    repoURL: https://github.com/nitishfy/argocd-helm-example.git
+    repoURL: https://github.com/argoproj/argocd-example-apps.git
     targetRevision: HEAD
-    path: .
+    path: helm-valueFiles-glob
     helm:
       valueFiles:
       - values/single-char-wildcard/e?.yaml # ea.yaml and eb.yaml (eab.yaml will be ignored)
