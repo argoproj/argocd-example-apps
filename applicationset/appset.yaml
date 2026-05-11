@@ -7,18 +7,18 @@ spec:
   generators:
   - list:
       elements:
-      - name: plain
+      - name: guestbook
         path: guestbook
-        namespace: guestbook-plain
-      - name: helm
+        namespace: appset-guestbook
+      - name: helm-guestbook
         path: helm-guestbook
-        namespace: guestbook-helm
-      - name: kustomize
+        namespace: appset-helm-guestbook
+      - name: kustomize-guestbook
         path: kustomize-guestbook
-        namespace: guestbook-kustomize
+        namespace: appset-kustomize-guestbook
   template:
     metadata:
-      name: 'example.guestbook-{{name}}'
+      name: 'appset-{{name}}'
       finalizers:
       - resources-finalizer.argocd.argoproj.io
     spec:

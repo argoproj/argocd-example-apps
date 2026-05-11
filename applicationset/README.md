@@ -6,11 +6,11 @@ A self-contained [ApplicationSet](https://argo-cd.readthedocs.io/en/stable/opera
 
 Applying [`appset.yaml`](appset.yaml) creates three Applications in the `argocd` namespace:
 
-| Application                  | Source path           | Target namespace      |
-| ---------------------------- | --------------------- | --------------------- |
-| `example.guestbook-plain`    | `guestbook/`          | `guestbook-plain`     |
-| `example.guestbook-helm`     | `helm-guestbook/`     | `guestbook-helm`      |
-| `example.guestbook-kustomize`| `kustomize-guestbook/`| `guestbook-kustomize` |
+| Application                  | Source path           | Target namespace            |
+| ---------------------------- | --------------------- | --------------------------- |
+| `appset-guestbook`           | `guestbook/`          | `appset-guestbook`          |
+| `appset-helm-guestbook`      | `helm-guestbook/`     | `appset-helm-guestbook`     |
+| `appset-kustomize-guestbook` | `kustomize-guestbook/`| `appset-kustomize-guestbook`|
 
 Each Application syncs automatically with `prune` and `selfHeal` enabled, and creates its target namespace on first sync.
 
@@ -20,7 +20,7 @@ Each Application syncs automatically with `prune` and `selfHeal` enabled, and cr
 kubectl apply -n argocd -f appset.yaml
 
 # Watch the three Applications appear and sync:
-kubectl get applications -n argocd | grep example.guestbook-
+kubectl get applications -n argocd | grep ^appset-
 ```
 
 ## How to extend
