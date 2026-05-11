@@ -8,15 +8,14 @@ One example per [ApplicationSet generator](https://argo-cd.readthedocs.io/en/sta
 | --------------------- | --------------- | -------------------------------------- |
 | [`list.yaml`](list.yaml)                 | List            | `appset-list-dev`, `appset-list-prod`  |
 | [`cluster.yaml`](cluster.yaml)           | Cluster         | `appset-cluster-in-cluster`            |
-| [`git.yaml`](git.yaml)                   | Git (3 docs)    | see below                              |
+| [`git.yaml`](git.yaml)                   | Git (2 docs)    | see below                              |
 | [`matrix.yaml`](matrix.yaml)             | Matrix          | `appset-matrix-dev-us`, `appset-matrix-prod-us` |
 | [`merge.yaml`](merge.yaml)               | Merge           | `appset-merge-dev`, `appset-merge-prod` |
 | [`pull-request.yaml`](pull-request.yaml) | Pull Request    | none (label filter matches nothing)    |
 
-`git.yaml` contains three ApplicationSets:
+`git.yaml` contains two ApplicationSets:
 
 - `git-directories` — scans `appset-examples/app-*` and generates `appset-git-dir-app-a` and `appset-git-dir-app-b`.
-- `git-files` — reads `appset-examples/configs/*.json` and generates `appset-git-file-dev` and `appset-git-file-prod`.
 - `git-broken` — **intentionally broken**: points at a git revision that doesn't exist. The generator fails at fetch, the ApplicationSet CR shows an `ErrorOccurred` condition, and no child Applications are generated. Demonstrates what generator-level failure looks like.
 
 ## Two failure modes on display
@@ -31,7 +30,6 @@ The reviewer feedback asked us to include unhealthy examples so users can see wh
 Lives at the repo root in [`../appset-examples/`](../appset-examples/) (outside this folder so ArgoCD's directory-source `recurse: false` default doesn't pick it up via the parent Application). Contents:
 
 - `app-a/configmap.yaml`, `app-b/configmap.yaml` — single ConfigMaps that the Git Directories generator finds
-- `configs/dev.json`, `configs/prod.json` — parameter files for the Git Files generator
 
 ## Not included
 

@@ -33,41 +33,6 @@ spec:
           prune: true
           selfHeal: true
 ---
-# Git generator — Files variant
-# Reads each matching JSON file in the repo and uses its keys as template parameters.
-apiVersion: argoproj.io/v1alpha1
-kind: ApplicationSet
-metadata:
-  name: git-files
-  namespace: argocd
-spec:
-  generators:
-  - git:
-      repoURL: https://github.com/argoproj/argocd-example-apps
-      revision: HEAD
-      files:
-      - path: appset-examples/configs/*.json
-  template:
-    metadata:
-      name: 'appset-git-file-{{env}}'
-      finalizers:
-      - resources-finalizer.argocd.argoproj.io
-    spec:
-      project: default
-      source:
-        repoURL: https://github.com/argoproj/argocd-example-apps
-        targetRevision: HEAD
-        path: appset-examples/app-a
-      destination:
-        server: https://kubernetes.default.svc
-        namespace: '{{namespace}}'
-      syncPolicy:
-        syncOptions:
-        - CreateNamespace=true
-        automated:
-          prune: true
-          selfHeal: true
----
 # Git generator — INTENTIONALLY BROKEN
 # Points at a revision that does not exist so the generator fails at fetch time.
 # Demonstrates what a generator-level failure looks like: the ApplicationSet CR
