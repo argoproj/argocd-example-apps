@@ -1,19 +1,19 @@
 # ApplicationSet example
 
-A self-contained [ApplicationSet](https://argo-cd.readthedocs.io/en/stable/operator-manual/applicationset/) using the **List generator** to fan out a single manifest into three Argo CD Applications — one per guestbook flavor in this repo.
+A self-contained [ApplicationSet](https://argo-cd.readthedocs.io/en/stable/operator-manual/applicationset/) using the **List generator** to deploy the same `guestbook/` manifest across three environments — the most common real-world ApplicationSet pattern.
 
 ## What it deploys
 
-Applying [`appset.yaml`](appset.yaml) creates three Applications in the `argocd` namespace:
+Applying [`appset.yaml`](appset.yaml) creates three Applications, all sourcing from `guestbook/`, each targeting its own environment namespace:
 
-| Application                  | Source path           | Target namespace            |
-| ---------------------------- | --------------------- | --------------------------- |
-| `appset-guestbook`           | `guestbook/`          | `appset-guestbook`          |
-| `appset-helm-guestbook`      | `helm-guestbook/`     | `appset-helm-guestbook`     |
-| `appset-kustomize-guestbook` | `kustomize-guestbook/`| `appset-kustomize-guestbook`|
+| Application               | Target namespace          |
+| ------------------------- | ------------------------- |
+| `appset-guestbook-dev`    | `appset-guestbook-dev`    |
+| `appset-guestbook-staging`| `appset-guestbook-staging`|
+| `appset-guestbook-prod`   | `appset-guestbook-prod`   |
 
 Each Application syncs automatically with `prune` and `selfHeal` enabled, and creates its target namespace on first sync.
 
 ## How to extend
 
-Add another entry under `spec.generators[0].list.elements` with a `name`, `path`, and `namespace` — the ApplicationSet controller will generate a matching Application automatically. Other generator types (Cluster, Git, Matrix, SCM Provider) are documented in the [ApplicationSet generators reference](https://argo-cd.readthedocs.io/en/stable/operator-manual/applicationset/Generators/).
+Add another entry under `spec.generators[0].list.elements` (e.g. `- env: qa`) — the ApplicationSet controller will generate a matching Application automatically. Other generator types (Cluster, Git, Matrix, SCM Provider) are documented in the [ApplicationSet generators reference](https://argo-cd.readthedocs.io/en/stable/operator-manual/applicationset/Generators/).

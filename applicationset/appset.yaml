@@ -1,24 +1,18 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: guestbooks
+  name: guestbook-envs
   namespace: argocd
 spec:
   generators:
   - list:
       elements:
-      - name: guestbook
-        path: guestbook
-        namespace: appset-guestbook
-      - name: helm-guestbook
-        path: helm-guestbook
-        namespace: appset-helm-guestbook
-      - name: kustomize-guestbook
-        path: kustomize-guestbook
-        namespace: appset-kustomize-guestbook
+      - env: dev
+      - env: staging
+      - env: prod
   template:
     metadata:
-      name: 'appset-{{name}}'
+      name: 'appset-guestbook-{{env}}'
       finalizers:
       - resources-finalizer.argocd.argoproj.io
     spec:
@@ -26,10 +20,10 @@ spec:
       source:
         repoURL: https://github.com/argoproj/argocd-example-apps
         targetRevision: HEAD
-        path: '{{path}}'
+        path: guestbook
       destination:
         server: https://kubernetes.default.svc
-        namespace: '{{namespace}}'
+        namespace: 'appset-guestbook-{{env}}'
       syncPolicy:
         syncOptions:
         - CreateNamespace=true
