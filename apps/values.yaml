@@ -3,8 +3,8 @@ config:
     destination:
       server: https://kubernetes.default.svc
     source:
-      repoURL: https://github.com/pjiang-dev/argocd-example-apps
-      targetRevision: pjiang/appset-demo
+      repoURL: https://github.com/argoproj/argocd-example-apps
+      targetRevision: master
 
 applications:
   - name: applicationset
