@@ -7,7 +7,7 @@ to explore Argo CD and GitOps!
 | Status                                                                    | Application                                        | Description                                                                                                              |
 | ------------------------------------------------------------------------- | -------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------ |
 | [![App Status][badge_sync_example_apps]][app_sync_example_apps]           | [apps](apps/)                                      | An app composed of other apps synchronized in [cd.apps.argoproj.io][app_sync_example_apps]                               |
-|                                                                           | [applicationset](applicationset/)                  | An ApplicationSet that fans out to multiple guestbook flavors using a List generator                                     |
+| [![App Status][badge_applicationset]][app_applicationset]                 | [applicationset](applicationset/)                  | An ApplicationSet that fans out to multiple guestbook flavors using a List generator                                     |
 | [![App Status][badge_blue_green]][app_blue_green]                         | [blue-green](blue-green/)                          | Demonstrates how to implement blue-green deployment using [Argo Rollouts](https://github.com/argoproj/argo-rollouts)     |
 | [![App Status][badge_guestbook]][app_guestbook]                           | [guestbook](guestbook/)                            | A hello word guestbook app as plain YAML                                                                                 |
 | [![App Status][badge_helm_dependency]][app_helm_dependency]               | [helm-dependency](helm-dependency/)                | Demonstrates how to customize an OTS (off-the-shelf) helm chart from an upstream repo                                    |
@@ -24,6 +24,8 @@ to explore Argo CD and GitOps!
 
 [app_sync_example_apps]: https://cd.apps.argoproj.io/applications/sync-example-apps
 [badge_sync_example_apps]: https://cd.apps.argoproj.io/api/badge?revision=true&name=sync-example-apps
+[app_applicationset]: https://cd.apps.argoproj.io/applications/example.applicationset
+[badge_applicationset]: https://cd.apps.argoproj.io/api/badge?revision=true&name=example.applicationset
 [app_blue_green]: https://cd.apps.argoproj.io/applications/example.blue-green
 [badge_blue_green]: https://cd.apps.argoproj.io/api/badge?revision=true&name=example.blue-green
 [app_guestbook]: https://cd.apps.argoproj.io/applications/example.guestbook
