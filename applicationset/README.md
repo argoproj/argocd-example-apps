@@ -14,15 +14,6 @@ Applying [`appset.yaml`](appset.yaml) creates three Applications in the `argocd`
 
 Each Application syncs automatically with `prune` and `selfHeal` enabled, and creates its target namespace on first sync.
 
-## Try it
-
-```sh
-kubectl apply -n argocd -f appset.yaml
-
-# Watch the three Applications appear and sync:
-kubectl get applications -n argocd | grep ^appset-
-```
-
 ## How to extend
 
 Add another entry under `spec.generators[0].list.elements` with a `name`, `path`, and `namespace` — the ApplicationSet controller will generate a matching Application automatically. Other generator types (Cluster, Git, Matrix, SCM Provider) are documented in the [ApplicationSet generators reference](https://argo-cd.readthedocs.io/en/stable/operator-manual/applicationset/Generators/).
