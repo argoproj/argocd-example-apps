@@ -20,8 +20,6 @@ One example per [ApplicationSet generator](https://argo-cd.readthedocs.io/en/sta
 
 ## Two failure modes on display
 
-The reviewer feedback asked us to include unhealthy examples so users can see what failure looks like. Two distinct modes are shown:
-
 - **Quiet zero-result** — `pull-request.yaml` runs successfully but its label filter matches no PRs, so it generates zero Applications. The ApplicationSet stays healthy.
 - **Loud generator failure** — `git-broken` in `git.yaml` can't fetch its source, so the ApplicationSet itself goes red with an error condition.
 
@@ -30,13 +28,3 @@ The reviewer feedback asked us to include unhealthy examples so users can see wh
 Lives at the repo root in [`../appset-examples/`](../appset-examples/) (outside this folder so ArgoCD's directory-source `recurse: false` default doesn't pick it up via the parent Application). Contents:
 
 - `app-a/configmap.yaml`, `app-b/configmap.yaml` — single ConfigMaps that the Git Directories generator finds
-
-## Not included
-
-Three ApplicationSet generators are omitted because they require infrastructure outside this repo's scope:
-
-- **SCM Provider** — needs a GitHub/GitLab API token Secret
-- **Cluster Decision Resource** — needs a custom CRD + extra cluster Secrets
-- **Plugin** — needs a separately-deployed RPC service
-
-See the [ApplicationSet generators reference](https://argo-cd.readthedocs.io/en/stable/operator-manual/applicationset/Generators/) for those.
