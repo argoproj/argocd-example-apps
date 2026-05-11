@@ -1,0 +1,38 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: guestbooks
+  namespace: argocd
+spec:
+  generators:
+  - list:
+      elements:
+      - name: plain
+        path: guestbook
+        namespace: guestbook-plain
+      - name: helm
+        path: helm-guestbook
+        namespace: guestbook-helm
+      - name: kustomize
+        path: kustomize-guestbook
+        namespace: guestbook-kustomize
+  template:
+    metadata:
+      name: 'example.guestbook-{{name}}'
+      finalizers:
+      - resources-finalizer.argocd.argoproj.io
+    spec:
+      project: default
+      source:
+        repoURL: https://github.com/argoproj/argocd-example-apps
+        targetRevision: HEAD
+        path: '{{path}}'
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: '{{namespace}}'
+      syncPolicy:
+        syncOptions:
+        - CreateNamespace=true
+        automated:
+          prune: true
+          selfHeal: true
