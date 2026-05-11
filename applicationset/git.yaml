@@ -1,0 +1,106 @@
+# Git generator — Directories variant
+# Scans the repo at the target revision and generates one Application per matching directory.
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: git-directories
+  namespace: argocd
+spec:
+  generators:
+  - git:
+      repoURL: https://github.com/argoproj/argocd-example-apps
+      revision: HEAD
+      directories:
+      - path: appset-examples/app-*
+  template:
+    metadata:
+      name: 'appset-git-dir-{{path.basename}}'
+      finalizers:
+      - resources-finalizer.argocd.argoproj.io
+    spec:
+      project: default
+      source:
+        repoURL: https://github.com/argoproj/argocd-example-apps
+        targetRevision: HEAD
+        path: '{{path}}'
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: 'appset-git-dir-{{path.basename}}'
+      syncPolicy:
+        syncOptions:
+        - CreateNamespace=true
+        automated:
+          prune: true
+          selfHeal: true
+---
+# Git generator — Files variant
+# Reads each matching JSON file in the repo and uses its keys as template parameters.
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: git-files
+  namespace: argocd
+spec:
+  generators:
+  - git:
+      repoURL: https://github.com/argoproj/argocd-example-apps
+      revision: HEAD
+      files:
+      - path: appset-examples/configs/*.json
+  template:
+    metadata:
+      name: 'appset-git-file-{{env}}'
+      finalizers:
+      - resources-finalizer.argocd.argoproj.io
+    spec:
+      project: default
+      source:
+        repoURL: https://github.com/argoproj/argocd-example-apps
+        targetRevision: HEAD
+        path: appset-examples/app-a
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: '{{namespace}}'
+      syncPolicy:
+        syncOptions:
+        - CreateNamespace=true
+        automated:
+          prune: true
+          selfHeal: true
+---
+# Git generator — INTENTIONALLY BROKEN
+# Points at a revision that does not exist so the generator fails at fetch time.
+# Demonstrates what a generator-level failure looks like: the ApplicationSet CR
+# shows an ErrorOccurred condition, no child Applications are generated.
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: git-broken
+  namespace: argocd
+spec:
+  generators:
+  - git:
+      repoURL: https://github.com/argoproj/argocd-example-apps
+      revision: this-branch-does-not-exist
+      directories:
+      - path: '*'
+  template:
+    metadata:
+      name: 'appset-git-broken-{{path.basename}}'
+      finalizers:
+      - resources-finalizer.argocd.argoproj.io
+    spec:
+      project: default
+      source:
+        repoURL: https://github.com/argoproj/argocd-example-apps
+        targetRevision: HEAD
+        path: '{{path}}'
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: 'appset-git-broken-{{path.basename}}'
+      syncPolicy:
+        syncOptions:
+        - CreateNamespace=true
+        automated:
+          prune: true
+          selfHeal: true

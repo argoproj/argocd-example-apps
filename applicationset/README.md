@@ -1,19 +1,44 @@
-# ApplicationSet example
+# ApplicationSet examples
 
-A self-contained [ApplicationSet](https://argo-cd.readthedocs.io/en/stable/operator-manual/applicationset/) using the **List generator** to deploy the same `guestbook/` manifest across three environments — the most common real-world ApplicationSet pattern.
+One example per [ApplicationSet generator](https://argo-cd.readthedocs.io/en/stable/operator-manual/applicationset/Generators/), kept minimal so each file teaches the *configuration shape* of its generator. Every generated Application deploys only a single ConfigMap — no Deployments, no Services — so the demo footprint stays tiny.
 
-## What it deploys
+## Files
 
-Applying [`appset.yaml`](appset.yaml) creates three Applications, all sourcing from `guestbook/`, each targeting its own environment namespace:
+| File                  | Generator       | Generates                              |
+| --------------------- | --------------- | -------------------------------------- |
+| [`list.yaml`](list.yaml)                 | List            | `appset-list-dev`, `appset-list-prod`  |
+| [`cluster.yaml`](cluster.yaml)           | Cluster         | `appset-cluster-in-cluster`            |
+| [`git.yaml`](git.yaml)                   | Git (3 docs)    | see below                              |
+| [`matrix.yaml`](matrix.yaml)             | Matrix          | `appset-matrix-dev-us`, `appset-matrix-prod-us` |
+| [`merge.yaml`](merge.yaml)               | Merge           | `appset-merge-dev`, `appset-merge-prod` |
+| [`pull-request.yaml`](pull-request.yaml) | Pull Request    | none (label filter matches nothing)    |
 
-| Application               | Target namespace          |
-| ------------------------- | ------------------------- |
-| `appset-guestbook-dev`    | `appset-guestbook-dev`    |
-| `appset-guestbook-staging`| `appset-guestbook-staging`|
-| `appset-guestbook-prod`   | `appset-guestbook-prod`   |
+`git.yaml` contains three ApplicationSets:
 
-Each Application syncs automatically with `prune` and `selfHeal` enabled, and creates its target namespace on first sync.
+- `git-directories` — scans `appset-examples/app-*` and generates `appset-git-dir-app-a` and `appset-git-dir-app-b`.
+- `git-files` — reads `appset-examples/configs/*.json` and generates `appset-git-file-dev` and `appset-git-file-prod`.
+- `git-broken` — **intentionally broken**: points at a git revision that doesn't exist. The generator fails at fetch, the ApplicationSet CR shows an `ErrorOccurred` condition, and no child Applications are generated. Demonstrates what generator-level failure looks like.
 
-## How to extend
+## Two failure modes on display
 
-Add another entry under `spec.generators[0].list.elements` (e.g. `- env: qa`) — the ApplicationSet controller will generate a matching Application automatically. Other generator types (Cluster, Git, Matrix, SCM Provider) are documented in the [ApplicationSet generators reference](https://argo-cd.readthedocs.io/en/stable/operator-manual/applicationset/Generators/).
+The reviewer feedback asked us to include unhealthy examples so users can see what failure looks like. Two distinct modes are shown:
+
+- **Quiet zero-result** — `pull-request.yaml` runs successfully but its label filter matches no PRs, so it generates zero Applications. The ApplicationSet stays healthy.
+- **Loud generator failure** — `git-broken` in `git.yaml` can't fetch its source, so the ApplicationSet itself goes red with an error condition.
+
+## Source content scanned by Git generators
+
+Lives at the repo root in [`../appset-examples/`](../appset-examples/) (outside this folder so ArgoCD's directory-source `recurse: false` default doesn't pick it up via the parent Application). Contents:
+
+- `app-a/configmap.yaml`, `app-b/configmap.yaml` — single ConfigMaps that the Git Directories generator finds
+- `configs/dev.json`, `configs/prod.json` — parameter files for the Git Files generator
+
+## Not included
+
+Three ApplicationSet generators are omitted because they require infrastructure outside this repo's scope:
+
+- **SCM Provider** — needs a GitHub/GitLab API token Secret
+- **Cluster Decision Resource** — needs a custom CRD + extra cluster Secrets
+- **Plugin** — needs a separately-deployed RPC service
+
+See the [ApplicationSet generators reference](https://argo-cd.readthedocs.io/en/stable/operator-manual/applicationset/Generators/) for those.
