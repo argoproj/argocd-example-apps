@@ -12,8 +12,6 @@ spec:
   template:
     metadata:
       name: 'appset-list-{{env}}'
-      finalizers:
-      - resources-finalizer.argocd.argoproj.io
     spec:
       project: default
       source:

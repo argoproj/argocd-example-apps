@@ -17,8 +17,6 @@ spec:
   template:
     metadata:
       name: 'appset-matrix-{{env}}-{{region}}'
-      finalizers:
-      - resources-finalizer.argocd.argoproj.io
     spec:
       project: default
       source:

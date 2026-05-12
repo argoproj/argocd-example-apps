@@ -9,8 +9,6 @@ spec:
   template:
     metadata:
       name: 'appset-cluster-{{name}}'
-      finalizers:
-      - resources-finalizer.argocd.argoproj.io
     spec:
       project: default
       source:

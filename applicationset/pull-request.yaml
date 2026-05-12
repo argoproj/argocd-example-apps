@@ -26,8 +26,6 @@ spec:
   template:
     metadata:
       name: 'appset-pr-{{number}}'
-      finalizers:
-      - resources-finalizer.argocd.argoproj.io
     spec:
       project: default
       source:

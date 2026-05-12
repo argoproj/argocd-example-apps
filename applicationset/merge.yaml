@@ -12,9 +12,9 @@ spec:
       - list:
           elements:
           - env: dev
-            region: us
+            region: us-east
           - env: prod
-            region: us
+            region: us-west
       - list:
           elements:
           - env: dev
@@ -24,8 +24,9 @@ spec:
   template:
     metadata:
       name: 'appset-merge-{{env}}'
-      finalizers:
-      - resources-finalizer.argocd.argoproj.io
+      annotations:
+        appset.demo/region: '{{region}}'
+        appset.demo/tier: '{{tier}}'
     spec:
       project: default
       source:
