@@ -1,0 +1,75 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: progressive-sync-test
+  namespace: openshift-gitops
+spec:
+  generators:
+    - list:
+        elements:
+          # Wave 0 - Infrastructure/Dependencies
+          - name: wave0-dev-guestbook
+            wave: "0"
+            path: guestbook
+            namespace: wave0
+          - name: wave0-dev-helm-guestbook
+            wave: "0"
+            path: helm-guestbook
+            namespace: wave0
+          # Wave 1 - Core Services
+          - name: wave1-staging-guestbook
+            wave: "1"
+            path: guestbook
+            namespace: wave1
+          - name: wave1-staging-helm-guestbook
+            wave: "1"
+            path: helm-guestbook
+            namespace: wave1
+          # Wave 2 - Frontend/External Services
+          - name: wave2-prod-guestbook
+            wave: "2"
+            path: guestbook
+            namespace: wave2
+          - name: wave2-prod-helm-guestbook
+            wave: "2"
+            path: helm-guestbook
+            namespace: wave2
+  template:
+    metadata:
+      name: '{{name}}'
+      labels:
+        test-scenario: progressive-sync
+        sync-step: '{{wave}}'
+    spec:
+      project: default
+      source:
+        repoURL: https://github.com/argoproj/argocd-example-apps
+        targetRevision: HEAD
+        path: '{{path}}'
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: '{{namespace}}'
+        syncPolicy:
+          automated:
+            prune: true
+            selfHeal: false  # Disable selfHeal to make race conditions more obvious
+          syncOptions:
+            - CreateNamespace=true
+            - ApplyOutOfSyncOnly=true
+      # Progressive Sync Policy Configuration
+      strategy:
+        type: RollingSync
+        rollingSync:
+          steps:
+            - matchExpressions:
+                - key: sync-step
+                  operator: In
+                  values: [ "0" ]
+            - matchExpressions:
+                - key: sync-step
+                  operator: In
+                  values: [ "1" ]
+            - matchExpressions:
+                - key: sync-step
+                  operator: In
+                  values: [ "2" ]

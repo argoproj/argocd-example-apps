@@ -18,6 +18,10 @@ One example per [ApplicationSet generator](https://argo-cd.readthedocs.io/en/sta
 - `git-directories` — scans `appset-examples/app-*` and generates `appset-git-dir-app-a` and `appset-git-dir-app-b`.
 - `git-broken` — **intentionally broken**: points at a git revision that doesn't exist. The generator fails at fetch, the ApplicationSet CR shows an `ErrorOccurred` condition, and no child Applications are generated. Demonstrates what generator-level failure looks like.
 
+`progressive-sync.yaml` contains an ApplicationSet with `strategy` set as `RollingSync`, and expects [progressive sync enabled] (https://argo-cd.readthedocs.io/en/stable/operator-manual/applicationset/Progressive-Syncs/#enabling-progressive-syncs) for ApplicationSet controller. Creates:
+- 6 applications spread across 3 steps. Each steps comprises of 2 applications - `guestbook` and `helm-guestbook`, and all applications in a step should be completed, and healthy before progressing to next step.
+- step0 applications: `wave0-dev-guestbook` and `wave0-dev-helm-guestbook`, step1 applications: `wave1-staging-guestbook` and `wave1-staging-helm-guestbook`, step2 applications: `wave2-prod-guestbook` and `wave2-prod-helm-guestbook`
+
 ## Two failure modes on display
 
 - **Quiet zero-result** — `pull-request.yaml` runs successfully but its label filter matches no PRs, so it generates zero Applications. The ApplicationSet stays healthy.
