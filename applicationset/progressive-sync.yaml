@@ -1,0 +1,59 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: progressive-sync
+  namespace: argocd
+spec:
+  generators:
+    - matrix:
+        generators:
+          - list:
+              elements:
+                - env: dev
+                - env: qa
+                - env: prod
+          - list:
+              elements:
+                - region: us-east
+                - region: us-west
+  strategy:
+    type: RollingSync
+    deletionOrder: Reverse
+    rollingSync:
+      steps:
+        - matchExpressions:
+            - key: env
+              operator: In
+              values: [dev]
+          # maxUpdate: 100% (implicit default - all dev apps sync simultaneously)
+        - matchExpressions:
+            - key: env
+              operator: In
+              values: [qa]
+          maxUpdate: 0 # Manual gate - requires manual sync via CLI or UI
+        - matchExpressions:
+            - key: env
+              operator: In
+              values: [prod]
+          maxUpdate: 10% # Gradual rollout - with 2 apps, syncs 1 at a time
+  template:
+    metadata:
+      name: 'appset-progressive-{{env}}-{{region}}'
+      labels:
+        env: '{{env}}'
+        region: '{{region}}'
+    spec:
+      project: default
+      source:
+        repoURL: https://github.com/argoproj/argocd-example-apps
+        targetRevision: HEAD
+        path: appset-examples/app-a
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: 'appset-progressive-{{env}}-{{region}}'
+      syncPolicy:
+        syncOptions:
+          - CreateNamespace=true
+        automated:
+          enabled: false
+        # NOTE: automated sync is disabled - RollingSync manages sync operations

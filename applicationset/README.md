@@ -12,11 +12,29 @@ One example per [ApplicationSet generator](https://argo-cd.readthedocs.io/en/sta
 | [`matrix.yaml`](matrix.yaml)             | Matrix          | `appset-matrix-dev-us`, `appset-matrix-prod-us` |
 | [`merge.yaml`](merge.yaml)               | Merge           | `appset-merge-dev`, `appset-merge-prod` |
 | [`pull-request.yaml`](pull-request.yaml) | Pull Request    | none (label filter matches nothing)    |
+| [`progressive-sync.yaml`](progressive-sync.yaml) | Matrix + RollingSync | see below                     |
 
 `git.yaml` contains two ApplicationSets:
 
 - `git-directories` — scans `appset-examples/app-*` and generates `appset-git-dir-app-a` and `appset-git-dir-app-b`.
 - `git-broken` — **intentionally broken**: points at a git revision that doesn't exist. The generator fails at fetch, the ApplicationSet CR shows an `ErrorOccurred` condition, and no child Applications are generated. Demonstrates what generator-level failure looks like.
+
+`progressive-sync.yaml` generates 6 Applications (2 per environment) with staged rollout:
+
+- `appset-progressive-dev-us-east`, `appset-progressive-dev-us-west` — sync first, all at once
+- `appset-progressive-qa-us-east`, `appset-progressive-qa-us-west` — manual gate (requires manual sync)
+- `appset-progressive-prod-us-east`, `appset-progressive-prod-us-west` — gradual rollout (1 at a time)
+
+## Progressive Sync behavior
+
+`progressive-sync.yaml` demonstrates the RollingSync strategy with reverse deletion order:
+
+- **Stage 1 (dev)**: Both dev apps sync simultaneously when changes are pushed
+- **Stage 2 (qa)**: QA apps require manual sync via CLI (`argocd app sync`) or UI — acts as a manual approval gate
+- **Stage 3 (prod)**: Prod apps roll out gradually (10% maxUpdate = 1 app at a time)
+- **Deletion**: When apps are removed, they're deleted in reverse order (prod → qa → dev)
+
+**Requirements**: Progressive sync is a beta feature and must be enabled with `--enable-progressive-syncs` flag on the ApplicationSet controller.
 
 ## Two failure modes on display
 
