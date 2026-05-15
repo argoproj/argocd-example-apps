@@ -5,22 +5,22 @@ metadata:
   namespace: argocd
 spec:
   generators:
-  - merge:
-      mergeKeys:
-      - env
-      generators:
-      - list:
-          elements:
-          - env: dev
-            region: us-east
-          - env: prod
-            region: us-west
-      - list:
-          elements:
-          - env: dev
-            tier: low
-          - env: prod
-            tier: high
+    - merge:
+        mergeKeys:
+          - env
+        generators:
+          - list:
+              elements:
+                - env: dev
+                  region: us-east
+                - env: prod
+                  region: us-west
+          - list:
+              elements:
+                - env: dev
+                  tier: low
+                - env: prod
+                  tier: high
   template:
     metadata:
       name: 'appset-merge-{{env}}'
@@ -32,13 +32,13 @@ spec:
       source:
         repoURL: https://github.com/argoproj/argocd-example-apps
         targetRevision: HEAD
-        path: appset-examples/app-a
+        path: lightweight/app-a
       destination:
         server: https://kubernetes.default.svc
         namespace: 'appset-merge-{{env}}'
       syncPolicy:
         syncOptions:
-        - CreateNamespace=true
+          - CreateNamespace=true
         automated:
           prune: true
           selfHeal: true

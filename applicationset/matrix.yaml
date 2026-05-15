@@ -5,15 +5,15 @@ metadata:
   namespace: argocd
 spec:
   generators:
-  - matrix:
-      generators:
-      - list:
-          elements:
-          - env: dev
-          - env: prod
-      - list:
-          elements:
-          - region: us
+    - matrix:
+        generators:
+          - list:
+              elements:
+                - env: dev
+                - env: prod
+          - list:
+              elements:
+                - region: us
   template:
     metadata:
       name: 'appset-matrix-{{env}}-{{region}}'
@@ -22,13 +22,13 @@ spec:
       source:
         repoURL: https://github.com/argoproj/argocd-example-apps
         targetRevision: HEAD
-        path: appset-examples/app-a
+        path: lightweight/app-a
       destination:
         server: https://kubernetes.default.svc
         namespace: 'appset-matrix-{{env}}-{{region}}'
       syncPolicy:
         syncOptions:
-        - CreateNamespace=true
+          - CreateNamespace=true
         automated:
           prune: true
           selfHeal: true

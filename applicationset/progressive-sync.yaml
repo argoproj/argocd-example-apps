@@ -47,7 +47,7 @@ spec:
       source:
         repoURL: https://github.com/argoproj/argocd-example-apps
         targetRevision: HEAD
-        path: appset-examples/app-a
+        path: lightweight/app-a
       destination:
         server: https://kubernetes.default.svc
         namespace: 'appset-progressive-{{env}}-{{region}}'

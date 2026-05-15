@@ -5,7 +5,7 @@ metadata:
   namespace: argocd
 spec:
   generators:
-  - clusters: {}
+    - clusters: {}
   template:
     metadata:
       name: 'appset-cluster-{{name}}'
@@ -14,13 +14,13 @@ spec:
       source:
         repoURL: https://github.com/argoproj/argocd-example-apps
         targetRevision: HEAD
-        path: appset-examples/app-a
+        path: lightweight/app-a
       destination:
         server: '{{server}}'
         namespace: 'appset-cluster-{{name}}'
       syncPolicy:
         syncOptions:
-        - CreateNamespace=true
+          - CreateNamespace=true
         automated:
           prune: true
           selfHeal: true

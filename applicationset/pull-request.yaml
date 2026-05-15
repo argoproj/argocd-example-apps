@@ -16,13 +16,13 @@ metadata:
   namespace: argocd
 spec:
   generators:
-  - pullRequest:
-      github:
-        owner: argoproj
-        repo: argocd-example-apps
-        labels:
-        - argocd-applicationset-demo
-      requeueAfterSeconds: 1800
+    - pullRequest:
+        github:
+          owner: argoproj
+          repo: argocd-example-apps
+          labels:
+            - argocd-applicationset-demo
+        requeueAfterSeconds: 1800
   template:
     metadata:
       name: 'appset-pr-{{number}}'
@@ -31,13 +31,13 @@ spec:
       source:
         repoURL: https://github.com/argoproj/argocd-example-apps
         targetRevision: '{{head_sha}}'
-        path: appset-examples/app-a
+        path: lightweight/app-a
       destination:
         server: https://kubernetes.default.svc
         namespace: 'appset-pr-{{number}}'
       syncPolicy:
         syncOptions:
-        - CreateNamespace=true
+          - CreateNamespace=true
         automated:
           prune: true
           selfHeal: true

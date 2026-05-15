@@ -5,10 +5,10 @@ metadata:
   namespace: argocd
 spec:
   generators:
-  - list:
-      elements:
-      - env: dev
-      - env: prod
+    - list:
+        elements:
+          - env: dev
+          - env: prod
   template:
     metadata:
       name: 'appset-list-{{env}}'
@@ -17,13 +17,13 @@ spec:
       source:
         repoURL: https://github.com/argoproj/argocd-example-apps
         targetRevision: HEAD
-        path: appset-examples/app-a
+        path: lightweight/app-a
       destination:
         server: https://kubernetes.default.svc
         namespace: 'appset-list-{{env}}'
       syncPolicy:
         syncOptions:
-        - CreateNamespace=true
+          - CreateNamespace=true
         automated:
           prune: true
           selfHeal: true
