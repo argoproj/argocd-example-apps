@@ -1,75 +1,59 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: progressive-sync-test
-  namespace: openshift-gitops
+  name: progressive-sync
+  namespace: argocd
 spec:
   generators:
-    - list:
-        elements:
-          # Wave 0 - Infrastructure/Dependencies
-          - name: wave0-dev-guestbook
-            wave: "0"
-            path: guestbook
-            namespace: wave0
-          - name: wave0-dev-helm-guestbook
-            wave: "0"
-            path: helm-guestbook
-            namespace: wave0
-          # Wave 1 - Core Services
-          - name: wave1-staging-guestbook
-            wave: "1"
-            path: guestbook
-            namespace: wave1
-          - name: wave1-staging-helm-guestbook
-            wave: "1"
-            path: helm-guestbook
-            namespace: wave1
-          # Wave 2 - Frontend/External Services
-          - name: wave2-prod-guestbook
-            wave: "2"
-            path: guestbook
-            namespace: wave2
-          - name: wave2-prod-helm-guestbook
-            wave: "2"
-            path: helm-guestbook
-            namespace: wave2
+    - matrix:
+        generators:
+          - list:
+              elements:
+                - env: dev
+                - env: qa
+                - env: prod
+          - list:
+              elements:
+                - region: us-east
+                - region: us-west
+  strategy:
+    type: RollingSync
+    deletionOrder: Reverse
+    rollingSync:
+      steps:
+        - matchExpressions:
+            - key: env
+              operator: In
+              values: [dev]
+          # maxUpdate: 100% (implicit default - all dev apps sync simultaneously)
+        - matchExpressions:
+            - key: env
+              operator: In
+              values: [qa]
+          maxUpdate: 0 # Manual gate - requires manual sync via CLI or UI
+        - matchExpressions:
+            - key: env
+              operator: In
+              values: [prod]
+          maxUpdate: 10% # Gradual rollout - with 2 apps, syncs 1 at a time
   template:
     metadata:
-      name: '{{name}}'
+      name: 'appset-progressive-{{env}}-{{region}}'
       labels:
-        test-scenario: progressive-sync
-        sync-step: '{{wave}}'
+        env: '{{env}}'
+        region: '{{region}}'
     spec:
       project: default
       source:
         repoURL: https://github.com/argoproj/argocd-example-apps
         targetRevision: HEAD
-        path: '{{path}}'
+        path: appset-examples/app-a
       destination:
         server: https://kubernetes.default.svc
-        namespace: '{{namespace}}'
-        syncPolicy:
-          automated:
-            prune: true
-            selfHeal: false  # Disable selfHeal to make race conditions more obvious
-          syncOptions:
-            - CreateNamespace=true
-            - ApplyOutOfSyncOnly=true
-      # Progressive Sync Policy Configuration
-      strategy:
-        type: RollingSync
-        rollingSync:
-          steps:
-            - matchExpressions:
-                - key: sync-step
-                  operator: In
-                  values: [ "0" ]
-            - matchExpressions:
-                - key: sync-step
-                  operator: In
-                  values: [ "1" ]
-            - matchExpressions:
-                - key: sync-step
-                  operator: In
-                  values: [ "2" ]
+        namespace: 'appset-progressive-{{env}}-{{region}}'
+      syncPolicy:
+        syncOptions:
+          - CreateNamespace=true
+        automated:
+          enabled: false
+        # NOTE: automated sync is disabled - RollingSync manages sync operations
