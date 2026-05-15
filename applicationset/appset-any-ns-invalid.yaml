@@ -1,0 +1,28 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: invalid
+  namespace: team-platform
+spec:
+  generators:
+    - list:
+        elements:
+          - service: invalid
+  template:
+    metadata:
+      name: '{{service}}'
+    spec:
+      project: team-backend # This example tries to generate an Application to a namespace that is not allowed
+      source:
+        repoURL: https://github.com/argoproj/argocd-example-apps
+        targetRevision: HEAD
+        path: lightweight/app-b
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: 'team-backend-{{service}}'
+      syncPolicy:
+        syncOptions:
+          - CreateNamespace=true
+        automated:
+          prune: true
+          selfHeal: true

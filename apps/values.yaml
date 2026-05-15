@@ -8,7 +8,8 @@ config:
 
 applications:
   - name: applicationset
-    namespace: argocd
+    destination:
+      namespace: argocd
   - name: blue-green
     tool:
       helm:
@@ -44,3 +45,27 @@ applications:
   - name: pre-post-sync
   - name: sock-shop
   - name: sync-waves
+  - name: app-any-ns
+    namespace: team-frontend
+    project: team-frontend
+    path: lightweight/app-a
+    destination:
+      namespace: team-frontend-apps
+  - name: app-any-ns
+    namespace: team-backend
+    project: team-backend
+    path: lightweight/app-a
+    destination:
+      namespace: team-backend-apps
+  - name: app-any-ns
+    namespace: team-platform
+    project: team-platform
+    path: lightweight/app-a
+    destination:
+      namespace: team-platform-apps
+  - name: app-any-ns-invalid
+    namespace: team-platform
+    project: team-backend
+    path: lightweight/app-a
+    destination:
+      namespace: team-backend-apps

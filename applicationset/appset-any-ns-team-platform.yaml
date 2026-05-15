@@ -1,0 +1,30 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: services
+  namespace: team-platform
+spec:
+  generators:
+    - list:
+        elements:
+          - service: api
+          - service: worker
+  template:
+    metadata:
+      name: '{{service}}'
+      # Generated Applications will be in team-platform namespace (same as ApplicationSet)
+    spec:
+      project: team-platform
+      source:
+        repoURL: https://github.com/argoproj/argocd-example-apps
+        targetRevision: HEAD
+        path: lightweight/app-b
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: 'team-platform-{{service}}'
+      syncPolicy:
+        syncOptions:
+          - CreateNamespace=true
+        automated:
+          prune: true
+          selfHeal: true

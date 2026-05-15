@@ -4,14 +4,14 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: {{ printf "example.%s" .name | quote }}
-  namespace: argocd
+  namespace: {{ .namespace | default "argocd" }}
   finalizers:
   - resources-finalizer.argocd.argoproj.io
 spec:
   destination:
-    namespace: {{ .namespace | default .name | quote }}
+    namespace: {{ .destination.namespace | default .name | quote }}
     server: {{ $config.spec.destination.server | quote }}
-  project: default
+  project: {{ .project | default "default" }}
   source:
     path: {{ .path | default .name | quote }}
     repoURL: {{ $config.spec.source.repoURL }}
