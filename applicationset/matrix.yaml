@@ -1,0 +1,34 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: matrix
+  namespace: argocd
+spec:
+  generators:
+  - matrix:
+      generators:
+      - list:
+          elements:
+          - env: dev
+          - env: prod
+      - list:
+          elements:
+          - region: us
+  template:
+    metadata:
+      name: 'appset-matrix-{{env}}-{{region}}'
+    spec:
+      project: default
+      source:
+        repoURL: https://github.com/argoproj/argocd-example-apps
+        targetRevision: HEAD
+        path: appset-examples/app-a
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: 'appset-matrix-{{env}}-{{region}}'
+      syncPolicy:
+        syncOptions:
+        - CreateNamespace=true
+        automated:
+          prune: true
+          selfHeal: true

@@ -1,12 +1,13 @@
-# ArgoCD Example Apps
+# Argo CD Example Apps
 
-This repository contains example applications for demoing ArgoCD functionality. Feel free
+This repository contains example applications for demoing Argo CD functionality. Feel free
 to register this repository to your ArgoCD instance, or fork this repo and push your own commits
-to explore ArgoCD and GitOps!
+to explore Argo CD and GitOps!
 
 | Status                                                                    | Application                                        | Description                                                                                                              |
 | ------------------------------------------------------------------------- | -------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------ |
 | [![App Status][badge_sync_example_apps]][app_sync_example_apps]           | [apps](apps/)                                      | An app composed of other apps synchronized in [cd.apps.argoproj.io][app_sync_example_apps]                               |
+| [![App Status][badge_applicationset]][app_applicationset]                 | [applicationset](applicationset/)                  | One example per ApplicationSet generator type (List, Cluster, Git, Matrix, Merge, Pull Request), including an intentionally-broken Git generator |
 | [![App Status][badge_blue_green]][app_blue_green]                         | [blue-green](blue-green/)                          | Demonstrates how to implement blue-green deployment using [Argo Rollouts](https://github.com/argoproj/argo-rollouts)     |
 | [![App Status][badge_guestbook]][app_guestbook]                           | [guestbook](guestbook/)                            | A hello word guestbook app as plain YAML                                                                                 |
 | [![App Status][badge_helm_dependency]][app_helm_dependency]               | [helm-dependency](helm-dependency/)                | Demonstrates how to customize an OTS (off-the-shelf) helm chart from an upstream repo                                    |
@@ -23,6 +24,8 @@ to explore ArgoCD and GitOps!
 
 [app_sync_example_apps]: https://cd.apps.argoproj.io/applications/sync-example-apps
 [badge_sync_example_apps]: https://cd.apps.argoproj.io/api/badge?revision=true&name=sync-example-apps
+[app_applicationset]: https://cd.apps.argoproj.io/applications/example.applicationset
+[badge_applicationset]: https://cd.apps.argoproj.io/api/badge?revision=true&name=example.applicationset
 [app_blue_green]: https://cd.apps.argoproj.io/applications/example.blue-green
 [badge_blue_green]: https://cd.apps.argoproj.io/api/badge?revision=true&name=example.blue-green
 [app_guestbook]: https://cd.apps.argoproj.io/applications/example.guestbook

@@ -6,8 +6,8 @@ metadata:
   labels:
     name: front-end
   annotations:
-    ingress.kubernetes.io/proxy-body-size: 100M
-    ingress.kubernetes.io/app-root: '/'
+    nginx.ingress.kubernetes.io/proxy-body-size: 100M
+    nginx.ingress.kubernetes.io/app-root: '/'
 spec:
   ingressClassName: nginx
   rules:

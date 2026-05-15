@@ -1,0 +1,43 @@
+# Pull Request generator
+# Queries the GitHub API for open PRs against argoproj/argocd-example-apps.
+# Filtered by a label that no PR carries, so this generator returns zero matches
+# and generates zero Applications. Demonstrates the "quiet zero-result" case:
+# the ApplicationSet itself stays healthy with an empty result.
+#
+# Note: runs anonymously against the GitHub API (no tokenRef). This is fine for
+# a low-traffic demo but is rate-limited to ~60 req/hour per source IP. For
+# production use, configure a tokenRef pointing at a Secret containing a GitHub
+# personal access token. See:
+# https://argo-cd.readthedocs.io/en/stable/operator-manual/applicationset/Generators-Pull-Request/
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: pull-request
+  namespace: argocd
+spec:
+  generators:
+  - pullRequest:
+      github:
+        owner: argoproj
+        repo: argocd-example-apps
+        labels:
+        - argocd-applicationset-demo
+      requeueAfterSeconds: 1800
+  template:
+    metadata:
+      name: 'appset-pr-{{number}}'
+    spec:
+      project: default
+      source:
+        repoURL: https://github.com/argoproj/argocd-example-apps
+        targetRevision: '{{head_sha}}'
+        path: appset-examples/app-a
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: 'appset-pr-{{number}}'
+      syncPolicy:
+        syncOptions:
+        - CreateNamespace=true
+        automated:
+          prune: true
+          selfHeal: true
