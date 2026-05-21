@@ -1,0 +1,65 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: apps-rolling-sync
+  namespace: argocd
+spec:
+  goTemplate: true
+  goTemplateOptions: [ "missingkey=error" ]
+  generators:
+  - list:
+      elements:
+      - name: helm-guestbook
+        env: dev
+      - name: helm-hooks
+        env: dev
+      - name: kustomize-guestbook
+        env: qa
+      - name: sync-waves
+        env: qa
+      - name: guestbook
+        env: prod
+      - name: sock-shop
+        env: prod
+  strategy:
+    type: RollingSync
+    rollingSync:
+      steps:
+      - matchExpressions:
+        - key: env
+          operator: In
+          values:
+          - dev
+        maxUpdate: 1
+      - matchExpressions:
+        - key: env
+          operator: In
+          values:
+          - qa
+        maxUpdate: 2
+      - matchExpressions:
+        - key: env
+          operator: In
+          values:
+          - prod
+        maxUpdate: 1
+  template:
+    metadata:
+      name: '{{.name}}-{{.env}}'
+      labels:
+        env: '{{.env}}'
+    spec:
+      project: default
+      source:
+        path: '{{.name}}'
+        repoURL: https://github.com/argoproj/argocd-example-apps
+        targetRevision: HEAD
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: '{{.name}}'
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+        - RollingSync=true

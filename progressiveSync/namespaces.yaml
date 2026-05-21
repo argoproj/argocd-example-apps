@@ -1,0 +1,48 @@
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: helm-guestbook
+  labels:
+    app.kubernetes.io/name: helm-guestbook
+    app.kubernetes.io/part-of: argocd-example-apps
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: helm-hooks
+  labels:
+    app.kubernetes.io/name: helm-hooks
+    app.kubernetes.io/part-of: argocd-example-apps
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: kustomize-guestbook
+  labels:
+    app.kubernetes.io/name: kustomize-guestbook
+    app.kubernetes.io/part-of: argocd-example-apps
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: sync-waves
+  labels:
+    app.kubernetes.io/name: sync-waves
+    app.kubernetes.io/part-of: argocd-example-apps
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: guestbook
+  labels:
+    app.kubernetes.io/name: guestbook
+    app.kubernetes.io/part-of: argocd-example-apps
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: sock-shop
+  labels:
+    app.kubernetes.io/name: sock-shop
+    app.kubernetes.io/part-of: argocd-example-apps
