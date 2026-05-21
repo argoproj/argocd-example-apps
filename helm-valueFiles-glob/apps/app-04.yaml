@@ -1,0 +1,16 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: glob-multi-key
+spec:
+  source:
+    repoURL: https://github.com/argoproj/argocd-example-apps.git
+    targetRevision: HEAD
+    path: helm-valueFiles-glob
+    helm:
+      valueFiles:
+      - values/multi-key/*.yaml # a.yaml, b.yaml will be applied in that order
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: default
+  project: default

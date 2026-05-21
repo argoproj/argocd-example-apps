@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: my-config
+data:
+  foo: {{ .Values.foo }}
+  bar: {{ .Values.bar }}
