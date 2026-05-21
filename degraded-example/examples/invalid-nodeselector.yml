@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: degraded-pod
+spec:
+  nodeSelector:
+    invalid-key: invalid-value # Node selector does not match any node
+  containers:
+  - name: main-container
+    image: nginx:latest

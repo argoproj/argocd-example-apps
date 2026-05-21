@@ -1,0 +1,18 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: invalid-statefulset
+spec:
+  serviceName: missing-headless-service # Service does not exist
+  replicas: 1
+  selector:
+    matchLabels:
+      app: invalid-statefulset
+  template:
+    metadata:
+      labels:
+        app: invalid-statefulset
+    spec:
+      containers:
+      - name: main-container
+        image: nginx:latest

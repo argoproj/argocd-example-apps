@@ -1,0 +1,23 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: conflicting-rules-ingress
+spec:
+  rules:
+  - host: example.com
+    http:
+      paths:
+      - path: /path
+        pathType: Prefix
+        backend:
+          service:
+            name: service-a
+            port:
+              number: 80
+      - path: /path # Duplicate path causing conflict
+        pathType: Prefix
+        backend:
+          service:
+            name: service-b
+            port:
+              number: 80

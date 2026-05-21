@@ -1,0 +1,17 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: zero-replicas-replicaset
+spec:
+  replicas: 0 # No pods will be created
+  selector:
+    matchLabels:
+      app: zero-replicas-replicaset
+  template:
+    metadata:
+      labels:
+        app: zero-replicas-replicaset
+    spec:
+      containers:
+      - name: main-container
+        image: nginx:latest

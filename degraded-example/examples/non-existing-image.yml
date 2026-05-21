@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: degraded-app
+  labels:
+    app: degraded-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: degraded-app
+  template:
+    metadata:
+      labels:
+        app: degraded-app
+    spec:
+      containers:
+      - name: main-container
+        image: non-existent-image:latest # Non-existent image to cause ImagePullBackOff
+        ports:
+        - containerPort: 8080

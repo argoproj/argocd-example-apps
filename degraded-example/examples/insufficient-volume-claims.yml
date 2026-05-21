@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: insufficient-pvc-statefulset
+spec:
+  serviceName: some-service
+  replicas: 3
+  selector:
+    matchLabels:
+      app: insufficient-pvc-statefulset
+  template:
+    metadata:
+      labels:
+        app: insufficient-pvc-statefulset
+    spec:
+      containers:
+      - name: main-container
+        image: nginx:latest
+        volumeMounts:
+        - name: data
+          mountPath: /data
+  volumeClaimTemplates:
+  - metadata:
+      name: data
+    spec:
+      accessModes: ["ReadWriteOnce"]
+      resources:
+        requests:
+          storage: 1Gi
+      storageClassName: non-existent-storage-class # Causes PVC failure

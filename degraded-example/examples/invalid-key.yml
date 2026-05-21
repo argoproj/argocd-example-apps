@@ -1,0 +1,6 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: invalid-configmap
+data:
+  invalid-key$: "This key is invalid" # Invalid key name

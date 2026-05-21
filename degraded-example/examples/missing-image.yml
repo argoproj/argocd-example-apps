@@ -1,0 +1,11 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: missing-image-job
+spec:
+  template:
+    spec:
+      containers:
+      - name: main-container
+        image: missing-image:latest # Non-existent image
+      restartPolicy: Never
